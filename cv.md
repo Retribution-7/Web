@@ -110,3 +110,35 @@ def generate_users(n_users: int = 5000, seed: int = 42) -> pd.DataFrame:
 ```
 
 ---
+
+## 📚 Courses & Certificates
+
+### 🎓 PurpleSchool
+
+- React development  
+- Node.js course  
+- Nest.js framework  
+- TypeScript fundamentals  
+- JavaScript advanced  
+
+### 📊 Kaggle
+
+- Python for Data Science  
+- Intermediate Machine Learning  
+- Feature Engineering  
+- Data Visualization  
+
+---
+
+## 🌐 English Proficiency
+
+**Level:** B1 (Intermediate)
+
+**Practice:**
+
+- Reading technical documentation  
+- Code comments in English  
+- Participation in English-speaking developer communities  
+- Watching tech tutorials and conferences  
+
+Currently working on improving to **B2 level**.
