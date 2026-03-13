@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+@theme {
+    /* Font Families */
+    --font-barlow: "Barlow", system-ui, sans-serif;
+    --font-inter: "Inter", system-ui, sans-serif;
+
+    /* Colors */
+    --color-black: #000000;
+
+    /* Heading Styles */
+    --text-h1: 72px;
+    --text-h1--line-height: 1.167;
+    --text-h1--font-family: var(--font-barlow);
+    --text-h1--font-weight: 400;
+
+    --text-h2: 54px;
+    --text-h2--line-height: 1.148;
+    --text-h2--font-family: var(--font-barlow);
+    --text-h2--font-weight: 400;
+
+    --text-h3: 48px;
+    --text-h3--line-height: 1;
+    --text-h3--font-family: var(--font-inter);
+    --text-h3--font-weight: 400;
+
+    --text-h4: 36px;
+    --text-h4--line-height: 1.111;
+    --text-h4--font-family: var(--font-inter);
+    --text-h4--font-weight: 400;
+
+    --text-h5: 24px;
+    --text-h5--line-height: 1.167;
+    --text-h5--font-family: var(--font-inter);
+    --text-h5--font-weight: 400;
+
+    /* Paragraph Styles */
+    --text-p1: 20px;
+    --text-p1--line-height: 1;
+    --text-p1--font-family: var(--font-inter);
+    --text-p1--font-weight: 400;
+
+    --text-p2: 18px;
+    --text-p2--line-height: 1.167;
+    --text-p2--font-family: var(--font-inter);
+    --text-p2--font-weight: 400;
+
+    --text-p3: 16px;
+    --text-p3--line-height: 1.25;
+    --text-p3--font-family: var(--font-inter);
+    --text-p3--font-weight: 400;
+
+    --text-p4: 14px;
+    --text-p4--line-height: 1.143;
+    --text-p4--font-family: var(--font-inter);
+    --text-p4--font-weight: 400;
+
+    --text-p5: 12px;
+    --text-p5--line-height: 1.167;
+    --text-p5--font-family: var(--font-inter);
+    --text-p5--font-weight: 400;
+
+    --background-image-hero: linear-gradient(0deg, rgba(52, 52, 52, 0.6) 40%, rgba(52, 52, 52, 0.6) 100%), url('public/wrapper-img.png');
+
+    /* Breakpoints */
+    --breakpoint-xs: 480px;
+}
+
+@layer base {
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body,
+    html {
+        height: 100%;
+        width: 100%;
+    }
+
+    h1 {
+        @apply text-h1
+    }
+
+    h2 {
+        @apply text-h2
+    }
+
+    h3 {
+        @apply text-h3
+    }
+
+    h4 {
+        @apply text-h4
+    }
+
+    h5 {
+        @apply text-h5
+    }
+
+    button {
+        @apply border-0 bg-transparent cursor-pointer justify-center items-center gap-2.5 flex
+    }
+
+}
+
+@layer components {
+    .nav-item a {
+        @apply no-underline text-white text-p2 font-inter
+    }
+
+    .button--orange {
+        @apply text-white bg-[#FF4D01] font-inter
+    }
+
+    .button--outline {
+        @apply bg-transparent text-white border-2 border-white font-inter
+    }
+}
