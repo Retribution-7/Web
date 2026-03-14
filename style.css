@@ -10,12 +10,12 @@
 
     /* Heading Styles */
     --text-h1: 72px;
-    --text-h1--line-height: 1.167;
+    --text-h1--line-height: 1.125;
     --text-h1--font-family: var(--font-barlow);
     --text-h1--font-weight: 400;
 
     --text-h2: 54px;
-    --text-h2--line-height: 1.148;
+    --text-h2--line-height: 1.25;
     --text-h2--font-family: var(--font-barlow);
     --text-h2--font-weight: 400;
 
@@ -25,23 +25,23 @@
     --text-h3--font-weight: 400;
 
     --text-h4: 36px;
-    --text-h4--line-height: 1.111;
+    --text-h4--line-height: 1.125;
     --text-h4--font-family: var(--font-inter);
     --text-h4--font-weight: 400;
 
     --text-h5: 24px;
-    --text-h5--line-height: 1.167;
+    --text-h5--line-height: 1.125;
     --text-h5--font-family: var(--font-inter);
     --text-h5--font-weight: 400;
 
     /* Paragraph Styles */
     --text-p1: 20px;
-    --text-p1--line-height: 1;
+    --text-p1--line-height: 1.125;
     --text-p1--font-family: var(--font-inter);
     --text-p1--font-weight: 400;
 
     --text-p2: 18px;
-    --text-p2--line-height: 1.167;
+    --text-p2--line-height: 1.25;
     --text-p2--font-family: var(--font-inter);
     --text-p2--font-weight: 400;
 
@@ -51,12 +51,12 @@
     --text-p3--font-weight: 400;
 
     --text-p4: 14px;
-    --text-p4--line-height: 1.143;
+    --text-p4--line-height: 1.25;
     --text-p4--font-family: var(--font-inter);
     --text-p4--font-weight: 400;
 
     --text-p5: 12px;
-    --text-p5--line-height: 1.167;
+    --text-p5--line-height: 1.25;
     --text-p5--font-family: var(--font-inter);
     --text-p5--font-weight: 400;
 
@@ -75,7 +75,8 @@
 
     body,
     html {
-        @apply h-full w-full overflow-hidden
+        @apply h-full w-full
+        /*overflow-y-auto [-ms-overflow-style:none] [scrollbar-width:none]*/
     }
 
     h1 {
