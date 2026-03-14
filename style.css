@@ -117,4 +117,28 @@
     .button--outline {
         @apply bg-transparent text-white border-2 border-white font-inter
     }
+
+    .service-card {
+        @apply flex w-91 flex-col items-start gap-5
+    }
+
+    .service-card img {
+        @apply w-17.5 h-17.5
+    }
+
+    .service-card h4 {
+        @apply text-[#191919] font-inter
+    }
+
+    .service-card p {
+        @apply text-[#605E5D] text-p2 font-inter
+    }
+
+    .service-card div {
+        @apply flex items-center gap-2.5
+    }
+
+    .service-card a {
+        @apply no-underline text-p2 font-inter text-[#191919]
+    }
 }
