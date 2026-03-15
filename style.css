@@ -75,8 +75,7 @@
 
     body,
     html {
-        @apply h-full w-full
-        /*overflow-y-auto [-ms-overflow-style:none] [scrollbar-width:none]*/
+        @apply tracking-[0.009em] h-full w-full font-inter;
     }
 
     h1 {
@@ -97,6 +96,10 @@
 
     h5 {
         @apply text-h5
+    }
+
+    h1, h2, h3, h4, h5 {
+        @apply tracking-normal
     }
 
     button {
