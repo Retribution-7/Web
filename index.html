@@ -6,14 +6,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
+    <script type="module" src="src/main.ts"></script>
   </head>
   <body>
     <div class="bg-hero flex max-h-173.25 w-full flex-col items-center pb-40">
@@ -351,6 +348,111 @@
           </dl>
         </div>
         <img class="h-133.5 w-133.5" src="why-choose-us-second.svg" alt="" />
+      </div>
+    </section>
+    <section class="flex flex-col items-start gap-16 px-20 py-32">
+      <header class="flex w-full items-center justify-between">
+        <div class="flex max-w-150 flex-col items-start gap-4">
+          <span class="text-p1 font-inter text-[#FF4D01]">/Past Projects</span>
+          <h2 class="font-barlow text-[#191919]">
+            Our project results speak for themselves
+          </h2>
+        </div>
+
+        <div class="flex items-center justify-center gap-8">
+          <button
+            class="button--orange font-inter text-p2 px-9.5 py-7.5 leading-none"
+          >
+            Get a quote
+          </button>
+          <button
+            class="font-inter text-p2 border-2 border-[#000] bg-transparent px-3.75 py-7 leading-none text-[#000]"
+          >
+            Browse services
+          </button>
+        </div>
+      </header>
+
+      <div class="swiper mySwiper w-full overflow-hidden">
+        <ul class="swiper-wrapper">
+          <li class="swiper-slide">
+            <article
+              class="flex max-w-136.25 flex-col items-start gap-2.5 bg-[#000] px-7.5 pt-75 pb-7.5"
+            >
+              <div
+                class="flex min-h-66 min-w-121.25 flex-col items-start gap-9 py-0.75"
+              >
+                <h4 class="font-inter text-[#FFF]">
+                  Building construction in Los Angeles, CA
+                </h4>
+                <p class="text-p2 text-[#EAEAEB]">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit lectus
+                  aenean sit elementum pellentesque ultrices sem.
+                </p>
+                <hr class="h-px w-full bg-[#989899]" />
+                <footer class="text-p2 font-inter text-[#EAEAEB]">
+                  Construction
+                </footer>
+              </div>
+            </article>
+          </li>
+          <li class="swiper-slide">
+            <article
+              class="flex max-w-136.25 flex-col items-start gap-2.5 bg-[#000] px-7.5 pt-75 pb-7.5"
+            >
+              <div
+                class="flex min-h-66 min-w-121.25 flex-col items-start gap-9 py-0.75"
+              >
+                <h4 class="font-inter text-[#FFF]">
+                  Kitchen remodeling in Hollywood Hills, CA
+                </h4>
+                <p class="text-p2 text-[#EAEAEB]">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit lectus
+                  aenean sit elementum pellentesque ultrices sem.
+                </p>
+                <hr class="h-px w-full bg-[#989899]" />
+                <footer class="text-p2 font-inter text-[#EAEAEB]">
+                  Remodeling
+                </footer>
+              </div>
+            </article>
+          </li>
+          <li class="swiper-slide">
+            <article
+              class="flex max-w-136.25 flex-col items-start gap-2.5 bg-[#000] px-7.5 pt-75 pb-7.5"
+            >
+              <div
+                class="flex min-h-66 min-w-121.25 flex-col items-start gap-9 py-0.75"
+              >
+                <h4 class="font-inter text-[#FFF]">
+                  Office remodeling in Hollywood Hills, CA
+                </h4>
+                <p class="text-p2 text-[#EAEAEB]">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit lectus
+                  aenean sit elementum pellentesque ultrices sem.
+                </p>
+                <hr class="h-px w-full bg-[#989899]" />
+                <footer class="text-p2 font-inter text-[#EAEAEB]">
+                  Remodeling
+                </footer>
+              </div>
+            </article>
+          </li>
+        </ul>
+
+        <nav class="mt-16 flex justify-center gap-8">
+          <button
+            type="button"
+            class="swiper-button-prev-custom h-12 w-12 cursor-pointer border-2 border-[#191919] bg-white transition-colors hover:bg-[#FF4D01] focus:outline-hidden"
+            aria-label="Previous slide"
+          ></button>
+
+          <button
+            type="button"
+            class="swiper-button-next-custom h-12 w-12 cursor-pointer border-2 border-[#FF4D01] bg-[#FF4D01] transition-colors hover:border-[#191919] hover:bg-[#191919] focus:outline-hidden"
+            aria-label="Next slide"
+          ></button>
+        </nav>
       </div>
     </section>
   </body>

@@ -16,6 +16,7 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.2.1",
     "prettier-plugin-css-order": "^2.2.0",
+    "swiper": "^12.1.2",
     "tailwindcss": "^4.2.1"
   }
 }
