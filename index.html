@@ -443,16 +443,147 @@
         <nav class="mt-16 flex justify-center gap-8">
           <button
             type="button"
-            class="swiper-button-prev-custom h-12 w-12 cursor-pointer border-2 border-[#191919] bg-white transition-colors hover:bg-[#FF4D01] focus:outline-hidden"
+            class="swiper-button-prev-custom h-18 w-18 cursor-pointer border-2 border-[#191919] bg-white transition-colors hover:bg-[#FF4D01] focus:outline-hidden"
             aria-label="Previous slide"
           ></button>
 
           <button
             type="button"
-            class="swiper-button-next-custom h-12 w-12 cursor-pointer border-2 border-[#FF4D01] bg-[#FF4D01] transition-colors hover:border-[#191919] hover:bg-[#191919] focus:outline-hidden"
+            class="swiper-button-next-custom h-18 w-18 cursor-pointer border-2 border-[#FF4D01] bg-[#FF4D01] transition-colors hover:border-[#191919] hover:bg-[#191919] focus:outline-hidden"
             aria-label="Next slide"
           ></button>
         </nav>
+      </div>
+    </section>
+
+    <section class="flex flex-col items-start gap-16 px-20 py-32">
+      <header class="flex items-center justify-center gap-16">
+        <div class="flex w-211 flex-col items-start gap-4">
+          <span class="text-p1 font-inter text-[#FF4D01]">/Testimonials</span>
+          <h2 class="font-barlow text-[#191919]">
+            What our clients say about us and<br class="hidden sm:block" />
+            our work
+          </h2>
+        </div>
+
+        <div class="flex items-center justify-center gap-8">
+          <button
+            type="button"
+            class="swiper-button-prev-custom flex h-18 w-18 items-center justify-center border border-black bg-transparent transition-colors hover:bg-black hover:text-white focus:outline-none"
+            aria-label="Previous testimonial"
+          ></button>
+
+          <button
+            type="button"
+            class="swiper-button-next-custom flex h-18 w-18 items-center justify-center bg-[#FF4D01] text-white transition-colors hover:bg-orange-700 focus:outline-none"
+            aria-label="Next testimonial"
+          ></button>
+        </div>
+      </header>
+
+      <div class="swiper mySwiper w-full overflow-hidden">
+        <ul class="swiper-wrapper">
+          <li class="swiper-slide testimonial-slide">
+            <article class="testimonial-card">
+              <img
+                src="testimonial-1.svg"
+                alt="Portrait of John Carter"
+                class="testimonial-card__image"
+              />
+              <div class="testimonial-card__content">
+                <h5 class="testimonial-card__quote">
+                  “A true team of expert contractors”
+                </h5>
+                <p class="testimonial-card__text">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Convallis senectus non dui vel tortor. Justo lectus integer
+                  arcu elit.
+                </p>
+                <div class="testimonial-card__author-info">
+                  <span class="testimonial-card__name">John Carter</span>
+                  <span class="testimonial-card__location"
+                    >Malibu beach, CA</span
+                  >
+                </div>
+              </div>
+            </article>
+          </li>
+          <li class="swiper-slide testimonial-slide">
+            <article class="testimonial-card">
+              <img
+                src="testimonial-2.svg"
+                alt="Portrait of Lily Woods"
+                class="testimonial-card__image"
+              />
+              <div class="testimonial-card__content">
+                <h5 class="testimonial-card__quote">
+                  “A team that never undelivers”
+                </h5>
+                <p class="testimonial-card__text">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Convallis senectus non dui vel tortor. Justo lectus integer
+                  arcu elit.
+                </p>
+                <div class="testimonial-card__author-info">
+                  <span class="testimonial-card__name">Lily Woods</span>
+                  <span class="testimonial-card__location"
+                    >HollyWOODS hILLS, ca</span
+                  >
+                </div>
+              </div>
+            </article>
+          </li>
+          <li class="swiper-slide testimonial-slide">
+            <article class="testimonial-card">
+              <img
+                src="testimonial-1.svg"
+                alt="Portrait of John Carter"
+                class="testimonial-card__image"
+              />
+              <div class="testimonial-card__content">
+                <h5 class="testimonial-card__quote">
+                  “A true team of expert contractors”
+                </h5>
+                <p class="testimonial-card__text">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Convallis senectus non dui vel tortor. Justo lectus integer
+                  arcu elit.
+                </p>
+                <div class="testimonial-card__author-info">
+                  <span class="testimonial-card__name">John Carter</span>
+                  <span class="testimonial-card__location"
+                    >Malibu beach, CA</span
+                  >
+                </div>
+              </div>
+            </article>
+          </li>
+          <li class="swiper-slide testimonial-slide">
+            <article class="testimonial-card">
+              <img
+                src="testimonial-2.svg"
+                alt="Portrait of Lily Woods"
+                class="testimonial-card__image"
+              />
+              <div class="testimonial-card__content">
+                <h5 class="testimonial-card__quote">
+                  “A team that never undelivers”
+                </h5>
+                <p class="testimonial-card__text">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Convallis senectus non dui vel tortor. Justo lectus integer
+                  arcu elit.
+                </p>
+                <div class="testimonial-card__author-info">
+                  <span class="testimonial-card__name">Lily Woods</span>
+                  <span class="testimonial-card__location"
+                    >HollyWOODS hILLS, ca</span
+                  >
+                </div>
+              </div>
+            </article>
+          </li>
+        </ul>
       </div>
     </section>
   </body>

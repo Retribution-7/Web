@@ -1,18 +1,40 @@
 import Swiper from "swiper";
 import { Navigation } from "swiper/modules";
 
-export const initSwiper = () =>
-  new Swiper(".mySwiper", {
-    modules: [Navigation],
+export const initSwiper = () => {
+  const swipers = document.querySelectorAll<HTMLElement>(".mySwiper");
 
-    slidesPerView: 2,
-    spaceBetween: 64,
+  swipers.forEach((swiperEl) => {
+    const section = swiperEl.closest("section") ?? document.body;
 
-    speed: 600,
-    rewind: true,
+    const nextEl = section.querySelector<HTMLElement>(
+      ".swiper-button-next-custom",
+    );
+    const prevEl = section.querySelector<HTMLElement>(
+      ".swiper-button-prev-custom",
+    );
 
-    navigation: {
-      nextEl: ".swiper-button-next-custom",
-      prevEl: ".swiper-button-prev-custom",
-    },
+    if (!nextEl || !prevEl) return;
+
+    new Swiper(swiperEl, {
+      modules: [Navigation],
+
+      slidesPerView: 1,
+      spaceBetween: 64,
+
+      breakpoints: {
+        1024: {
+          slidesPerView: 2,
+        },
+      },
+
+      speed: 600,
+      rewind: true,
+
+      navigation: {
+        nextEl,
+        prevEl,
+      },
+    });
   });
+};

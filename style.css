@@ -156,4 +156,40 @@
     .swiper-slide article {
         width: 100%;
     }
+
+    .testimonial-slide {
+        @apply min-w-185
+    }
+
+    .testimonial-card {
+        @apply flex items-center gap-9.5;
+    }
+
+    .testimonial-card__image {
+        @apply h-85 w-85;
+    }
+
+    .testimonial-card__content {
+        @apply flex w-90.5 flex-col items-start gap-6;
+    }
+
+    .testimonial-card__quote {
+        @apply font-inter;
+    }
+
+    .testimonial-card__text {
+        @apply font-inter text-p2 text-[#989899];
+    }
+
+    .testimonial-card__author-info {
+        @apply flex flex-col items-start gap-1.5;
+    }
+
+    .testimonial-card__name {
+        @apply text-p2 font-inter text-[#191919]
+    }
+
+    .testimonial-card__location {
+        @apply text-p4 font-inter text-[#989899];
+    }
 }
