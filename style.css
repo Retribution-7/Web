@@ -192,4 +192,24 @@
     .testimonial-card__location {
         @apply text-p4 font-inter text-[#989899];
     }
+
+    .blog-card {
+        @apply flex items-center gap-4
+    }
+
+    .blog-card__image {
+        @apply w-56 h-56
+    }
+
+    .blog-card__content {
+        @apply flex w-71.75 flex-col items-start gap-4
+    }
+
+    .blog-card__text {
+        @apply text-[#191919] font-inter
+    }
+
+    .blog-card__date {
+        @apply text-p2 font-inter text-[#605E5D]
+    }
 }
