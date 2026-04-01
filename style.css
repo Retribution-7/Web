@@ -5,8 +5,8 @@
 
 @theme {
     /* Font Families */
-    --font-barlow: "Barlow", system-ui, sans-serif;
-    --font-inter: "Inter", system-ui, sans-serif;
+    --font-barlow: "Barlow";
+    --font-inter: "Inter";
 
     /* Colors */
     --color-black: #000000;
@@ -74,6 +74,7 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+        letter-spacing: 0;
     }
 
     body,
@@ -211,5 +212,9 @@
 
     .blog-card__date {
         @apply text-p2 font-inter text-[#605E5D]
+    }
+
+    .footer-nav a {
+        @apply no-underline text-p2 font-inter text-[#EAEAEB]
     }
 }

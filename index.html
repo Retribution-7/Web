@@ -13,7 +13,7 @@
     <script type="module" src="src/main.ts"></script>
   </head>
   <body>
-    <div class="bg-hero flex max-h-173.25 w-full flex-col items-center pb-40">
+    <div class="bg-hero flex min-h-173.25 w-full flex-col items-center pb-40">
       <header class="flex w-full items-center justify-end gap-8 pt-8 pr-8">
         <nav>
           <ul class="font-inter flex grow items-center gap-8">
@@ -50,7 +50,7 @@
         </div>
       </section>
     </div>
-    <section>
+    <section class="min-h-156.5">
       <div class="flex items-stretch gap-18 px-20 py-32">
         <img class="object-cover" src="public/about-us.svg" alt="" />
         <div class="flex max-w-151 flex-col items-start gap-7.5 px-4 py-0">
@@ -97,7 +97,7 @@
             </div>
           </dl>
           <button
-            class="text-p2 font-inter flex items-center justify-center border-2 border-[#191919] bg-transparent px-8.75 py-5 whitespace-nowrap md:w-auto"
+            class="text-p2 font-inter flex items-center justify-center border-2 border-[#191919] bg-transparent px-7.5 py-5 whitespace-nowrap md:w-auto"
           >
             About our company
           </button>
@@ -105,7 +105,7 @@
       </div>
     </section>
     <section
-      class="flex flex-col items-start justify-center gap-2.5 px-31.5 py-32"
+      class="flex min-h-136.25 flex-col items-start justify-center gap-2.5 px-31.5 py-32"
     >
       <div class="flex flex-col items-center justify-center gap-16 px-6">
         <header class="flex w-full items-center justify-between">
@@ -217,7 +217,7 @@
       </div>
     </section>
     <section
-      class="flex h-136.25 flex-col items-start gap-2.5 bg-[url('public/quote-bg.png')] px-20 py-32"
+      class="flex max-h-136.25 min-h-133.5 flex-col items-start gap-2.5 bg-[url('public/quote-bg.png')] px-20 py-32"
     >
       <div class="flex max-w-151 flex-col items-start gap-6">
         <h2 class="font-barlow text-[#191919]">
@@ -229,20 +229,18 @@
           porttitor quis.
         </p>
         <div class="flex items-center justify-center gap-8">
-          <button
-            class="font-inter button--orange text-p2 px-9.5 py-7.5 leading-none"
-          >
+          <button class="font-inter button--orange text-p2 px-7.5 py-6.25">
             Get a quote
           </button>
           <button
-            class="font-inter text-p2 border-2 border-[#000] bg-transparent px-9.5 py-7.5 leading-none text-[#000]"
+            class="font-inter text-p2 border-2 border-[#000] bg-transparent px-7.5 py-6.25 text-[#000]"
           >
             Our services
           </button>
         </div>
       </div>
     </section>
-    <section class="flex flex-col items-start">
+    <section class="flex min-h-395 flex-col items-start">
       <div class="flex items-center gap-38 px-20 py-32">
         <img src="why-choose-us-first.svg" alt="" />
         <div class="flex flex-col items-start gap-6">
@@ -350,7 +348,7 @@
         <img class="h-133.5 w-133.5" src="why-choose-us-second.svg" alt="" />
       </div>
     </section>
-    <section class="flex flex-col items-start gap-16 px-20 py-32">
+    <section class="flex min-h-242 flex-col items-start gap-16 px-20 py-32">
       <header class="flex w-full items-center justify-between">
         <div class="flex max-w-150 flex-col items-start gap-4">
           <span class="text-p1 font-inter text-[#FF4D01]">/Past Projects</span>
@@ -456,7 +454,7 @@
       </div>
     </section>
 
-    <section class="flex flex-col items-start gap-16 px-20 py-32">
+    <section class="flex min-h-144.5 flex-col items-start gap-16 px-20 py-32">
       <header class="flex items-center justify-center gap-16">
         <div class="flex w-211 flex-col items-start gap-4">
           <span class="text-p1 font-inter text-[#FF4D01]">/Testimonials</span>
@@ -586,14 +584,14 @@
         </ul>
       </div>
     </section>
-    <section class="flex flex-col items-start gap-16 px-20 py-32">
+    <section class="flex min-h-226.5 flex-col items-start gap-16 px-20 py-32">
       <header class="flex w-full items-center justify-between">
         <div class="flex flex-col items-start gap-3.75">
           <span class="text-p1 font-inter text-[#FF4D01]"> /Blog </span>
           <h2 class="font-barlow">Articles & News</h2>
         </div>
         <button
-          class="font-inter text-p2 border-2 border-[#000] bg-transparent px-10 py-6.5 leading-none text-[#000]"
+          class="font-inter text-p2 border-2 border-[#000] bg-transparent px-7.5 py-6.25 text-[#000]"
         >
           Browse articles
         </button>
@@ -640,5 +638,182 @@
         </div>
       </div>
     </section>
+    <footer
+      class="flex min-h-144.75 shrink-0 flex-col items-center justify-center gap-2.5 bg-[#000] px-30"
+    >
+      <div
+        class="grid grid-cols-[repeat(4,fit-content(100%))] grid-rows-[repeat(1,fit-content(100%))] gap-x-16"
+      >
+        <section
+          class="col-[1/span_1] row-[1/span_1] flex w-48 flex-col items-center justify-center gap-8 py-16"
+        >
+          <p class="text-p2 text-center text-[#EAEAEB]">
+            Lorem ipsum dolor sit amet consectetur adipiscing elit.
+          </p>
+          <nav aria-label="Social media">
+            <ul class="flex items-center gap-4">
+              <li><div href="#" class="h-9 w-9 bg-[#FF4D01]"></div></li>
+              <li><div href="#" class="h-9 w-9 bg-[#FF4D01]"></div></li>
+              <li><div href="#" class="h-9 w-9 bg-[#FF4D01]"></div></li>
+              <li><div href="#" class="h-9 w-9 bg-[#FF4D01]"></div></li>
+            </ul>
+          </nav>
+        </section>
+
+        <nav
+          class="footer-nav row-[1 /span_1] col-[2/span_1] flex w-68.5 flex-col items-start gap-10"
+        >
+          <h5 class="font-inter text-[#FFF]">Menu</h5>
+          <div class="flex items-start justify-center gap-8">
+            <ul class="flex w-31.25 flex-col items-start gap-4">
+              <li>
+                <a href="/">Home</a>
+              </li>
+              <li>
+                <a href="/about" class="text-p2 font-inter text-[#EAEAEB]"
+                  >About</a
+                >
+              </li>
+              <li>
+                <a href="/blog" class="text-p2 font-inter text-[#EAEAEB]"
+                  >Blog</a
+                >
+              </li>
+              <li>
+                <a href="/blog-post" class="text-p2 font-inter text-[#EAEAEB]"
+                  >Blog Post</a
+                >
+              </li>
+              <li>
+                <a href="/services" class="text-p2 font-inter text-[#EAEAEB]"
+                  >Services</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/services-single"
+                  class="text-p2 font-inter text-[#EAEAEB]"
+                  >Services Single</a
+                >
+              </li>
+            </ul>
+            <ul class="flex w-30.25 flex-col items-start gap-4">
+              <li>
+                <a href="/shop" class="text-p2 font-inter text-[#EAEAEB]"
+                  >Shop</a
+                >
+              </li>
+              <li>
+                <a href="/shop-single" class="text-p2 font-inter text-[#EAEAEB]"
+                  >Shop Single</a
+                >
+              </li>
+              <li>
+                <a href="/projects" class="text-p2 font-inter text-[#EAEAEB]"
+                  >Projects</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/projects-single"
+                  class="text-p2 font-inter text-[#EAEAEB]"
+                  >Projects Single</a
+                >
+              </li>
+              <li>
+                <a href="/contact" class="text-p2 font-inter text-[#EAEAEB]"
+                  >Contact</a
+                >
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <nav
+          class="footer-nav col-[3/span_1] row-[1/span_1] flex w-50.25 flex-col items-start gap-10"
+        >
+          <h5 class="font-inter text-[#FFF]">Utility Pages</h5>
+          <ul class="flex w-50.25 flex-col items-start gap-4">
+            <li>
+              <a href="/start-here" class="text-p2 font-inter text-[#EAEAEB]"
+                >Start Here</a
+              >
+            </li>
+            <li>
+              <a
+                href="/password-protected"
+                class="text-p2 font-inter text-[#EAEAEB]"
+                >Password Protected</a
+              >
+            </li>
+            <li>
+              <a href="/404" class="text-p2 font-inter text-[#EAEAEB]"
+                >404 Not Found</a
+              >
+            </li>
+            <li>
+              <a href="/licenses" class="text-p2 font-inter text-[#EAEAEB]"
+                >Licenses</a
+              >
+            </li>
+            <li>
+              <a href="/styleguide" class="text-p2 font-inter text-[#EAEAEB]"
+                >Styleguide</a
+              >
+            </li>
+            <li>
+              <a href="/changelog" class="text-p2 font-inter text-[#EAEAEB]"
+                >Changelog</a
+              >
+            </li>
+            <li>
+              <a href="/templates" class="text-p2 font-inter text-[#EAEAEB]"
+                >More Webflow Templates</a
+              >
+            </li>
+          </ul>
+        </nav>
+
+        <section
+          class="col-[4/span_1] row-[1/span_1] flex w-72.5 flex-col items-start gap-10"
+        >
+          <h5 class="font-inter text-[#FFF]">Contact us</h5>
+
+          <article
+            class="flex h-26.75 min-w-72.5 items-center gap-4 border-2 border-[#FF4D01] px-12.5 py-7.5"
+          >
+            <a
+              href="tel:3232380682"
+              class="flex h-full w-full items-center gap-4 text-white"
+            >
+              <img src="phone.svg" alt="" />
+              <div class="flex flex-col items-start gap-1.5">
+                <span class="text-p4 font-inter text-[#FFF]">Call us</span>
+                <span class="text-p4 font-inter text-[#FFF]"
+                  >(323) 238-0682</span
+                >
+              </div>
+            </a>
+          </article>
+
+          <article
+            class="flex h-26.75 min-w-72.5 items-center gap-4 border-2 border-[#FF4D01] px-12.5 py-7.5"
+          >
+            <a
+              href="mailto:info@contractor.com"
+              class="flex h-full w-full items-center gap-4 text-white"
+            >
+              <img src="mail.svg" alt="" />
+              <div class="flex flex-col items-start gap-1.5">
+                <span class="text-p4 font-inter text-[#FFF]">Email us</span>
+                <span class="text-p4 font-inter text-[#FFF]"
+                  >info@contractor.com</span
+                >
+              </div>
+            </a>
+          </article>
+        </section>
+      </div>
+    </footer>
   </body>
 </html>
