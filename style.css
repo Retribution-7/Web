@@ -65,8 +65,11 @@
 
     --background-image-hero: linear-gradient(0deg, rgba(52, 52, 52, 0.6) 40%, rgba(52, 52, 52, 0.6) 100%), url('public/wrapper-img.png');
 
-    /* Breakpoints */
-    --breakpoint-xs: 480px;
+    --breakpoint-sm: 640px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 1024px;
+    --breakpoint-xl: 1140px;
+    --breakpoint-2xl: 1310px;
 }
 
 @layer base {
@@ -126,7 +129,7 @@
     }
 
     .service-card {
-        @apply flex w-91 flex-col items-start gap-5
+        @apply flex w-full md:w-82.5 lg:w-95 flex-col items-start gap-5 h-full
     }
 
     .service-card img {
@@ -138,7 +141,7 @@
     }
 
     .service-card p {
-        @apply text-[#605E5D] text-p2 font-inter
+        @apply text-[#605E5D] text-p2 font-inter grow
     }
 
     .service-card div {
@@ -150,12 +153,11 @@
     }
 
     .swiper-slide {
-        width: 545px !important;
-        height: auto;
+        @apply min-w-106.75 md:min-w-136.25
     }
 
-    .swiper-slide article {
-        width: 100%;
+    .swiper-slide-projects article {
+        @apply px-7.5 pb-7.5 pt-75 flex flex-col justify-end items-start gap-2.5 w-94 h-121 md:w-136.25 md:h-148.5 lg:gap-5
     }
 
     .testimonial-slide {
@@ -163,31 +165,31 @@
     }
 
     .testimonial-card {
-        @apply flex items-center gap-9.5;
+        @apply flex items-center gap-9.5 flex-col md:flex-row w-full max-w-[288px] md:max-w-[720px] lg:max-w-185;
     }
 
     .testimonial-card__image {
-        @apply h-85 w-85;
+        @apply w-[288px] h-79.5 md:w-85.25 lg:h-85 lg:w-85;
     }
 
     .testimonial-card__content {
-        @apply flex w-90.5 flex-col items-start gap-6;
+        @apply flex w-[288px] md:w-85.25 lg:w-90.5 flex-col items-start gap-6;
     }
 
     .testimonial-card__quote {
-        @apply font-inter;
+        @apply text-p1 font-inter md:text-h5;
     }
 
     .testimonial-card__text {
-        @apply font-inter text-p2 text-[#989899];
+        @apply font-inter text-p4 md:text-p2 text-[#989899];
     }
 
     .testimonial-card__author-info {
-        @apply flex flex-col items-start gap-1.5;
+        @apply flex flex-col items-start lg:gap-1.5;
     }
 
     .testimonial-card__name {
-        @apply text-p2 font-inter text-[#191919]
+        @apply text-p4 md:text-p2 font-inter text-[#191919]
     }
 
     .testimonial-card__location {
@@ -195,11 +197,11 @@
     }
 
     .blog-card {
-        @apply flex items-center gap-4
+        @apply flex items-center gap-4 max-md:flex-col
     }
 
     .blog-card__image {
-        @apply w-56 h-56
+        @apply w-[320px] h-80 md:w-56 md:h-56 object-cover
     }
 
     .blog-card__content {
@@ -207,11 +209,11 @@
     }
 
     .blog-card__text {
-        @apply text-[#191919] font-inter
+        @apply text-p1 md:text-h5 text-[#191919] font-inter
     }
 
     .blog-card__date {
-        @apply text-p2 font-inter text-[#605E5D]
+        @apply text-p4 md:text-p2 font-inter text-[#605E5D]
     }
 
     .footer-nav a {

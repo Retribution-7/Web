@@ -23,14 +23,26 @@ export const initSwiper = () => {
       spaceBetween: 64,
 
       breakpoints: {
-        1024: {
+        640: {
+          slidesPerView: 1.5,
+          spaceBetween: 64,
+        },
+        960: {
           slidesPerView: 2,
+          spaceBetween: 64,
+        },
+        1280: {
+          slidesPerView: 2.2,
+          spaceBetween: 64,
+        },
+        1400: {
+          slidesPerView: 2.5,
+          spaceBetween: 64,
         },
       },
 
       speed: 600,
       rewind: true,
-
       navigation: {
         nextEl,
         prevEl,

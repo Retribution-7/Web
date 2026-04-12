@@ -13,91 +13,126 @@
     <script type="module" src="src/main.ts"></script>
   </head>
   <body>
-    <div class="bg-hero flex min-h-173.25 w-full flex-col items-center pb-40">
-      <header class="flex w-full items-center justify-end gap-8 pt-8 pr-8">
-        <nav>
+    <div
+      class="bg-hero flex w-full flex-col items-center bg-center pb-10 md:pb-20 lg:pb-40"
+    >
+      <header
+        class="flex w-full items-center justify-between gap-8 px-4 pt-7.5 md:justify-end md:py-8 md:pr-8 md:pl-0 lg:pb-0"
+      >
+        <img class="hidden max-md:block" src="menu.svg" alt="" />
+        <nav class="block max-md:hidden">
           <ul class="font-inter flex grow items-center gap-8">
             <li class="nav-item"><a href="#">Home</a></li>
             <li class="nav-item"><a href="#">About</a></li>
             <li class="nav-item"><a href="#">Blog</a></li>
             <li class="nav-item"><a href="#">Pages</a></li>
             <li class="nav-item"><a href="#">Contact</a></li>
-            <li class="nav-item"><a href="#">Cart (0)</a></li>
+            <li class="nav-item"><a href="#">Cart&nbsp;(0)</a></li>
           </ul>
         </nav>
-        <button class="button--orange text-p3 p-4.25">Get a quote</button>
+        <button
+          class="button--orange text-p5 md:text-p3 max-sm:text-p5 p-2.5 max-sm:p-2.5 md:p-4.25"
+        >
+          Get&nbsp;a&nbsp;quote
+        </button>
       </header>
-      <section class="flex max-w-162 flex-col items-center">
-        <div class="flex flex-col items-center justify-center gap-4 px-0 py-16">
-          <h1 class="font-barlow text-center text-white">
-            We provide effective contracting services
-          </h1>
-          <p
-            class="text-p2 font-inter text-center tracking-[0.011em] text-white"
+      <main class="flex max-w-162 flex-col items-center">
+        <div
+          class="flex flex-col items-center justify-center gap-4 py-6 md:py-8 lg:min-w-165 lg:py-16"
+        >
+          <h5
+            class="font-inter md:font-barlow sm:text-h2 2xl:text-h1 w-full text-center text-white"
           >
+            We provide effective contracting services
+          </h5>
+          <p class="text-p4 md:text-p2 font-inter px-2 text-center text-white">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit dolor sit
             varius rhoncus, nullam pulvinar ut sollicitudin dictumst porttitor
             porttitor quis quisque erat.
           </p>
         </div>
-        <div class="flex items-center justify-center gap-8">
-          <button class="button--orange text-p2 p-6.25 leading-none">
+        <div class="flex items-center justify-center gap-4 md:gap-8">
+          <button
+            class="button--orange text-p4 md:text-p2 p-3.75 leading-none md:p-7"
+          >
             Get a quote
           </button>
-          <button class="button--outline text-p2 p-6.25 leading-none">
+          <button
+            class="button--outline text-p4 md:text-p2 box-border p-3.75 leading-none md:p-6.25"
+          >
             Our services
           </button>
         </div>
-      </section>
+      </main>
     </div>
-    <section class="min-h-156.5">
-      <div class="flex items-stretch gap-18 px-20 py-32">
-        <img class="object-cover" src="public/about-us.svg" alt="" />
-        <div class="flex max-w-151 flex-col items-start gap-7.5 px-4 py-0">
-          <span class="text-p1 font-inter text-[#FF4D01]">/About Us</span>
-          <h2 class="font-barlow text-[#191919]">
+    <section>
+      <div
+        class="flex gap-9 py-7.5 max-lg:flex-col md:gap-18 md:max-lg:py-17 lg:px-20 lg:py-32"
+      >
+        <img
+          class="md:max-lg: aspect-square w-full object-cover"
+          src="public/about-us.svg"
+          alt=""
+        />
+        <div class="flex flex-col items-start gap-7.5 px-4 py-0 lg:max-w-151">
+          <span class="text-p3 md:text-p1 font-inter text-[#FF4D01]"
+            >/About Us</span
+          >
+          <h5 class="font-inter md:text-h2 md:font-barlow text-[#191919]">
             A team of reliable and experienced contractors
-          </h2>
-          <p class="text-p2 font-inter text-[#191919]">
+          </h5>
+          <p class="text-p4 md:text-p2 font-inter text-[#191919]">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit tristique
             imperdiet nisi metus, viverra nulla aliquet dui porta porttitor
             neque lectus diam justo lobortis purus in elit, elementum dignissim
             nullam vitae pellentesque aliquet aliquam sagittis pulvinar egestas
             morbi suspendisse eleifend.
           </p>
-          <dl class="flex items-center justify-center gap-20">
-            <div class="flex flex-col items-start">
-              <dd class="text-h1 font-barlow flex items-start">
+          <dl
+            class="flex flex-col items-center justify-center gap-8 max-sm:w-full sm:flex-row md:gap-20"
+          >
+            <div class="flex flex-col items-center">
+              <dd
+                class="text-h2 md:text-h1 font-barlow flex items-start justify-center"
+              >
                 <span class="text-[#FF4D01]">+</span
                 ><span class="text-[#191919]">350</span>
               </dd>
               <dt
-                class="text-p2 font-inter text-center text-nowrap text-[#989899]"
+                class="text-p3 md:text-p2 font-inter text-center text-nowrap text-[#989899]"
               >
                 Executed Projects
               </dt>
             </div>
-            <div class="flex flex-col items-start">
-              <dd class="text-h1 font-barlow flex items-start">
+            <div class="flex flex-col items-center">
+              <dd
+                class="text-h2 md:text-h1 font-barlow flex items-start justify-center"
+              >
                 <span class="text-[#191919]">12</span
                 ><span class="text-[#FF4D01]">Y</span>
               </dd>
-              <dt class="text-p2 font-inter text-center text-[#989899]">
+              <dt
+                class="text-p3 md:text-p2 font-inter text-center text-[#989899]"
+              >
                 Experience
               </dt>
             </div>
-            <div class="flex flex-col items-start">
-              <dd class="text-h1 font-barlow flex items-start">
+            <div class="flex flex-col items-center">
+              <dd
+                class="text-h2 md:text-h1 font-barlow flex items-start justify-center"
+              >
                 <span class="text-[#FF4D01]">+</span
                 ><span class="text-[#191919]">400</span>
               </dd>
-              <dt class="text-p2 font-inter text-center text-[#989899]">
+              <dt
+                class="text-p3 md:text-p2 font-inter text-center text-[#989899]"
+              >
                 Satisfied Clients
               </dt>
             </div>
           </dl>
           <button
-            class="text-p2 font-inter flex items-center justify-center border-2 border-[#191919] bg-transparent px-7.5 py-5 whitespace-nowrap md:w-auto"
+            class="text-p4 sm:text-p2 font-inter flex items-center justify-center border-2 border-[#191919] bg-transparent px-5 py-5 whitespace-nowrap md:w-auto lg:px-7.5"
           >
             About our company
           </button>
@@ -105,111 +140,503 @@
       </div>
     </section>
     <section
-      class="flex min-h-136.25 flex-col items-start justify-center gap-2.5 px-31.5 py-32"
+      class="flex flex-col items-start justify-center gap-16 px-4 py-5 md:px-11 md:py-17 lg:px-31.5 lg:py-32"
     >
-      <div class="flex flex-col items-center justify-center gap-16 px-6">
-        <header class="flex w-full items-center justify-between">
-          <div class="flex max-w-113.75 flex-col items-start gap-4">
-            <span class="text-p1 font-inter text-[#FF4D01]">/Our Services</span>
-            <h2 class="font-barlow text-[#191919]">
-              A comprehensive set of services
-            </h2>
-          </div>
-          <div class="flex items-center justify-center gap-8">
-            <button
-              class="font-inter button--orange text-p2 p-6.25 leading-none"
-            >
-              Get a quote
-            </button>
-            <button
-              class="font-inter text-p2 border-2 border-[#000] bg-transparent p-6.25 leading-none text-[#000]"
-            >
-              Our services
-            </button>
-          </div>
-        </header>
-        <ul class="flex flex-wrap content-start items-start gap-x-6 gap-y-20">
-          <li>
-            <article class="service-card">
-              <img src="public/project-planning.svg" alt="" />
-              <h4>Project Planning</h4>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit quis
-                eget morbi fermentum sagittis, et mi lacus ornare tincidunt id.
+      <header
+        class="flex w-full flex-col gap-8 xl:flex-row xl:items-center xl:justify-between"
+      >
+        <div class="flex max-w-113.75 flex-col items-start gap-4">
+          <span class="text-p3 md:text-p1 font-inter text-[#FF4D01]"
+            >/Our Services</span
+          >
+          <h5 class="md:text-h2 font-barlow text-[#191919]">
+            A comprehensive set of services
+          </h5>
+        </div>
+        <div class="flex items-center gap-2 md:gap-8 xl:justify-center">
+          <button
+            class="font-inter button--orange text-p4 md:text-p2 px-5 py-5.25 leading-none md:px-9.5 md:py-7.75"
+          >
+            Get a quote
+          </button>
+          <button
+            class="font-inter text-p4 md:text-p2 border-2 border-[#000] bg-transparent px-5 py-5.25 leading-none text-[#000] md:px-9.5 md:py-7.75"
+          >
+            Our services
+          </button>
+        </div>
+      </header>
+      <ul
+        class="grid grid-cols-1 gap-x-5 gap-y-10 md:grid-cols-2 2xl:grid-cols-3 2xl:gap-x-6 2xl:gap-y-20"
+      >
+        <li>
+          <article class="service-card">
+            <img src="public/project-planning.svg" alt="" />
+            <h4>Project Planning</h4>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit quis eget
+              morbi fermentum sagittis, et mi lacus ornare tincidunt id.
+            </p>
+            <div>
+              <img class="h-7.5 w-7.5" src="public/black-square.svg" alt="" />
+              <a href="#">Learn more</a>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="service-card">
+            <img src="public/project-management.svg" alt="" />
+            <h4>Project <br class="block lg:hidden" />Management</h4>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit quis eget
+              morbi fermentum sagittis, et mi lacus ornare tincidunt id.
+            </p>
+            <div>
+              <img class="h-7.5 w-7.5" src="public/black-square.svg" alt="" />
+              <a href="#">Learn more</a>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="service-card">
+            <img src="public/general-contracting.svg" alt="" />
+            <h4>General <br class="block lg:hidden" />Contracting</h4>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit quis eget
+              morbi fermentum sagittis, et mi lacus ornare tincidunt id.
+            </p>
+            <div>
+              <img class="h-7.5 w-7.5" src="public/black-square.svg" alt="" />
+              <a href="#">Learn more</a>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="service-card">
+            <img src="public/interior-design.svg" alt="" />
+            <h4>Interior Design</h4>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit quis eget
+              morbi fermentum sagittis, et mi lacus ornare tincidunt id.
+            </p>
+            <div>
+              <img class="h-7.5 w-7.5" src="public/black-square.svg" alt="" />
+              <a href="#">Learn more</a>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="service-card">
+            <img src="public/exterior-design.svg" alt="" />
+            <h4>Exterior Design</h4>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit quis eget
+              morbi fermentum sagittis, et mi lacus ornare tincidunt id.
+            </p>
+            <div>
+              <img class="h-7.5 w-7.5" src="public/black-square.svg" alt="" />
+              <a href="#">Learn more</a>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="service-card">
+            <img src="public/space-planning.svg" alt="" />
+            <h4>Space Planning</h4>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit quis eget
+              morbi fermentum sagittis, et mi lacus ornare tincidunt id.
+            </p>
+            <div>
+              <img class="h-7.5 w-7.5" src="public/black-square.svg" alt="" />
+              <a href="#">Learn more</a>
+            </div>
+          </article>
+        </li>
+      </ul>
+    </section>
+    <section
+      class="bg-cover bg-center px-4 py-5 md:bg-[url('public/quote-bg.png')] md:px-11 md:py-17 lg:px-20 lg:py-32"
+    >
+      <div class="flex flex-col gap-4 md:gap-8 lg:max-w-151">
+        <h5
+          class="font-inter md:text-h3 lg:text-h2 lg:font-barlow text-[#191919]"
+        >
+          Ready to pull the trigger?<br />Get a quote today.
+        </h5>
+        <p
+          class="text-p4 md:text-p2 font-inter text-[#605E5D] md:max-lg:w-88.25"
+        >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit dolor sit
+          varius rhoncus, nullam pulvinar ut sollicitudin dictumst porttitor
+          porttitor quis.
+        </p>
+        <div class="flex items-center gap-2 md:gap-8">
+          <button
+            class="font-inter button--orange text-p4 md:text-p2 px-5 py-5.25 leading-none md:px-9.5 md:py-8"
+          >
+            Get a quote
+          </button>
+          <button
+            class="font-inter text-p4 md:text-p2 border-2 border-[#000] bg-transparent px-5 py-5.25 leading-none text-[#000] md:px-9.5 md:py-7.75"
+          >
+            Our services
+          </button>
+        </div>
+      </div>
+    </section>
+    <section class="flex flex-col items-start">
+      <div
+        class="flex items-center max-lg:flex-col md:py-17 lg:gap-38 lg:px-20 lg:py-32"
+      >
+        <img
+          class="hidden object-cover max-lg:h-133.5 max-lg:w-full md:block"
+          src="why-choose-us-first.svg"
+          alt=""
+        />
+        <div
+          class="flex flex-col items-start gap-6 px-4 py-5 md:px-11 md:py-17 lg:p-0"
+        >
+          <span class="text-p3 md:text-p1 font-inter text-[#FF4D01]"
+            >/Why Choose Us</span
+          >
+          <h5 class="md:text-h2 font-inter md:font-barlow text-[#191919]">
+            An exceptional quality that can't be beaten
+          </h5>
+          <p class="text-p4 md:text-p2 font-inter text-[#605E5D]">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit tristique
+            rutrum leo quam consectetur urna egestas tincidunt facilisi neque
+            elementum quis lorem posuere dignissim scelerisque aliquam.
+          </p>
+          <ul class="flex flex-col items-start gap-4">
+            <li class="flex items-center justify-center gap-2.5">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 23 23"
+                fill="none"
+                class="h-4 w-4 lg:h-5.75 lg:w-5.75"
+              >
+                <path
+                  d="M2.06976 12.8469L7.45843 18.2356L20.9302 4.76392"
+                  stroke="#FF4D01"
+                  stroke-width="2.5"
+                  stroke-linecap="square"
+                />
+              </svg>
+              <span class="text-p4 md:text-p2 font-inter text-[#191919]"
+                >Over 15 years of experience</span
+              >
+            </li>
+            <li class="flex items-center justify-center gap-2.5">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 23 23"
+                fill="none"
+                class="h-4 w-4 lg:h-5.75 lg:w-5.75"
+              >
+                <path
+                  d="M2.06976 12.8469L7.45843 18.2356L20.9302 4.76392"
+                  stroke="#FF4D01"
+                  stroke-width="2.5"
+                  stroke-linecap="square"
+                />
+              </svg>
+              <span class="text-p4 md:text-p2 font-inter text-[#191919]"
+                >200+ successfully executed projects</span
+              >
+            </li>
+            <li class="flex items-center justify-center gap-2.5">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 23 23"
+                fill="none"
+                class="h-4 w-4 lg:h-5.75 lg:w-5.75"
+              >
+                <path
+                  d="M2.06976 12.8469L7.45843 18.2356L20.9302 4.76392"
+                  stroke="#FF4D01"
+                  stroke-width="2.5"
+                  stroke-linecap="square"
+                />
+              </svg>
+              <span class="text-p4 md:text-p2 font-inter text-[#191919]"
+                >Exceptional work quality</span
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div
+        class="flex items-center max-lg:flex-col 2xl:gap-38 2xl:px-20 2xl:py-32"
+      >
+        <div
+          class="flex flex-col items-start gap-4 px-4 py-5 md:gap-6 md:px-11 md:py-17 2xl:p-0"
+        >
+          <h5 class="md:text-h2 font-inter md:font-barlow text-[#191919]">
+            We help you build on your past and prepare for the future
+          </h5>
+          <p class="text-p4 md:text-p2 font-inter text-[#605E5D]">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit dictum nam
+            arcu ac eu orci purus amet eros, id lorem aliquet eget urna at risus
+            sit purus ac magnis blandit eu egestas imperdiet libero.
+          </p>
+          <dl
+            class="flex w-full flex-col items-center justify-center gap-4 md:flex-row md:gap-8"
+          >
+            <div class="flex flex-col items-center justify-center">
+              <dd
+                class="text-h2 2xl:text-h1 font-barlow flex items-center justify-center"
+              >
+                <span class="m-0 text-[#FF4D01]">+</span
+                ><span class="m-0 text-[#191919]">350</span>
+              </dd>
+              <dt
+                class="text-p3 md:text-p2 font-inter leading-[0,09] text-[#989899]"
+              >
+                Succeccful Projects
+              </dt>
+            </div>
+            <div class="flex flex-col items-center justify-center">
+              <dd
+                class="text-h2 2xl:text-h1 font-barlow flex items-center justify-center"
+              >
+                <span class="text-[#191919]">100</span
+                ><span class="text-[#FF4D01]">%</span>
+              </dd>
+              <dt class="text-p3 md:text-p2 font-inter text-[#989899]">
+                Client Satisfaction
+              </dt>
+            </div>
+          </dl>
+        </div>
+        <img
+          class="hidden h-133.5 w-133.5 object-cover max-lg:w-full md:block"
+          src="why-choose-us-second.svg"
+          alt=""
+        />
+      </div>
+    </section>
+    <section class="flex flex-col items-start 2xl:gap-16 2xl:px-20 2xl:py-32">
+      <header
+        class="flex w-full flex-col gap-4 px-4 pt-5 pb-10 md:gap-8 md:px-11 md:py-17 lg:flex-row lg:justify-between 2xl:p-0"
+      >
+        <div class="flex flex-col items-start gap-4 md:gap-8 lg:max-w-150">
+          <span class="text-p3 md:text-p1 font-inter text-[#FF4D01]"
+            >/Past Projects</span
+          >
+          <h5 class="font-inter md:text-h2 md:font-barlow text-[#191919]">
+            Our project results speak for themselves
+          </h5>
+        </div>
+
+        <div class="flex items-center gap-2 md:gap-8">
+          <button
+            class="font-inter button--orange text-p4 md:text-p2 px-5 py-5.25 leading-none md:px-9.5 md:py-8"
+          >
+            Get a quote
+          </button>
+          <button
+            class="font-inter text-p4 md:text-p2 border-2 border-[#000] bg-transparent px-5 py-5.25 leading-none text-[#000] md:px-9.5 md:py-7.75"
+          >
+            Our services
+          </button>
+        </div>
+      </header>
+
+      <div class="swiper mySwiper w-full overflow-hidden">
+        <ul class="swiper-wrapper px-4 md:px-11 2xl:p-0">
+          <li class="swiper-slide swiper-slide-projects">
+            <article class="bg-[url('past-1.png')]">
+              <h5 class="md:text-h4 font-inter text-[#FFF]">
+                Building construction in Los Angeles, CA
+              </h5>
+              <p class="text-p3 md:text-p2 text-[#EAEAEB]">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit lectus
+                aenean sit elementum pellentesque ultrices sem.
               </p>
-              <div>
-                <img class="h-7.5 w-7.5" src="public/black-square.svg" alt="" />
-                <a href="#">Learn more</a>
+              <footer class="text-p3 md:text-p2 font-inter text-[#EAEAEB]">
+                Construction
+              </footer>
+            </article>
+          </li>
+          <li class="swiper-slide swiper-slide-projects">
+            <article class="bg-[url('past-2.png')]">
+              <h5 class="text-h4 font-inter text-[#FFF]">
+                Kitchen remodeling in Hollywood Hills, CA
+              </h5>
+              <p class="text-p3 md:text-p2 text-[#EAEAEB]">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit lectus
+                aenean sit elementum pellentesque ultrices sem.
+              </p>
+              <footer class="text-p3 md:text-p2 font-inter text-[#EAEAEB]">
+                Remodeling
+              </footer>
+            </article>
+          </li>
+          <li class="swiper-slide swiper-slide-projects">
+            <article class="bg-[url('past-3.png')]">
+              <h5 class="md:text-h4 font-inter text-[#FFF]">
+                Office remodeling in Hollywood Hills, CA
+              </h5>
+              <p class="text-p3 md:text-p2 text-[#EAEAEB]">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit lectus
+                aenean sit elementum pellentesque ultrices sem.
+              </p>
+              <footer class="text-p3 md:text-p2 font-inter text-[#EAEAEB]">
+                Remodeling
+              </footer>
+            </article>
+          </li>
+        </ul>
+
+        <nav
+          class="flex justify-center gap-4 px-4 py-5 md:gap-8 md:px-11 md:py-17 2xl:mt-16 2xl:p-0"
+        >
+          <button
+            type="button"
+            class="swiper-button-prev-custom h-13.75 w-13.75 cursor-pointer border-2 border-[#191919] bg-white transition-colors hover:bg-[#FF4D01] focus:outline-hidden md:h-18 md:w-18"
+            aria-label="Previous slide"
+          ></button>
+
+          <button
+            type="button"
+            class="swiper-button-next-custom h-13.75 w-13.75 cursor-pointer border-2 border-[#FF4D01] bg-[#FF4D01] transition-colors hover:border-[#191919] hover:bg-[#191919] focus:outline-hidden md:h-18 md:w-18"
+            aria-label="Next slide"
+          ></button>
+        </nav>
+      </div>
+    </section>
+
+    <section
+      class="flex flex-col items-start gap-16 px-4 py-5 md:px-11 md:py-17 lg:px-20 lg:py-32"
+    >
+      <header
+        class="flex flex-col items-center justify-center gap-16 lg:flex-row"
+      >
+        <div class="flex flex-col items-start gap-4 lg:w-211">
+          <span class="text-p3 md:text-p1 font-inter text-[#FF4D01]"
+            >/Testimonials</span
+          >
+          <h5 class="font-inter md:text-h2 md:font-barlow text-[#191919]">
+            What our clients say about us and<br class="hidden lg:block" />
+            our work
+          </h5>
+        </div>
+
+        <nav class="flex justify-center gap-4 md:gap-8">
+          <button
+            type="button"
+            class="swiper-button-prev-custom h-13.75 w-13.75 cursor-pointer border-2 border-[#191919] bg-white transition-colors hover:bg-[#FF4D01] focus:outline-hidden md:h-18 md:w-18"
+            aria-label="Previous slide"
+          ></button>
+
+          <button
+            type="button"
+            class="swiper-button-next-custom h-13.75 w-13.75 cursor-pointer border-2 border-[#FF4D01] bg-[#FF4D01] transition-colors hover:border-[#191919] hover:bg-[#191919] focus:outline-hidden md:h-18 md:w-18"
+            aria-label="Next slide"
+          ></button>
+        </nav>
+      </header>
+
+      <div class="swiper mySwiper w-full overflow-hidden">
+        <ul class="swiper-wrapper">
+          <li class="swiper-slide testimonial-slide">
+            <article class="testimonial-card">
+              <img
+                src="testimonial-1.svg"
+                alt="Portrait of John Carter"
+                class="testimonial-card__image"
+              />
+              <div class="testimonial-card__content">
+                <p class="testimonial-card__quote">
+                  “A true team of expert<br />contractors”
+                </p>
+                <p class="testimonial-card__text">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Convallis senectus non dui vel tortor. Justo lectus integer
+                  arcu elit.
+                </p>
+                <div class="testimonial-card__author-info">
+                  <span class="testimonial-card__name">John Carter</span>
+                  <span class="testimonial-card__location"
+                    >Malibu beach, CA</span
+                  >
+                </div>
               </div>
             </article>
           </li>
-          <li>
-            <article class="service-card">
-              <img src="public/project-management.svg" alt="" />
-              <h4>Project Management</h4>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit quis
-                eget morbi fermentum sagittis, et mi lacus ornare tincidunt id.
-              </p>
-              <div>
-                <img class="h-7.5 w-7.5" src="public/black-square.svg" alt="" />
-                <a href="#">Learn more</a>
+          <li class="swiper-slide testimonial-slide">
+            <article class="testimonial-card">
+              <img
+                src="testimonial-2.svg"
+                alt="Portrait of Lily Woods"
+                class="testimonial-card__image"
+              />
+              <div class="testimonial-card__content">
+                <h5 class="testimonial-card__quote">
+                  “A team that never undelivers”
+                </h5>
+                <p class="testimonial-card__text">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Convallis senectus non dui vel tortor. Justo lectus integer
+                  arcu elit.
+                </p>
+                <div class="testimonial-card__author-info">
+                  <span class="testimonial-card__name">Lily Woods</span>
+                  <span class="testimonial-card__location"
+                    >HollyWOODS hILLS, ca</span
+                  >
+                </div>
               </div>
             </article>
           </li>
-          <li>
-            <article class="service-card">
-              <img src="public/general-contracting.svg" alt="" />
-              <h4>General Contracting</h4>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit quis
-                eget morbi fermentum sagittis, et mi lacus ornare tincidunt id.
-              </p>
-              <div>
-                <img class="h-7.5 w-7.5" src="public/black-square.svg" alt="" />
-                <a href="#">Learn more</a>
+          <li class="swiper-slide testimonial-slide">
+            <article class="testimonial-card">
+              <img
+                src="testimonial-1.svg"
+                alt="Portrait of John Carter"
+                class="testimonial-card__image"
+              />
+              <div class="testimonial-card__content">
+                <h5 class="testimonial-card__quote">
+                  “A true team of expert contractors”
+                </h5>
+                <p class="testimonial-card__text">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Convallis senectus non dui vel tortor. Justo lectus integer
+                  arcu elit.
+                </p>
+                <div class="testimonial-card__author-info">
+                  <span class="testimonial-card__name">John Carter</span>
+                  <span class="testimonial-card__location"
+                    >Malibu beach, CA</span
+                  >
+                </div>
               </div>
             </article>
           </li>
-          <li>
-            <article class="service-card">
-              <img src="public/interior-design.svg" alt="" />
-              <h4>Interior Design</h4>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit quis
-                eget morbi fermentum sagittis, et mi lacus ornare tincidunt id.
-              </p>
-              <div>
-                <img class="h-7.5 w-7.5" src="public/black-square.svg" alt="" />
-                <a href="#">Learn more</a>
-              </div>
-            </article>
-          </li>
-          <li>
-            <article class="service-card">
-              <img src="public/exterior-design.svg" alt="" />
-              <h4>Exterior Design</h4>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit quis
-                eget morbi fermentum sagittis, et mi lacus ornare tincidunt id.
-              </p>
-              <div>
-                <img class="h-7.5 w-7.5" src="public/black-square.svg" alt="" />
-                <a href="#">Learn more</a>
-              </div>
-            </article>
-          </li>
-          <li>
-            <article class="service-card">
-              <img src="public/space-planning.svg" alt="" />
-              <h4>Space Planning</h4>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit quis
-                eget morbi fermentum sagittis, et mi lacus ornare tincidunt id.
-              </p>
-              <div>
-                <img class="h-7.5 w-7.5" src="public/black-square.svg" alt="" />
-                <a href="#">Learn more</a>
+          <li class="swiper-slide testimonial-slide">
+            <article class="testimonial-card">
+              <img
+                src="testimonial-2.svg"
+                alt="Portrait of Lily Woods"
+                class="testimonial-card__image"
+              />
+              <div class="testimonial-card__content">
+                <h5 class="testimonial-card__quote">
+                  “A team that never undelivers”
+                </h5>
+                <p class="testimonial-card__text">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Convallis senectus non dui vel tortor. Justo lectus integer
+                  arcu elit.
+                </p>
+                <div class="testimonial-card__author-info">
+                  <span class="testimonial-card__name">Lily Woods</span>
+                  <span class="testimonial-card__location"
+                    >HollyWOODS hILLS, ca</span
+                  >
+                </div>
               </div>
             </article>
           </li>
@@ -217,421 +644,65 @@
       </div>
     </section>
     <section
-      class="flex max-h-136.25 min-h-133.5 flex-col items-start gap-2.5 bg-[url('public/quote-bg.png')] px-20 py-32"
+      class="flex flex-col items-center justify-center gap-8 py-5 md:gap-16 md:px-11 md:py-17 lg:px-20 lg:py-32"
     >
-      <div class="flex max-w-151 flex-col items-start gap-6">
-        <h2 class="font-barlow text-[#191919]">
-          Ready to pull the trigger? Get a quote today.
-        </h2>
-        <p class="text-p2 font-inter text-[#605E5D]">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit dolor sit
-          varius rhoncus, nullam pulvinar ut sollicitudin dictumst porttitor
-          porttitor quis.
-        </p>
-        <div class="flex items-center justify-center gap-8">
-          <button class="font-inter button--orange text-p2 px-7.5 py-6.25">
-            Get a quote
-          </button>
-          <button
-            class="font-inter text-p2 border-2 border-[#000] bg-transparent px-7.5 py-6.25 text-[#000]"
-          >
-            Our services
-          </button>
-        </div>
-      </div>
-    </section>
-    <section class="flex min-h-395 flex-col items-start">
-      <div class="flex items-center gap-38 px-20 py-32">
-        <img src="why-choose-us-first.svg" alt="" />
-        <div class="flex flex-col items-start gap-6">
-          <span class="text-p1 font-inter text-[#FF4D01]">/Why Choose Us</span>
-          <h2 class="font-barlow text-[#191919]">
-            An exceptional quality that can't be beaten
-          </h2>
-          <p class="text-p2 font-inter text-[#605E5D]">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit tristique
-            rutrum leo quam consectetur urna egestas tincidunt facilisi neque
-            elementum quis lorem posuere dignissim scelerisque aliquam.
-          </p>
-          <ul class="flex flex-col items-start gap-4">
-            <li class="flex items-start gap-2.5">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="23"
-                height="23"
-                viewBox="0 0 23 23"
-                fill="none"
-              >
-                <path
-                  d="M2.06976 12.8469L7.45843 18.2356L20.9302 4.76392"
-                  stroke="#FF4D01"
-                  stroke-width="2.5"
-                  stroke-linecap="square"
-                />
-              </svg>
-              <span class="text-p2 font-inter text-[#191919]"
-                >Over 15 years of experience</span
-              >
-            </li>
-            <li class="flex items-start gap-2.5">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="23"
-                height="23"
-                viewBox="0 0 23 23"
-                fill="none"
-              >
-                <path
-                  d="M2.06976 12.8469L7.45843 18.2356L20.9302 4.76392"
-                  stroke="#FF4D01"
-                  stroke-width="2.5"
-                  stroke-linecap="square"
-                />
-              </svg>
-              <span class="text-p2 font-inter text-[#191919]"
-                >200+ successfully executed projects</span
-              >
-            </li>
-            <li class="flex items-start gap-2.5">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="23"
-                height="23"
-                viewBox="0 0 23 23"
-                fill="none"
-              >
-                <path
-                  d="M2.06976 12.8469L7.45843 18.2356L20.9302 4.76392"
-                  stroke="#FF4D01"
-                  stroke-width="2.5"
-                  stroke-linecap="square"
-                />
-              </svg>
-              <span class="text-p2 font-inter text-[#191919]"
-                >Exceptional work quality</span
-              >
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="flex items-center gap-38 px-20 py-32">
-        <div class="flex flex-col items-start gap-4">
-          <h2 class="font-barlow text-[#191919]">
-            We help you build on your past and prepare for the future
-          </h2>
-          <p class="text-p2 font-inter text-[#605E5D]">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit dictum nam
-            arcu ac eu orci purus amet eros, id lorem aliquet eget urna at risus
-            sit purus ac magnis blandit eu egestas imperdiet libero.
-          </p>
-          <dl class="flex w-full items-center justify-center gap-8">
-            <div class="flex flex-col items-start">
-              <dd class="text-h1 font-barlow flex items-start">
-                <span class="text-[#FF4D01]">+</span
-                ><span class="text-[#191919]">350</span>
-              </dd>
-              <dt class="text-p2 font-inter text-center text-[#989899]">
-                Succeccful Projects
-              </dt>
-            </div>
-            <div class="flex flex-col items-start">
-              <dd class="text-h1 font-barlow flex items-start">
-                <span class="text-[#191919]">100</span
-                ><span class="text-[#FF4D01]">%</span>
-              </dd>
-              <dt class="text-p2 font-inter text-center text-[#989899]">
-                Client Satisfaction
-              </dt>
-            </div>
-          </dl>
-        </div>
-        <img class="h-133.5 w-133.5" src="why-choose-us-second.svg" alt="" />
-      </div>
-    </section>
-    <section class="flex min-h-242 flex-col items-start gap-16 px-20 py-32">
-      <header class="flex w-full items-center justify-between">
-        <div class="flex max-w-150 flex-col items-start gap-4">
-          <span class="text-p1 font-inter text-[#FF4D01]">/Past Projects</span>
-          <h2 class="font-barlow text-[#191919]">
-            Our project results speak for themselves
-          </h2>
-        </div>
-
-        <div class="flex items-center justify-center gap-8">
-          <button
-            class="button--orange font-inter text-p2 px-9.5 py-7.5 leading-none"
-          >
-            Get a quote
-          </button>
-          <button
-            class="font-inter text-p2 border-2 border-[#000] bg-transparent px-3.75 py-7 leading-none text-[#000]"
-          >
-            Browse services
-          </button>
-        </div>
-      </header>
-
-      <div class="swiper mySwiper w-full overflow-hidden">
-        <ul class="swiper-wrapper">
-          <li class="swiper-slide">
-            <article
-              class="flex max-w-136.25 flex-col items-start gap-2.5 bg-[#000] px-7.5 pt-75 pb-7.5"
-            >
-              <div
-                class="flex min-h-66 min-w-121.25 flex-col items-start gap-9 py-0.75"
-              >
-                <h4 class="font-inter text-[#FFF]">
-                  Building construction in Los Angeles, CA
-                </h4>
-                <p class="text-p2 text-[#EAEAEB]">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit lectus
-                  aenean sit elementum pellentesque ultrices sem.
-                </p>
-                <hr class="h-px w-full bg-[#989899]" />
-                <footer class="text-p2 font-inter text-[#EAEAEB]">
-                  Construction
-                </footer>
-              </div>
-            </article>
-          </li>
-          <li class="swiper-slide">
-            <article
-              class="flex max-w-136.25 flex-col items-start gap-2.5 bg-[#000] px-7.5 pt-75 pb-7.5"
-            >
-              <div
-                class="flex min-h-66 min-w-121.25 flex-col items-start gap-9 py-0.75"
-              >
-                <h4 class="font-inter text-[#FFF]">
-                  Kitchen remodeling in Hollywood Hills, CA
-                </h4>
-                <p class="text-p2 text-[#EAEAEB]">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit lectus
-                  aenean sit elementum pellentesque ultrices sem.
-                </p>
-                <hr class="h-px w-full bg-[#989899]" />
-                <footer class="text-p2 font-inter text-[#EAEAEB]">
-                  Remodeling
-                </footer>
-              </div>
-            </article>
-          </li>
-          <li class="swiper-slide">
-            <article
-              class="flex max-w-136.25 flex-col items-start gap-2.5 bg-[#000] px-7.5 pt-75 pb-7.5"
-            >
-              <div
-                class="flex min-h-66 min-w-121.25 flex-col items-start gap-9 py-0.75"
-              >
-                <h4 class="font-inter text-[#FFF]">
-                  Office remodeling in Hollywood Hills, CA
-                </h4>
-                <p class="text-p2 text-[#EAEAEB]">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit lectus
-                  aenean sit elementum pellentesque ultrices sem.
-                </p>
-                <hr class="h-px w-full bg-[#989899]" />
-                <footer class="text-p2 font-inter text-[#EAEAEB]">
-                  Remodeling
-                </footer>
-              </div>
-            </article>
-          </li>
-        </ul>
-
-        <nav class="mt-16 flex justify-center gap-8">
-          <button
-            type="button"
-            class="swiper-button-prev-custom h-18 w-18 cursor-pointer border-2 border-[#191919] bg-white transition-colors hover:bg-[#FF4D01] focus:outline-hidden"
-            aria-label="Previous slide"
-          ></button>
-
-          <button
-            type="button"
-            class="swiper-button-next-custom h-18 w-18 cursor-pointer border-2 border-[#FF4D01] bg-[#FF4D01] transition-colors hover:border-[#191919] hover:bg-[#191919] focus:outline-hidden"
-            aria-label="Next slide"
-          ></button>
-        </nav>
-      </div>
-    </section>
-
-    <section class="flex min-h-144.5 flex-col items-start gap-16 px-20 py-32">
-      <header class="flex items-center justify-center gap-16">
-        <div class="flex w-211 flex-col items-start gap-4">
-          <span class="text-p1 font-inter text-[#FF4D01]">/Testimonials</span>
-          <h2 class="font-barlow text-[#191919]">
-            What our clients say about us and<br class="hidden sm:block" />
-            our work
-          </h2>
-        </div>
-
-        <div class="flex items-center justify-center gap-8">
-          <button
-            type="button"
-            class="swiper-button-prev-custom flex h-18 w-18 items-center justify-center border border-black bg-transparent transition-colors hover:bg-black hover:text-white focus:outline-none"
-            aria-label="Previous testimonial"
-          ></button>
-
-          <button
-            type="button"
-            class="swiper-button-next-custom flex h-18 w-18 items-center justify-center bg-[#FF4D01] text-white transition-colors hover:bg-orange-700 focus:outline-none"
-            aria-label="Next testimonial"
-          ></button>
-        </div>
-      </header>
-
-      <div class="swiper mySwiper w-full overflow-hidden">
-        <ul class="swiper-wrapper">
-          <li class="swiper-slide testimonial-slide">
-            <article class="testimonial-card">
-              <img
-                src="testimonial-1.svg"
-                alt="Portrait of John Carter"
-                class="testimonial-card__image"
-              />
-              <div class="testimonial-card__content">
-                <h5 class="testimonial-card__quote">
-                  “A true team of expert contractors”
-                </h5>
-                <p class="testimonial-card__text">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Convallis senectus non dui vel tortor. Justo lectus integer
-                  arcu elit.
-                </p>
-                <div class="testimonial-card__author-info">
-                  <span class="testimonial-card__name">John Carter</span>
-                  <span class="testimonial-card__location"
-                    >Malibu beach, CA</span
-                  >
-                </div>
-              </div>
-            </article>
-          </li>
-          <li class="swiper-slide testimonial-slide">
-            <article class="testimonial-card">
-              <img
-                src="testimonial-2.svg"
-                alt="Portrait of Lily Woods"
-                class="testimonial-card__image"
-              />
-              <div class="testimonial-card__content">
-                <h5 class="testimonial-card__quote">
-                  “A team that never undelivers”
-                </h5>
-                <p class="testimonial-card__text">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Convallis senectus non dui vel tortor. Justo lectus integer
-                  arcu elit.
-                </p>
-                <div class="testimonial-card__author-info">
-                  <span class="testimonial-card__name">Lily Woods</span>
-                  <span class="testimonial-card__location"
-                    >HollyWOODS hILLS, ca</span
-                  >
-                </div>
-              </div>
-            </article>
-          </li>
-          <li class="swiper-slide testimonial-slide">
-            <article class="testimonial-card">
-              <img
-                src="testimonial-1.svg"
-                alt="Portrait of John Carter"
-                class="testimonial-card__image"
-              />
-              <div class="testimonial-card__content">
-                <h5 class="testimonial-card__quote">
-                  “A true team of expert contractors”
-                </h5>
-                <p class="testimonial-card__text">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Convallis senectus non dui vel tortor. Justo lectus integer
-                  arcu elit.
-                </p>
-                <div class="testimonial-card__author-info">
-                  <span class="testimonial-card__name">John Carter</span>
-                  <span class="testimonial-card__location"
-                    >Malibu beach, CA</span
-                  >
-                </div>
-              </div>
-            </article>
-          </li>
-          <li class="swiper-slide testimonial-slide">
-            <article class="testimonial-card">
-              <img
-                src="testimonial-2.svg"
-                alt="Portrait of Lily Woods"
-                class="testimonial-card__image"
-              />
-              <div class="testimonial-card__content">
-                <h5 class="testimonial-card__quote">
-                  “A team that never undelivers”
-                </h5>
-                <p class="testimonial-card__text">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Convallis senectus non dui vel tortor. Justo lectus integer
-                  arcu elit.
-                </p>
-                <div class="testimonial-card__author-info">
-                  <span class="testimonial-card__name">Lily Woods</span>
-                  <span class="testimonial-card__location"
-                    >HollyWOODS hILLS, ca</span
-                  >
-                </div>
-              </div>
-            </article>
-          </li>
-        </ul>
-      </div>
-    </section>
-    <section class="flex min-h-226.5 flex-col items-start gap-16 px-20 py-32">
-      <header class="flex w-full items-center justify-between">
+      <header
+        class="flex w-full flex-col px-4 max-md:gap-4 md:flex-row md:items-center md:justify-between md:px-0"
+      >
         <div class="flex flex-col items-start gap-3.75">
-          <span class="text-p1 font-inter text-[#FF4D01]"> /Blog </span>
-          <h2 class="font-barlow">Articles & News</h2>
+          <span class="text-p3 md:text-p1 font-inter text-[#FF4D01]">
+            /Blog
+          </span>
+          <h5 class="font-inter md:text-h2 md:font-barlow">Articles & News</h5>
         </div>
         <button
-          class="font-inter text-p2 border-2 border-[#000] bg-transparent px-7.5 py-6.25 text-[#000]"
+          class="font-inter text-p4 md:text-p2 w-fit border-2 border-[#000] bg-transparent p-5 text-[#000] md:px-9.5 md:py-7.5"
         >
-          Browse articles
+          Our services
         </button>
       </header>
-      <div class="flex w-full items-start justify-between">
-        <article class="flex w-140.5 flex-col items-start gap-4">
+      <div
+        class="flex flex-col items-start gap-6 lg:w-full lg:flex-row lg:justify-between"
+      >
+        <article class="flex w-[320px] flex-col items-start gap-4 md:w-140.5">
           <img src="blog-1.svg" alt="" />
-          <div class="flex flex-col items-start gap-4">
-            <h4 class="font-inter text-[#191919]">
-              12 designers tricks for picking the perfect home color palette
-            </h4>
-            <time class="text-p2 font-inter text-[#605E5D]">June 17, 2022</time>
+          <div class="flex flex-col items-start gap-4 max-md:px-4">
+            <p class="text-p1 md:text-h4 font-inter text-[#191919]">
+              12 designers tricks for picking the perfect home color<br
+                class="md:hidden"
+              />palette
+            </p>
+            <time class="text-p4 md:text-p2 font-inter text-[#605E5D]"
+              >June 17, 2022</time
+            >
           </div>
         </article>
-        <div class="flex w-140.5 flex-col items-start gap-8">
+        <div class="flex w-[320px] flex-col items-start gap-8 md:w-140.5">
           <article class="blog-card">
             <img src="blog-2.svg" class="blog-card__image" />
             <div class="blog-card__content">
-              <h5 class="blog-card__text">
+              <p class="blog-card__text">
                 Paint trends 2022 - the 17 colors you need for the ultimate
-                wonder walls
-              </h5>
+                wonder <br class="hidden md:max-lg:block" />walls
+              </p>
               <time class="blog-card__date">June 17, 2022</time>
             </div>
           </article>
           <article class="blog-card">
             <img src="blog-3.svg" class="blog-card__image" />
             <div class="blog-card__content">
-              <h5 class="blog-card__text">
+              <p class="blog-card__text">
                 Clever DIY home improvements you can do during the pandemic
-              </h5>
+              </p>
               <time class="blog-card__date">June 17, 2022</time>
             </div>
           </article>
           <article class="blog-card">
             <img src="blog-4.svg" class="blog-card__image" />
             <div class="blog-card__content">
-              <h5 class="blog-card__text">
+              <p class="blog-card__text">
                 15 mind blowing floor designs to make your home look great
-              </h5>
+              </p>
               <time class="blog-card__date">June 17, 2022</time>
             </div>
           </article>
@@ -639,19 +710,17 @@
       </div>
     </section>
     <footer
-      class="flex min-h-144.75 shrink-0 flex-col items-center justify-center gap-2.5 bg-[#000] px-30"
+      class="flex flex-col items-center justify-center gap-2.5 bg-[#000] px-4 py-5 md:px-11 md:py-17 xl:px-30 xl:py-32"
     >
       <div
-        class="grid grid-cols-[repeat(4,fit-content(100%))] grid-rows-[repeat(1,fit-content(100%))] gap-x-16"
+        class="grid w-full grid-cols-1 gap-x-6 gap-y-6 md:grid-cols-2 md:gap-x-16 md:gap-y-16 xl:grid-cols-[repeat(4,fit-content(100%))]"
       >
-        <section
-          class="col-[1/span_1] row-[1/span_1] flex w-48 flex-col items-center justify-center gap-8 py-16"
-        >
+        <section class="flex w-full flex-col gap-8 py-16">
           <p class="text-p2 text-center text-[#EAEAEB]">
             Lorem ipsum dolor sit amet consectetur adipiscing elit.
           </p>
           <nav aria-label="Social media">
-            <ul class="flex items-center gap-4">
+            <ul class="flex items-center justify-center gap-4">
               <li><div href="#" class="h-9 w-9 bg-[#FF4D01]"></div></li>
               <li><div href="#" class="h-9 w-9 bg-[#FF4D01]"></div></li>
               <li><div href="#" class="h-9 w-9 bg-[#FF4D01]"></div></li>
@@ -660,9 +729,7 @@
           </nav>
         </section>
 
-        <nav
-          class="footer-nav row-[1 /span_1] col-[2/span_1] flex w-68.5 flex-col items-start gap-10"
-        >
+        <nav class="footer-nav flex w-68.5 flex-col items-start gap-10">
           <h5 class="font-inter text-[#FFF]">Menu</h5>
           <div class="flex items-start justify-center gap-8">
             <ul class="flex w-31.25 flex-col items-start gap-4">
@@ -729,39 +796,39 @@
           </div>
         </nav>
 
-        <nav
-          class="footer-nav col-[3/span_1] row-[1/span_1] flex w-50.25 flex-col items-start gap-10"
-        >
+        <nav class="footer-nav flex w-50.25 flex-col items-start gap-10">
           <h5 class="font-inter text-[#FFF]">Utility Pages</h5>
           <ul class="flex w-50.25 flex-col items-start gap-4">
-            <li>
-              <a href="/start-here" class="text-p2 font-inter text-[#EAEAEB]"
+            <li class="h-[22.5px]">
+              <a
+                href="/start-here"
+                class="text-p2 font-inter leading-none text-[#EAEAEB]"
                 >Start Here</a
               >
             </li>
-            <li>
+            <li class="h-[22.5px]">
               <a
                 href="/password-protected"
                 class="text-p2 font-inter text-[#EAEAEB]"
                 >Password Protected</a
               >
             </li>
-            <li>
+            <li class="h-[22.5px]">
               <a href="/404" class="text-p2 font-inter text-[#EAEAEB]"
                 >404 Not Found</a
               >
             </li>
-            <li>
+            <li class="h-[22.5px]">
               <a href="/licenses" class="text-p2 font-inter text-[#EAEAEB]"
                 >Licenses</a
               >
             </li>
-            <li>
+            <li class="h-[22.5px]">
               <a href="/styleguide" class="text-p2 font-inter text-[#EAEAEB]"
                 >Styleguide</a
               >
             </li>
-            <li>
+            <li class="h-[22.5px]">
               <a href="/changelog" class="text-p2 font-inter text-[#EAEAEB]"
                 >Changelog</a
               >
@@ -774,9 +841,7 @@
           </ul>
         </nav>
 
-        <section
-          class="col-[4/span_1] row-[1/span_1] flex w-72.5 flex-col items-start gap-10"
-        >
+        <section class="flex w-72.5 flex-col items-start gap-10">
           <h5 class="font-inter text-[#FFF]">Contact us</h5>
 
           <article
