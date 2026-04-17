@@ -63,7 +63,7 @@
     --text-p5--font-family: var(--font-inter);
     --text-p5--font-weight: 400;
 
-    --background-image-hero: linear-gradient(0deg, rgba(52, 52, 52, 0.6) 40%, rgba(52, 52, 52, 0.6) 100%), url('public/wrapper-img.png');
+    --background-image-hero: linear-gradient(0deg, rgba(52, 52, 52, 0.6) 40%, rgba(52, 52, 52, 0.6) 100%), url('../../public/backgrounds/wrapper-img.png');
 
     --breakpoint-sm: 640px;
     --breakpoint-md: 768px;

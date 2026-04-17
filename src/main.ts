@@ -2,7 +2,7 @@ import { initCounters } from "./scripts/counter";
 import { initMagneticButtons } from "./scripts/magnetic-buttons";
 import { initScrollObserver } from "./scripts/observer";
 import { initScrollProgress } from "./scripts/scroll-progress";
-import { initSwiper } from "./swiper/swiper";
+import { initSwiper } from "./scripts/swiper";
 
 document.addEventListener("DOMContentLoaded", () => {
   initSwiper();
