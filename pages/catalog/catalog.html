@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Каталог услуг | Contractor</title>
+    <link rel="stylesheet" href="catalog.css" />
+  </head>
+  <body class="font-inter bg-gray-50 text-[#191919]">
+    <header class="bg-[#191919] py-8 text-white shadow-md">
+      <div class="container mx-auto flex items-center justify-between px-4">
+        <h1 class="text-h3 font-barlow tracking-tight">Наши услуги</h1>
+        <a href="/" class="nav-link-animated font-medium text-[#FF4D01]"
+          >← На главную</a
+        >
+      </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-12">
+      <section class="filter-panel">
+        <div class="w-full flex-1">
+          <label
+            class="mb-2 ml-1 block text-xs font-bold text-gray-400 uppercase"
+            >Поиск</label
+          >
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Что вы ищете?..."
+            class="filter-input"
+          />
+        </div>
+
+        <div class="w-full md:w-64">
+          <label
+            class="mb-2 ml-1 block text-xs font-bold text-gray-400 uppercase"
+            >Категория</label
+          >
+          <select id="categorySelect" class="filter-input cursor-pointer">
+            <option value="all">Все категории</option>
+            <option value="interior">Интерьер</option>
+            <option value="exterior">Экстерьер</option>
+            <option value="materials">Материалы</option>
+          </select>
+        </div>
+
+        <div class="w-full md:w-64">
+          <label
+            class="mb-2 ml-1 block text-xs font-bold text-gray-400 uppercase"
+            >Сортировка</label
+          >
+          <select id="sortSelect" class="filter-input cursor-pointer">
+            <option value="default">По умолчанию</option>
+            <option value="price-asc">Сначала дешевые</option>
+            <option value="price-desc">Сначала дорогие</option>
+            <option value="rating-desc">Высокий рейтинг</option>
+            <option value="name-asc">А — Я</option>
+          </select>
+        </div>
+      </section>
+
+      <section id="array-methods-container" class="methods-container">
+        <button id="btn-map" class="method-btn">.map() (Скидка)</button>
+        <button id="btn-filter" class="method-btn">.filter() (>1000$)</button>
+        <button id="btn-sort" class="method-btn">.sort() (Рейтинг)</button>
+        <button id="btn-reduce" class="method-btn">.reduce() (Сумма)</button>
+        <button id="btn-slice" class="method-btn">.slice() (Топ-3)</button>
+        <button id="btn-find" class="method-btn">.find() (VIP)</button>
+        <button id="btn-every" class="method-btn">.every() (>10$)</button>
+        <button id="btn-some" class="method-btn">.some() (<50$)</button>
+        <button id="btn-reverse" class="method-btn">.reverse()</button>
+        <button id="btn-findindex" class="method-btn">.findIndex()</button>
+
+        <button id="btn-reset" class="button--orange ml-4 rounded-xl px-6 py-2">
+          Сбросить всё
+        </button>
+      </section>
+
+      <div id="catalog-container" class="catalog-grid"></div>
+    </main>
+
+    <script type="module" src="/src/scripts/catalog.ts"></script>
+  </body>
+</html>

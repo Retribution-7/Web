@@ -70,6 +70,7 @@
     --breakpoint-lg: 1024px;
     --breakpoint-xl: 1140px;
     --breakpoint-2xl: 1310px;
+    --breakpoint-3xl: 1440px;
 }
 
 @layer base {
