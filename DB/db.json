@@ -1,0 +1,146 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "title": "Дизайн гостиной",
+      "description": "Современный минимализм с элементами лофта",
+      "category": "interior",
+      "price": 1200,
+      "rating": 4.9,
+      "imageUrl": "/images/blog/blog-1.svg"
+    },
+    {
+      "id": 2,
+      "title": "Укладка паркета",
+      "description": "Натуральный дуб, идеальная стыковка",
+      "category": "interior",
+      "price": 450,
+      "rating": 4.7,
+      "imageUrl": "/images/blog/blog-2.svg"
+    },
+    {
+      "id": 3,
+      "title": "Отделка фасада",
+      "description": "Долговечные материалы, защита от влаги",
+      "category": "exterior",
+      "price": 2800,
+      "rating": 4.8,
+      "imageUrl": "/images/blog/blog-3.svg"
+    },
+    {
+      "id": 4,
+      "title": "Облицовочный камень",
+      "description": "Искусственный камень высшего качества",
+      "category": "materials",
+      "price": 85,
+      "rating": 4.5,
+      "imageUrl": "/images/blog/blog-4.svg"
+    },
+    {
+      "id": 5,
+      "title": "Проект коттеджа",
+      "description": "Индивидуальная планировка и чертежи",
+      "category": "exterior",
+      "price": 5000,
+      "rating": 5,
+      "imageUrl": "/images/blog/blog-1.svg"
+    },
+    {
+      "id": 6,
+      "title": "Малярные работы",
+      "description": "Покраска без разводов и пятен",
+      "category": "interior",
+      "price": 150,
+      "rating": 4.3,
+      "imageUrl": "/images/blog/blog-2.svg"
+    },
+    {
+      "id": 7,
+      "title": "Бетонная смесь",
+      "description": "Марка М400, высокая прочность",
+      "category": "materials",
+      "price": 12,
+      "rating": 4.6,
+      "imageUrl": "/images/blog/blog-3.svg"
+    },
+    {
+      "id": 8,
+      "title": "Строительство бани",
+      "description": "Сруб из кедра под ключ",
+      "category": "exterior",
+      "price": 8500,
+      "rating": 4.9,
+      "imageUrl": "/images/blog/blog-4.svg"
+    },
+    {
+      "id": 9,
+      "title": "Панорамные окна",
+      "description": "Энергосберегающие стеклопакеты",
+      "category": "interior",
+      "price": 1100,
+      "rating": 4.7,
+      "imageUrl": "/images/blog/blog-1.svg"
+    },
+    {
+      "id": 10,
+      "title": "Брус профилированный",
+      "description": "Зимний лес, сушка в камере",
+      "category": "materials",
+      "price": 320,
+      "rating": 4.4,
+      "imageUrl": "/images/blog/blog-2.svg"
+    },
+    {
+      "id": 11,
+      "title": "Кованый забор",
+      "description": "Ручная ковка, антикоррозийное покрытие",
+      "category": "exterior",
+      "price": 1500,
+      "rating": 4.8,
+      "imageUrl": "/images/blog/blog-3.svg"
+    },
+    {
+      "id": 12,
+      "title": "Керамогранит",
+      "description": "Итальянская коллекция, 60x60",
+      "category": "materials",
+      "price": 45,
+      "rating": 4.9,
+      "imageUrl": "/images/blog/blog-4.svg"
+    },
+    {
+      "id": 13,
+      "title": "Ремонт кухни",
+      "description": "Обновление коммуникаций и мебели",
+      "category": "interior",
+      "price": 2100,
+      "rating": 4.6,
+      "imageUrl": "/images/blog/blog-1.svg"
+    },
+    {
+      "id": 14,
+      "title": "Бассейн на участке",
+      "description": "Чаша из композита с фильтрацией",
+      "category": "exterior",
+      "price": 12000,
+      "rating": 5,
+      "imageUrl": "/images/blog/blog-2.svg"
+    },
+    {
+      "id": 15,
+      "title": "Штукатурка гипсовая",
+      "description": "Для внутренних работ, 30кг",
+      "category": "materials",
+      "price": 18,
+      "rating": 4.2,
+      "imageUrl": "/images/blog/blog-3.svg"
+    }
+  ],
+  "favorites": [
+    {
+      "productId": 1,
+      "id": 1
+    }
+  ],
+  "cart": []
+}

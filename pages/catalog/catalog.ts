@@ -1,144 +1,30 @@
-import { IProduct } from "./types/product.interface";
+/**
+ * catalog.ts
+ * All data operations go through JSON Server.
+ * No .filter() / .sort() / .map() on raw arrays for business logic.
+ */
 
-const catalogData: IProduct[] = [
-  {
-    id: 1,
-    title: "Дизайн гостиной",
-    description: "Современный минимализм с элементами лофта",
-    category: "interior",
-    price: 1200,
-    rating: 4.9,
-    imageUrl: "/images/blog/blog-1.svg",
-  },
-  {
-    id: 2,
-    title: "Укладка паркета",
-    description: "Натуральный дуб, идеальная стыковка",
-    category: "interior",
-    price: 450,
-    rating: 4.7,
-    imageUrl: "/images/blog/blog-2.svg",
-  },
-  {
-    id: 3,
-    title: "Отделка фасада",
-    description: "Долговечные материалы, защита от влаги",
-    category: "exterior",
-    price: 2800,
-    rating: 4.8,
-    imageUrl: "/images/blog/blog-3.svg",
-  },
-  {
-    id: 4,
-    title: "Облицовочный камень",
-    description: "Искусственный камень высшего качества",
-    category: "materials",
-    price: 85,
-    rating: 4.5,
-    imageUrl: "/images/blog/blog-4.svg",
-  },
-  {
-    id: 5,
-    title: "Проект коттеджа",
-    description: "Индивидуальная планировка и чертежи",
-    category: "exterior",
-    price: 5000,
-    rating: 5.0,
-    imageUrl: "/images/blog/blog-1.svg",
-  },
-  {
-    id: 6,
-    title: "Малярные работы",
-    description: "Покраска без разводов и пятен",
-    category: "interior",
-    price: 150,
-    rating: 4.3,
-    imageUrl: "/images/blog/blog-2.svg",
-  },
-  {
-    id: 7,
-    title: "Бетонная смесь",
-    description: "Марка М400, высокая прочность",
-    category: "materials",
-    price: 12,
-    rating: 4.6,
-    imageUrl: "/images/blog/blog-3.svg",
-  },
-  {
-    id: 8,
-    title: "Строительство бани",
-    description: "Сруб из кедра под ключ",
-    category: "exterior",
-    price: 8500,
-    rating: 4.9,
-    imageUrl: "/images/blog/blog-4.svg",
-  },
-  {
-    id: 9,
-    title: "Панорамные окна",
-    description: "Энергосберегающие стеклопакеты",
-    category: "interior",
-    price: 1100,
-    rating: 4.7,
-    imageUrl: "/images/blog/blog-1.svg",
-  },
-  {
-    id: 10,
-    title: "Брус профилированный",
-    description: "Зимний лес, сушка в камере",
-    category: "materials",
-    price: 320,
-    rating: 4.4,
-    imageUrl: "/images/blog/blog-2.svg",
-  },
-  {
-    id: 11,
-    title: "Кованый забор",
-    description: "Ручная ковка, антикоррозийное покрытие",
-    category: "exterior",
-    price: 1500,
-    rating: 4.8,
-    imageUrl: "/images/blog/blog-3.svg",
-  },
-  {
-    id: 12,
-    title: "Керамогранит",
-    description: "Итальянская коллекция, 60x60",
-    category: "materials",
-    price: 45,
-    rating: 4.9,
-    imageUrl: "/images/blog/blog-4.svg",
-  },
-  {
-    id: 13,
-    title: "Ремонт кухни",
-    description: "Обновление коммуникаций и мебели",
-    category: "interior",
-    price: 2100,
-    rating: 4.6,
-    imageUrl: "/images/blog/blog-1.svg",
-  },
-  {
-    id: 14,
-    title: "Бассейн на участке",
-    description: "Чаша из композита с фильтрацией",
-    category: "exterior",
-    price: 12000,
-    rating: 5.0,
-    imageUrl: "/images/blog/blog-2.svg",
-  },
-  {
-    id: 15,
-    title: "Штукатурка гипсовая",
-    description: "Для внутренних работ, 30кг",
-    category: "materials",
-    price: 18,
-    rating: 4.2,
-    imageUrl: "/images/blog/blog-3.svg",
-  },
-];
+import {
+  addFavorite,
+  addToCart,
+  fetchFavorites,
+  fetchProducts,
+  removeFavorite,
+} from "../../src/api";
+import type { IProduct, IProductQuery } from "./types/product.interface";
 
-let currentData = [...catalogData];
+// ─── Constants ────────────────────────────────────────────────────────────────
+
+const PAGE_LIMIT = 6;
+
+// ─── State ────────────────────────────────────────────────────────────────────
+
+let currentPage = 1;
+let totalItems = 0;
+/** Set of productIds the user has favourited (for toggle UI). */
+let favoriteIds = new Set<number>();
+
+// ─── DOM References ───────────────────────────────────────────────────────────
 
 const container = document.getElementById("catalog-container") as HTMLElement;
 const searchInput = document.getElementById("searchInput") as HTMLInputElement;
@@ -146,148 +32,446 @@ const categorySelect = document.getElementById(
   "categorySelect",
 ) as HTMLSelectElement;
 const sortSelect = document.getElementById("sortSelect") as HTMLSelectElement;
+const paginationEl = document.getElementById("pagination") as HTMLElement;
+const priceMinInput = document.getElementById("priceMin") as HTMLInputElement;
+const priceMaxInput = document.getElementById("priceMax") as HTMLInputElement;
 
-const renderCards = (data: IProduct[]) => {
-  if (data.length === 0) {
-    container.innerHTML = `<div class="empty-state">...</div>`;
+// ─── Query Builder ────────────────────────────────────────────────────────────
+
+function buildQuery(): IProductQuery {
+  const sortValue = sortSelect.value;
+  const sortMap: Record<string, Pick<IProductQuery, "_sort" | "_order">> = {
+    "price-asc": { _sort: "price", _order: "asc" },
+    "price-desc": { _sort: "price", _order: "desc" },
+    "rating-desc": { _sort: "rating", _order: "desc" },
+    "name-asc": { _sort: "title", _order: "asc" },
+  };
+
+  const query: IProductQuery = {
+    q: searchInput.value,
+    ...(sortMap[sortValue] ?? {}),
+    _page: currentPage,
+    _limit: PAGE_LIMIT,
+  };
+
+  // Если категория выбрана - добавляем
+  if (categorySelect.value && categorySelect.value !== "all") {
+    query.category = categorySelect.value;
+  }
+
+  // Если введены цены - добавляем в запрос
+  if (priceMinInput.value) query.price_gte = Number(priceMinInput.value);
+  if (priceMaxInput.value) query.price_lte = Number(priceMaxInput.value);
+
+  return query;
+}
+
+// ─── Render ───────────────────────────────────────────────────────────────────
+
+function renderCards(products: IProduct[]): void {
+  if (products.length === 0) {
+    container.innerHTML = `
+      <div class="empty-state col-span-full">
+        <svg class="w-16 h-16 text-gray-200 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
+            d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01
+               M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+        <h3 class="text-lg font-semibold text-gray-400 mb-1">Ничего не найдено</h3>
+        <p class="text-sm text-gray-300">Попробуйте изменить параметры поиска</p>
+      </div>`;
     return;
   }
 
-  container.innerHTML = data
+  container.innerHTML = products
     .map((item) => {
-      // Вычисляем процент скидки, если есть старая цена
       const discountBadge = item.oldPrice
         ? `<span class="badge-discount">-${Math.round((1 - item.price / item.oldPrice) * 100)}%</span>`
         : "";
 
       const priceHTML = item.oldPrice
         ? `<div class="flex flex-col">
-                 <span class="text-xs text-gray-400 line-through">$${item.oldPrice}</span>
-                 <span class="product-card__price text-[#FF4D01]">$${item.price}</span>
-               </div>`
+             <span class="text-xs text-gray-400 line-through">$${item.oldPrice}</span>
+             <span class="product-card__price text-[#FF4D01]">$${item.price}</span>
+           </div>`
         : `<span class="product-card__price">$${item.price}</span>`;
 
+      const isFav = favoriteIds.has(item.id);
+      const favIcon = isFav ? "❤️" : "🤍";
+      const favLabel = isFav ? "Удалить из избранного" : "В избранное";
+
       return `
-        <article class="product-card">
-            <div class="relative overflow-hidden">
-                <img src="${item.imageUrl}" alt="${item.title}" class="product-card__image">
-                ${discountBadge} 
+        <article class="product-card" data-id="${item.id}">
+          <div class="relative overflow-hidden">
+            <img src="${item.imageUrl}" alt="${item.title}" class="product-card__image">
+            ${discountBadge}
+          </div>
+          <div class="product-card__content">
+            <div class="flex justify-between items-start mb-2 gap-2">
+              <h3 class="product-card__title">${item.title}</h3>
+              <span class="badge-rating">★ ${item.rating}</span>
             </div>
-            <div class="product-card__content">
-                <div class="flex justify-between items-start mb-2 gap-2">
-                    <h3 class="product-card__title">${item.title}</h3>
-                    <span class="badge-rating">★ ${item.rating}</span>
-                </div>
-                <p class="product-card__desc">${item.description}</p>
-                <div class="product-card__footer">
-                    <span class="text-[10px] font-black uppercase text-gray-300 tracking-widest">${item.category}</span>
-                    ${priceHTML}
-                </div>
+            <p class="product-card__desc">${item.description}</p>
+            <div class="product-card__footer">
+              <span class="text-[10px] font-black uppercase text-gray-300 tracking-widest">${item.category}</span>
+              ${priceHTML}
             </div>
-        </article>
-    `;
+            <div class="flex gap-2 mt-4">
+              <button
+                class="btn-add-cart flex-1 bg-[#FF4D01] text-white text-sm font-semibold py-2 rounded-xl hover:bg-[#e04400] transition-colors"
+                data-id="${item.id}"
+              >🛒 В корзину</button>
+              <button
+                class="btn-toggle-fav w-10 h-10 rounded-xl border border-gray-100 bg-white flex items-center justify-center hover:border-[#FF4D01] transition-colors text-base"
+                data-id="${item.id}"
+                title="${favLabel}"
+              >${favIcon}</button>
+            </div>
+          </div>
+        </article>`;
     })
     .join("");
-};
 
-const applyFiltersAndSort = () => {
-  const searchTerm = searchInput.value.toLowerCase();
-  const category = categorySelect.value;
-  const sortBy = sortSelect.value;
+  container.addEventListener("click", (e) => {
+    const target = e.target as HTMLElement;
 
-  let filtered = catalogData.filter(
-    (item) =>
-      item.title.toLowerCase().includes(searchTerm) ||
-      item.description.toLowerCase().includes(searchTerm),
-  );
-
-  if (category !== "all") {
-    filtered = filtered.filter((item) => item.category === category);
-  }
-
-  filtered.sort((a, b) => {
-    if (sortBy === "price-asc") return a.price - b.price;
-    if (sortBy === "price-desc") return b.price - a.price;
-    if (sortBy === "rating-desc") return b.rating - a.rating;
-    if (sortBy === "name-asc") return a.title.localeCompare(b.title);
-    return a.id - b.id;
+    if (target.closest("button")) {
+      e.preventDefault();
+    }
   });
 
-  renderCards(filtered);
+  // Delegate click events for cart & favorites
+  container
+    .querySelectorAll<HTMLButtonElement>(".btn-add-cart")
+    .forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        const product = products.find((p) => p.id === Number(btn.dataset.id));
+        if (!product) return;
+        try {
+          await addToCart(product);
+          showToast("Добавлено в корзину 🛒");
+        } catch {
+          showToast("Ошибка при добавлении в корзину", "error");
+        }
+      });
+    });
+
+  container
+    .querySelectorAll<HTMLButtonElement>(".btn-toggle-fav")
+    .forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        const productId = Number(btn.dataset.id);
+        try {
+          await toggleFavorite(productId);
+          // Re-render only the icon without a full reload
+          const isFav = favoriteIds.has(productId);
+          btn.textContent = isFav ? "❤️" : "🤍";
+          btn.title = isFav ? "Удалить из избранного" : "В избранное";
+        } catch {
+          showToast("Ошибка при работе с избранным", "error");
+        }
+      });
+    });
+}
+
+function renderPagination(): void {
+  if (!paginationEl) return;
+  const totalPages = Math.ceil(totalItems / PAGE_LIMIT);
+
+  if (totalPages <= 1) {
+    paginationEl.innerHTML = "";
+    return;
+  }
+
+  paginationEl.innerHTML = `
+    <div class="flex items-center gap-3 justify-center py-6">
+      <button id="btn-prev"
+        class="px-5 py-2 rounded-xl border border-gray-200 text-sm font-medium
+               transition-all hover:border-[#FF4D01] hover:text-[#FF4D01]
+               disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-gray-200 disabled:hover:text-inherit"
+        ${currentPage === 1 ? "disabled" : ""}
+      >← Назад</button>
+
+      <span class="text-sm text-gray-400">
+        Страница <strong class="text-[#191919]">${currentPage}</strong> из <strong class="text-[#191919]">${totalPages}</strong>
+      </span>
+
+      <button id="btn-next"
+        class="px-5 py-2 rounded-xl border border-gray-200 text-sm font-medium
+               transition-all hover:border-[#FF4D01] hover:text-[#FF4D01]
+               disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-gray-200 disabled:hover:text-inherit"
+        ${currentPage >= totalPages ? "disabled" : ""}
+      >Далее →</button>
+    </div>`;
+
+  document.getElementById("btn-prev")?.addEventListener("click", () => {
+    if (currentPage > 1) {
+      currentPage--;
+      loadAndRender();
+    }
+  });
+  document.getElementById("btn-next")?.addEventListener("click", () => {
+    if (currentPage < totalPages) {
+      currentPage++;
+      loadAndRender();
+    }
+  });
+}
+
+// ─── Load & Render ────────────────────────────────────────────────────────────
+
+async function loadAndRender(): Promise<void> {
+  showLoadingState();
+  try {
+    const { data, total } = await fetchProducts(buildQuery());
+    totalItems = total;
+    renderCards(data);
+    renderPagination();
+  } catch (err) {
+    console.error(err);
+    container.innerHTML = `
+      <div class="empty-state col-span-full">
+        <p class="text-red-400 font-semibold">Ошибка загрузки данных.</p>
+        <p class="text-sm text-gray-400 mt-1">Убедитесь, что JSON Server запущен на порту 3000.</p>
+      </div>`;
+  }
+}
+
+function showLoadingState(): void {
+  container.innerHTML = Array.from({ length: PAGE_LIMIT })
+    .map(
+      () => `
+      <div class="product-card animate-pulse">
+        <div class="w-full h-64 bg-gray-100 rounded-t-2xl"></div>
+        <div class="product-card__content gap-3 flex flex-col">
+          <div class="h-4 bg-gray-100 rounded w-3/4"></div>
+          <div class="h-3 bg-gray-100 rounded w-full"></div>
+          <div class="h-3 bg-gray-100 rounded w-5/6"></div>
+        </div>
+      </div>`,
+    )
+    .join("");
+}
+
+// ─── Favorites logic ──────────────────────────────────────────────────────────
+
+async function loadFavoriteIds(): Promise<void> {
+  const favs = await fetchFavorites();
+  favoriteIds = new Set(favs.map((f) => f.productId));
+}
+
+async function toggleFavorite(productId: number): Promise<void> {
+  if (favoriteIds.has(productId)) {
+    // Find the favorite record to get its JSON Server id
+    const favs = await fetchFavorites();
+    const fav = favs.find((f) => f.productId === productId);
+    if (fav) {
+      await removeFavorite(fav.id);
+      favoriteIds.delete(productId);
+    }
+  } else {
+    await addFavorite(productId);
+    favoriteIds.add(productId);
+  }
+}
+
+// ─── Toast notification ───────────────────────────────────────────────────────
+
+function showToast(
+  message: string,
+  type: "success" | "error" = "success",
+): void {
+  const existing = document.getElementById("toast-notification");
+  if (existing) existing.remove();
+
+  const toast = document.createElement("div");
+  toast.id = "toast-notification";
+  toast.className = `
+    fixed bottom-6 right-6 z-50 px-5 py-3 rounded-2xl text-white text-sm font-semibold
+    shadow-xl transition-all duration-300 opacity-0 translate-y-2
+    ${type === "error" ? "bg-red-500" : "bg-[#191919]"}
+  `;
+  toast.textContent = message;
+  document.body.appendChild(toast);
+
+  // Fade in
+  requestAnimationFrame(() => {
+    toast.classList.remove("opacity-0", "translate-y-2");
+    toast.classList.add("opacity-100", "translate-y-0");
+  });
+
+  // Fade out & remove
+  setTimeout(() => {
+    toast.classList.add("opacity-0", "translate-y-2");
+    toast.addEventListener("transitionend", () => toast.remove(), {
+      once: true,
+    });
+  }, 2500);
+}
+
+async function initCategories(): Promise<void> {
+  // Получаем товары, чтобы извлечь категории
+  const { data } = await fetchProducts({ _limit: 100 });
+
+  // ТРЕБОВАНИЕ: Создать список категорий (использовать тип данных Set)
+  const uniqueCategories = new Set(data.map((p) => p.category));
+
+  const categoryMap: Record<string, string> = {
+    interior: "Интерьер",
+    exterior: "Экстерьер",
+    materials: "Материалы",
+  };
+
+  categorySelect.innerHTML = '<option value="">Все категории</option>';
+
+  uniqueCategories.forEach((cat) => {
+    const option = document.createElement("option");
+    option.value = cat;
+    option.textContent = categoryMap[cat] || cat;
+    categorySelect.appendChild(option);
+  });
+}
+// ─── Filter / Sort listeners ──────────────────────────────────────────────────
+const handlePriceInput = () => {
+  clearTimeout(debounceTimer);
+  debounceTimer = setTimeout(() => {
+    currentPage = 1;
+    loadAndRender();
+  }, 350); // Делаем с задержкой, чтобы не спамить запросами при вводе цифр
 };
 
-// Listeners
-searchInput?.addEventListener("input", applyFiltersAndSort);
-categorySelect?.addEventListener("change", applyFiltersAndSort);
-sortSelect?.addEventListener("change", applyFiltersAndSort);
+priceMinInput?.addEventListener("input", handlePriceInput);
+priceMaxInput?.addEventListener("input", handlePriceInput);
 
-document.getElementById("btn-map")?.addEventListener("click", () => {
-  const withDiscount = catalogData.map((item) => ({
+// Debounce search to avoid firing on every keystroke
+let debounceTimer: ReturnType<typeof setTimeout>;
+
+searchInput?.addEventListener("input", () => {
+  clearTimeout(debounceTimer);
+  debounceTimer = setTimeout(() => {
+    currentPage = 1; // reset to first page on new search
+    loadAndRender();
+  }, 350);
+});
+
+categorySelect?.addEventListener("change", () => {
+  currentPage = 1;
+  loadAndRender();
+});
+
+sortSelect?.addEventListener("change", () => {
+  currentPage = 1;
+  loadAndRender();
+});
+
+// ─── Reset button ─────────────────────────────────────────────────────────────
+
+document.getElementById("btn-reset")?.addEventListener("click", () => {
+  searchInput.value = "";
+  categorySelect.value = "";
+  sortSelect.value = "default";
+  priceMinInput.value = "";
+  priceMaxInput.value = "";
+  currentPage = 1;
+  loadAndRender();
+});
+
+// ─── Array-method demo buttons (now use server-side equivalents) ──────────────
+
+// .map() → apply 20% discount via query param (client renders oldPrice)
+document.getElementById("btn-map")?.addEventListener("click", async () => {
+  const { data } = await fetchProducts({ _limit: 100 }); // all items
+  const discounted = data.map((item) => ({
     ...item,
-    oldPrice: item.price, // Сохраняем текущую цену как старую
-    price: Math.floor(item.price * 0.8), // Скидка 20%
+    oldPrice: item.price,
+    price: Math.floor(item.price * 0.8),
     title: "Акция: " + item.title,
   }));
-  renderCards(withDiscount);
+  renderCards(discounted);
 });
 
-// 2. .filter() — Фильтруем только дорогие услуги
-document.getElementById("btn-filter")?.addEventListener("click", () => {
-  renderCards(catalogData.filter((item) => item.price > 1000));
+// .filter() → server: price_gte=1000
+document.getElementById("btn-filter")?.addEventListener("click", async () => {
+  const res = await fetch("http://localhost:3000/products?price_gte=1000");
+  const data: IProduct[] = await res.json();
+  renderCards(data);
 });
 
-// 3. .sort() — Сортируем по рейтингу (от большего к меньшему)
-document.getElementById("btn-sort")?.addEventListener("click", () => {
-  const sorted = [...catalogData].sort((a, b) => b.rating - a.rating);
-  renderCards(sorted);
+// .sort() → server: _sort=rating&_order=desc
+document.getElementById("btn-sort")?.addEventListener("click", async () => {
+  const { data } = await fetchProducts({
+    _sort: "rating",
+    _order: "desc",
+    _limit: 100,
+  });
+  renderCards(data);
 });
 
-// 4. .reduce() — Вычисляем общую стоимость всех услуг
-document.getElementById("btn-reduce")?.addEventListener("click", () => {
-  const total = catalogData.reduce((sum, item) => sum + item.price, 0);
+// .reduce() → fetch all, sum on client (aggregation not supported by json-server)
+document.getElementById("btn-reduce")?.addEventListener("click", async () => {
+  const { data } = await fetchProducts({ _limit: 100 });
+  const total = data.reduce((sum, item) => sum + item.price, 0);
   alert(`Общая стоимость всех услуг в каталоге: $${total}`);
 });
 
-// 5. .slice() — Выбираем только первые 3 "премиальные" услуги
-document.getElementById("btn-slice")?.addEventListener("click", () => {
-  renderCards(catalogData.slice(0, 3));
+// .slice() → server: _page=1&_limit=3
+document.getElementById("btn-slice")?.addEventListener("click", async () => {
+  const { data } = await fetchProducts({ _page: 1, _limit: 3 });
+  renderCards(data);
 });
 
-// 6. .find() — Находим конкретную услугу по ID (например, самую дорогую)
-document.getElementById("btn-find")?.addEventListener("click", () => {
-  const vip = catalogData.find((item) => item.price === 12000);
-  renderCards(vip ? [vip] : []);
+// .find() → server: price=12000
+document.getElementById("btn-find")?.addEventListener("click", async () => {
+  const res = await fetch("http://localhost:3000/products?price=12000");
+  const data: IProduct[] = await res.json();
+  renderCards(data.length ? [data[0]] : []);
 });
 
-// 7. .every() — Проверяем, все ли услуги стоят больше 10$
-document.getElementById("btn-every")?.addEventListener("click", () => {
-  const allExpensive = catalogData.every((item) => item.price > 10);
-  alert(allExpensive ? "Да, все услуги дороже $10" : "Нет, есть дешевле");
+// .every() → fetch all, check client-side (logical predicate)
+document.getElementById("btn-every")?.addEventListener("click", async () => {
+  const { data } = await fetchProducts({ _limit: 100 });
+  const allAbove10 = data.every((item) => item.price > 10);
+  alert(allAbove10 ? "Да, все услуги дороже $10" : "Нет, есть дешевле");
 });
 
-// 8. .some() — Проверяем, есть ли хоть одна услуга дешевле 50$
-document.getElementById("btn-some")?.addEventListener("click", () => {
-  const hasCheap = catalogData.some((item) => item.price < 50);
+// .some() → server: price_lt=50 (check if any exist)
+document.getElementById("btn-some")?.addEventListener("click", async () => {
+  const res = await fetch("http://localhost:3000/products?price_lt=50");
+  const data: IProduct[] = await res.json();
   alert(
-    hasCheap
+    data.length
       ? "В каталоге есть бюджетные товары до $50"
-      : "Дешевых товаров нет",
+      : "Дешёвых товаров нет",
   );
 });
 
-// 9. .reverse() — Инвертируем порядок карточек
-document.getElementById("btn-reverse")?.addEventListener("click", () => {
-  const reversed = [...catalogData].reverse();
-  renderCards(reversed);
+// .reverse() → server: _sort=id&_order=desc
+document.getElementById("btn-reverse")?.addEventListener("click", async () => {
+  const { data } = await fetchProducts({
+    _sort: "id",
+    _order: "desc",
+    _limit: 100,
+  });
+  renderCards(data);
 });
 
-// 10. .findIndex() — Ищем индекс товара "Бетонная смесь"
-document.getElementById("btn-findindex")?.addEventListener("click", () => {
-  const index = catalogData.findIndex(
-    (item) => item.title === "Бетонная смесь",
-  );
-  alert(`Товар "Бетонная смесь" находится на ${index} позиции в массиве`);
-});
+// .findIndex() → fetch all, find index client-side
+document
+  .getElementById("btn-findindex")
+  ?.addEventListener("click", async () => {
+    const { data } = await fetchProducts({ _limit: 100 });
+    const index = data.findIndex((item) => item.title === "Бетонная смесь");
+    alert(
+      index >= 0
+        ? `Товар "Бетонная смесь" находится на позиции ${index} в массиве`
+        : `Товар "Бетонная смесь" не найден`,
+    );
+  });
 
-// Инициализация
-renderCards(currentData);
+// ─── Bootstrap ────────────────────────────────────────────────────────────────
+
+(async () => {
+  await initCategories();
+  await loadFavoriteIds();
+  await loadAndRender();
+})();

@@ -6,10 +6,11 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "server": "json-server --watch DB/db.json --port 3000"
   },
   "devDependencies": {
-    "prettier": "^3.8.1",
+    "json-server": "^0.17.4",
     "prettier-plugin-tailwindcss": "^0.7.2",
     "vite": "^7.3.1"
   },

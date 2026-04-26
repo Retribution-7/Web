@@ -1,0 +1,206 @@
+@import "tailwindcss";
+/* Adjust path to match your project root */
+@import "../../src/styles/style.css";
+
+@layer components {
+
+    /* ── Layout ─────────────────────────────────────────────────────────── */
+
+    .site-header {
+        @apply bg-[#191919] py-4 md:py-8 text-white shadow-md sticky top-0 z-30;
+    }
+
+    .header-icon {
+        @apply text-p1 md:text-h5 leading-none;
+    }
+
+    .header-title {
+        @apply text-p1 md:text-h5 font-bold font-barlow tracking-tight;
+    }
+
+    .header-nav {
+        @apply flex items-center gap-4 md:gap-6;
+    }
+
+    .nav-link {
+        @apply font-inter text-p4 md:text-p3 font-medium text-[#EAEAEB] hover:text-white transition-colors duration-200;
+    }
+
+    /* ── Two-column cart layout ──────────────────────────────────────────── */
+
+    .cart-layout {
+        @apply flex flex-col lg:flex-row gap-6 md:gap-8 items-start;
+    }
+
+    .cart-items-section {
+        @apply flex-1 w-full min-w-0;
+    }
+
+    /* ── Count bar ───────────────────────────────────────────────────────── */
+
+    .count-bar {
+        @apply flex items-center justify-between mb-4 md:mb-6;
+    }
+
+    .count-label {
+        @apply font-inter text-p5 sm:text-p4 font-semibold text-[#989899] uppercase tracking-widest;
+    }
+
+    .btn-clear {
+        @apply font-inter text-p5 sm:text-p4 font-semibold text-[#989899] hover:text-red-400 border border-gray-200 hover:border-red-300 px-3 py-1.5 md:px-4 md:py-2 rounded-xl transition-all duration-200;
+    }
+
+    /* ── Cart item row (ИСПРАВЛЕНА ПРОБЛЕМА С НАЛОЖЕНИЕМ) ────────────────── */
+
+    .cart-item {
+        /* На мобильных используем Grid, чтобы счетчик переносился под текст, 
+           а на экранах больше sm возвращаем flex */
+        @apply grid sm:flex gap-3 sm:gap-4 bg-white rounded-2xl p-3 sm:p-4 border border-gray-100 shadow-sm transition-all duration-300 mb-4 hover:shadow-md hover:border-gray-200;
+        grid-template-columns: auto minmax(0, 1fr) auto;
+    }
+
+    .cart-item__image {
+        @apply w-16 h-16 sm:w-20 sm:h-20 object-cover rounded-xl flex-shrink-0 self-start sm:self-auto;
+        grid-column: 1 / 2;
+        grid-row: 1 / 3;
+    }
+
+    .cart-item__body {
+        @apply flex flex-col justify-between py-0.5 sm:flex-1 sm:min-w-0;
+        grid-column: 2 / 3;
+        grid-row: 1 / 2;
+    }
+
+    .cart-item__title {
+        @apply font-inter font-semibold text-[#191919] text-p4 sm:text-p3 leading-snug line-clamp-2 sm:truncate;
+    }
+
+    .cart-item__category {
+        @apply font-inter text-[10px] sm:text-p5 font-black uppercase text-[#989899] tracking-widest mt-0.5;
+    }
+
+    .cart-item__unit-price {
+        @apply font-inter text-[#FF4D01] font-bold text-p4 sm:text-p3;
+    }
+
+    /* ── Quantity stepper ────────────────────────────────────────────────── */
+
+    .qty-stepper {
+        @apply flex items-center gap-1.5 sm:gap-2 flex-shrink-0 mt-1.5 sm:mt-0 w-fit;
+        grid-column: 2 / 3;
+        grid-row: 2 / 3;
+    }
+
+    .qty-btn {
+        @apply w-7 h-7 sm:w-8 sm:h-8 rounded-lg border border-gray-200 flex items-center justify-center text-p3 font-bold text-[#605E5D] hover:border-[#FF4D01] hover:text-[#FF4D01] disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-150 select-none;
+    }
+
+    .qty-value {
+        @apply w-6 sm:w-7 text-center font-inter font-semibold text-p4 sm:text-p3 text-[#191919];
+    }
+
+    /* ── Row total + remove ──────────────────────────────────────────────── */
+
+    .cart-item__right {
+        @apply flex flex-col items-end justify-between flex-shrink-0 gap-2;
+        grid-column: 3 / 4;
+        grid-row: 1 / 3;
+    }
+
+    .cart-item__row-total {
+        @apply font-inter font-bold text-p3 sm:text-p2 text-[#191919] whitespace-nowrap;
+    }
+
+    .btn-remove-item {
+        @apply text-[#989899] hover:text-red-400 transition-colors text-p2 sm:text-p1 leading-none p-1 rounded-lg hover:bg-red-50;
+    }
+
+    /* ── Empty state ─────────────────────────────────────────────────────── */
+
+    .empty-state {
+        @apply py-12 sm:py-24 flex flex-col items-center justify-center text-center bg-white rounded-3xl border-2 border-dashed border-gray-100;
+    }
+
+    .empty-state__icon {
+        @apply text-h3 sm:text-h2 mb-4 opacity-30;
+    }
+
+    .empty-state__title {
+        @apply font-inter text-p2 sm:text-p1 font-semibold text-[#989899] mb-2;
+    }
+
+    .empty-state__subtitle {
+        @apply font-inter text-p4 sm:text-p3 text-gray-300;
+    }
+
+    /* ── Skeleton ────────────────────────────────────────────────────────── */
+
+    .skeleton-item {
+        @apply grid sm:flex gap-3 sm:gap-4 bg-white rounded-2xl p-3 sm:p-4 border border-gray-100 mb-4 animate-pulse;
+        grid-template-columns: auto minmax(0, 1fr) auto;
+    }
+
+    .skeleton-square {
+        @apply w-16 h-16 sm:w-20 sm:h-20 bg-gray-100 rounded-xl flex-shrink-0;
+        grid-column: 1 / 2;
+    }
+
+    .skeleton-lines {
+        @apply flex flex-col gap-2 sm:gap-3 py-1 sm:flex-1;
+        grid-column: 2 / 4;
+    }
+
+    .skeleton-line {
+        @apply h-2 sm:h-3 bg-gray-100 rounded;
+    }
+
+    /* ── Order summary sidebar ───────────────────────────────────────────── */
+
+    .cart-summary {
+        @apply w-full lg:w-80 xl:w-96 bg-white rounded-2xl border border-gray-100 shadow-sm p-4 sm:p-6 flex flex-col gap-3 sm:gap-4 lg:sticky lg:top-28 flex-shrink-0;
+    }
+
+    .summary-title {
+        @apply font-barlow text-p1 sm:text-h5 font-bold text-[#191919];
+    }
+
+    .summary-row {
+        @apply flex justify-between items-center font-inter text-p4 sm:text-p3;
+    }
+
+    .summary-label {
+        @apply text-[#605E5D] font-medium;
+    }
+
+    .summary-value {
+        @apply font-semibold text-[#191919];
+    }
+
+    .summary-divider {
+        @apply border-t border-gray-100 my-1;
+    }
+
+    .summary-total-row {
+        @apply mt-1;
+    }
+
+    .summary-total-price {
+        @apply font-inter text-h5 font-black text-[#FF4D01];
+    }
+
+    /* ── Checkout button ─────────────────────────────────────────────────── */
+
+    .btn-checkout {
+        @apply mt-2 w-full py-3 sm:py-3.5 rounded-xl bg-[#FF4D01] text-white font-inter font-bold text-p4 sm:text-p3 tracking-wide transition-all duration-200 hover:bg-[#e04400] hover:shadow-lg hover:shadow-orange-200 hover:-translate-y-0.5 active:translate-y-0 active:shadow-none disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none;
+    }
+
+    .summary-hint {
+        @apply font-inter text-p5 sm:text-[10px] text-gray-300 text-center leading-relaxed;
+    }
+
+    /* ── Toast ───────────────────────────────────────────────────────────── */
+
+    .toast {
+        @apply fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 px-4 py-2 sm:px-5 sm:py-3 rounded-2xl text-white font-inter text-p4 font-semibold shadow-xl transition-all duration-300;
+    }
+}

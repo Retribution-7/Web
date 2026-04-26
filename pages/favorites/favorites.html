@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Избранное | Contractor</title>
+    <link rel="stylesheet" href="favorites.css" />
+  </head>
+  <body class="font-inter bg-gray-50 text-[#191919]">
+    <!-- ── Header ──────────────────────────────────────────────────────── -->
+    <header class="site-header">
+      <div class="container mx-auto flex items-center justify-between px-4">
+        <div class="flex items-center gap-3">
+          <span class="header-icon">🤍</span>
+          <h1 class="header-title">Избранное</h1>
+        </div>
+        <nav class="header-nav">
+          <a href="../cart/cart.html" class="nav-link">🛒 Корзина</a>
+          <a href="../catalog/catalog.html" class="nav-link">← Каталог</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ── Main ────────────────────────────────────────────────────────── -->
+    <main class="container mx-auto px-4 py-12">
+      <!-- Counter bar -->
+      <div class="count-bar">
+        <p id="favorites-count" class="count-label">Загрузка...</p>
+        <button id="btn-clear-all" class="btn-clear" style="display: none">
+          Очистить всё
+        </button>
+      </div>
+
+      <!-- Grid -->
+      <div id="favorites-container" class="fav-grid"></div>
+    </main>
+
+    <script type="module" src="favorites.ts"></script>
+  </body>
+</html>

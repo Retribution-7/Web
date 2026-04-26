@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Корзина | Contractor</title>
+    <link rel="stylesheet" href="cart.css" />
+  </head>
+  <body class="font-inter bg-gray-50 text-[#191919]">
+    <!-- ── Header ──────────────────────────────────────────────────────── -->
+    <header class="site-header">
+      <div class="container mx-auto flex items-center justify-between px-4">
+        <div class="flex items-center gap-3">
+          <span class="header-icon">🛒</span>
+          <h1 class="header-title">Корзина</h1>
+        </div>
+        <nav class="header-nav">
+          <a href="../favorites/favorites.html" class="nav-link"
+            >🤍 Избранное</a
+          >
+          <a href="../catalog/catalog.html" class="nav-link">← Каталог</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ── Main ────────────────────────────────────────────────────────── -->
+    <main class="container mx-auto px-4 py-12">
+      <div class="cart-layout">
+        <!-- Left: item list -->
+        <section class="cart-items-section">
+          <div class="count-bar">
+            <p id="cart-count" class="count-label">Загрузка...</p>
+            <button id="btn-clear-cart" class="btn-clear" style="display: none">
+              Очистить корзину
+            </button>
+          </div>
+          <div id="cart-container"></div>
+        </section>
+
+        <!-- Right: order summary -->
+        <aside class="cart-summary" id="cart-summary">
+          <h2 class="summary-title">Итого</h2>
+
+          <div class="summary-row">
+            <span class="summary-label">Позиций</span>
+            <span id="summary-count" class="summary-value">—</span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">Сумма</span>
+            <span id="summary-subtotal" class="summary-value">—</span>
+          </div>
+          <div class="summary-divider"></div>
+          <div class="summary-row summary-total-row">
+            <span class="summary-label">К оплате</span>
+            <span id="cart-total" class="summary-total-price">$0</span>
+          </div>
+
+          <button id="btn-checkout" class="btn-checkout" disabled>
+            Оформить заказ
+          </button>
+
+          <p class="summary-hint">
+            Нажимая кнопку, вы соглашаетесь с условиями сервиса
+          </p>
+        </aside>
+      </div>
+    </main>
+
+    <script type="module" src="cart.ts"></script>
+  </body>
+</html>
