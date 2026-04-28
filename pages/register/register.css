@@ -1,0 +1,221 @@
+@import "tailwindcss";
+@import "../../src/styles/style.css";
+
+@layer components {
+
+  /* ── Header ──────────────────────────────────────────────────────────── */
+
+  .site-header {
+    @apply bg-[#191919] py-4 md:py-6 text-white shadow-md sticky top-0 z-30;
+  }
+
+  .header-icon {
+    @apply text-p1 md:text-h5 leading-none;
+  }
+
+  .header-title {
+    @apply text-p1 md:text-h5 font-bold font-barlow tracking-tight;
+  }
+
+  .header-nav {
+    @apply flex items-center gap-4 md:gap-6;
+  }
+
+  .nav-link {
+    @apply font-inter text-p4 md:text-p3 font-medium text-[#EAEAEB] hover:text-white transition-colors duration-200;
+  }
+
+  /* ── Card ────────────────────────────────────────────────────────────── */
+
+  .reg-card {
+    @apply mx-auto w-full max-w-2xl bg-white rounded-3xl border border-gray-100 shadow-sm p-6 md:p-10;
+  }
+
+  .reg-card__header {
+    @apply mb-8;
+  }
+
+  .reg-card__title {
+    @apply font-barlow text-h5 md:text-h4 font-bold text-[#191919] mb-1;
+  }
+
+  .reg-card__subtitle {
+    @apply font-inter text-p4 text-[#989899];
+  }
+
+  /* ── Form ────────────────────────────────────────────────────────────── */
+
+  .reg-form {
+    @apply flex flex-col gap-8;
+  }
+
+  /* ── Sections ────────────────────────────────────────────────────────── */
+
+  .reg-section {
+    @apply border-0 p-0 m-0 flex flex-col gap-5;
+  }
+
+  .reg-section__title {
+    @apply font-inter text-p3 font-semibold text-[#605E5D] uppercase tracking-widest pb-3 border-b border-gray-100 mb-1;
+  }
+
+  /* ── Two-column row (firstName / lastName / middleName) ──────────────── */
+
+  .fields-row {
+    @apply grid grid-cols-1 sm:grid-cols-2 gap-4;
+  }
+
+  /* ── Field group ─────────────────────────────────────────────────────── */
+
+  .field-group {
+    @apply flex flex-col gap-1.5;
+  }
+
+  .field-label {
+    @apply font-inter text-p4 font-semibold text-[#191919];
+  }
+
+  .required-mark {
+    @apply text-[#FF4D01] font-bold ml-0.5;
+  }
+
+  .optional-mark {
+    @apply font-inter text-p5 font-normal text-[#989899] ml-1;
+  }
+
+  .field-input {
+    @apply w-full rounded-xl border border-gray-200 bg-white px-4 py-2.5 font-inter text-p3 text-[#191919]
+           placeholder:text-gray-300
+           focus:outline-none focus:border-[#FF4D01] focus:ring-2 focus:ring-[#FF4D01]/15
+           transition-all duration-200;
+  }
+
+  .field-input.input--error {
+    @apply border-red-400 focus:border-red-400 focus:ring-red-100;
+  }
+
+  .field-input.input--readonly {
+    @apply bg-gray-50 text-[#605E5D] cursor-default;
+  }
+
+  .field-hint {
+    @apply font-inter text-p5 text-[#989899] leading-relaxed;
+  }
+
+  .field-error {
+    @apply font-inter text-p5 text-red-500 font-medium leading-snug;
+  }
+
+  /* ── Nickname row ────────────────────────────────────────────────────── */
+
+  .nickname-row {
+    @apply flex gap-2;
+  }
+
+  .nickname-row .field-input {
+    @apply flex-1 min-w-0;
+  }
+
+  .btn-generate {
+    @apply flex-shrink-0 px-4 py-2.5 rounded-xl bg-[#191919] text-white font-inter text-p4 font-semibold
+           hover:bg-[#333] active:scale-95
+           disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-[#191919] disabled:active:scale-100
+           transition-all duration-200 whitespace-nowrap;
+  }
+
+  .nickname-meta {
+    @apply flex items-center justify-between gap-2;
+  }
+
+  .nickname-status {
+    @apply font-inter text-p5 font-semibold;
+  }
+
+  .nickname-status--ok {
+    @apply text-green-500;
+  }
+
+  .nickname-status--err {
+    @apply text-red-400;
+  }
+
+  .nickname-status--checking {
+    @apply text-[#989899];
+  }
+
+  .regen-info {
+    @apply font-inter text-p5 text-[#989899] text-right;
+  }
+
+  /* ── Password row ────────────────────────────────────────────────────── */
+
+  .password-row {
+    @apply relative flex items-center;
+  }
+
+  .password-row .field-input {
+    @apply pr-12;
+  }
+
+  .btn-toggle-pwd {
+    @apply absolute right-3 text-p3 text-[#989899] hover:text-[#191919] transition-colors leading-none p-1 rounded select-none;
+  }
+
+  /* ── Agreement ───────────────────────────────────────────────────────── */
+
+  .agreement-row {
+    @apply flex items-start gap-3;
+  }
+
+  .agreement-checkbox {
+    @apply mt-0.5 w-4 h-4 flex-shrink-0 accent-[#FF4D01] cursor-pointer;
+  }
+
+  .agreement-label {
+    @apply font-inter text-p4 text-[#605E5D] leading-relaxed cursor-pointer;
+  }
+
+  .agreement-link {
+    @apply text-[#FF4D01] underline hover:text-[#e04400] transition-colors;
+  }
+
+  /* ── Submit ──────────────────────────────────────────────────────────── */
+
+  .btn-submit {
+    @apply w-full py-3.5 rounded-xl bg-[#FF4D01] text-white font-inter font-bold text-p3 tracking-wide
+           hover:bg-[#e04400] hover:shadow-lg hover:shadow-orange-200 hover:-translate-y-0.5
+           active:translate-y-0 active:shadow-none
+           disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none
+           transition-all duration-200 mt-2;
+  }
+
+  /* ── Success state ───────────────────────────────────────────────────── */
+
+  .success-state {
+    @apply py-16 flex flex-col items-center justify-center text-center gap-4;
+  }
+
+  .success-state__icon {
+    @apply text-h2 mb-2;
+  }
+
+  .success-state__title {
+    @apply font-barlow text-h5 md:text-h4 font-bold text-[#191919];
+  }
+
+  .success-state__subtitle {
+    @apply font-inter text-p3 text-[#605E5D];
+  }
+
+  .btn-primary {
+    @apply inline-block px-8 py-3 bg-[#FF4D01] text-white font-inter font-bold text-p3 rounded-xl
+           hover:bg-[#e04400] transition-colors duration-200 no-underline;
+  }
+
+  /* ── Toast ───────────────────────────────────────────────────────────── */
+
+  .toast {
+    @apply fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 px-4 py-2 sm:px-5 sm:py-3
+           rounded-2xl text-white font-inter text-p4 font-semibold shadow-xl transition-all duration-300;
+  }
+}

@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Регистрация | Contractor</title>
+    <link rel="stylesheet" href="register.css" />
+  </head>
+  <body class="font-inter bg-gray-50 text-[#191919]">
+
+    <!-- ── Header ──────────────────────────────────────────────────────── -->
+    <header class="site-header">
+      <div class="container mx-auto flex items-center justify-between px-4">
+        <div class="flex items-center gap-3">
+          <span class="header-icon">📝</span>
+          <h1 class="header-title">Регистрация</h1>
+        </div>
+        <nav class="header-nav">
+          <a href="../catalog/catalog.html" class="nav-link">← Каталог</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ── Main ────────────────────────────────────────────────────────── -->
+    <main class="container mx-auto px-4 py-10 md:py-14">
+      <div class="reg-card">
+
+        <div class="reg-card__header">
+          <h2 class="reg-card__title">Создать аккаунт</h2>
+          <p class="reg-card__subtitle">
+            Поля, отмеченные <span class="required-mark">*</span>, обязательны
+          </p>
+        </div>
+
+        <form id="register-form" novalidate class="reg-form">
+
+          <!-- ── Personal info ─────────────────────────────────────────── -->
+          <fieldset class="reg-section">
+            <legend class="reg-section__title">Личные данные</legend>
+
+            <div class="fields-row">
+
+              <div class="field-group">
+                <label class="field-label" for="firstName">
+                  Имя <span class="required-mark">*</span>
+                </label>
+                <input
+                  class="field-input"
+                  id="firstName"
+                  type="text"
+                  autocomplete="given-name"
+                  placeholder="Иван"
+                  maxlength="50"
+                />
+                <p class="field-error hidden" id="err-firstName" role="alert"></p>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label" for="lastName">
+                  Фамилия <span class="required-mark">*</span>
+                </label>
+                <input
+                  class="field-input"
+                  id="lastName"
+                  type="text"
+                  autocomplete="family-name"
+                  placeholder="Иванов"
+                  maxlength="50"
+                />
+                <p class="field-error hidden" id="err-lastName" role="alert"></p>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label" for="middleName">
+                  Отчество
+                  <span class="optional-mark">(необязательно)</span>
+                </label>
+                <input
+                  class="field-input"
+                  id="middleName"
+                  type="text"
+                  autocomplete="additional-name"
+                  placeholder="Иванович"
+                  maxlength="50"
+                />
+              </div>
+
+            </div>
+          </fieldset>
+
+          <!-- ── Account ───────────────────────────────────────────────── -->
+          <fieldset class="reg-section">
+            <legend class="reg-section__title">Аккаунт</legend>
+
+            <!-- Nickname -->
+            <div class="field-group">
+              <label class="field-label" for="nickname">
+                Никнейм <span class="required-mark">*</span>
+              </label>
+              <div class="nickname-row">
+                <input
+                  class="field-input input--readonly"
+                  id="nickname"
+                  type="text"
+                  readonly
+                  placeholder="Будет сгенерирован…"
+                  maxlength="30"
+                  autocomplete="username"
+                />
+                <button type="button" id="btn-gen-nickname" class="btn-generate">
+                  Сгенерировать
+                </button>
+              </div>
+              <div class="nickname-meta">
+                <span id="nickname-status" class="nickname-status" aria-live="polite"></span>
+                <span id="regen-info" class="regen-info">Доступно попыток: 5</span>
+              </div>
+              <p class="field-error hidden" id="err-nickname" role="alert"></p>
+            </div>
+
+            <!-- Email -->
+            <div class="field-group">
+              <label class="field-label" for="email">
+                Email <span class="required-mark">*</span>
+              </label>
+              <input
+                class="field-input"
+                id="email"
+                type="email"
+                autocomplete="email"
+                placeholder="ivan@example.com"
+                maxlength="100"
+              />
+              <p class="field-error hidden" id="err-email" role="alert"></p>
+            </div>
+
+            <!-- Phone -->
+            <div class="field-group">
+              <label class="field-label" for="phone">
+                Телефон <span class="required-mark">*</span>
+              </label>
+              <input
+                class="field-input"
+                id="phone"
+                type="tel"
+                autocomplete="tel"
+                placeholder="+375 (29) 123-45-67"
+                maxlength="20"
+              />
+              <p class="field-hint">Только белорусские номера: операторы 25, 29, 33, 44</p>
+              <p class="field-error hidden" id="err-phone" role="alert"></p>
+            </div>
+
+            <!-- Birth date -->
+            <div class="field-group">
+              <label class="field-label" for="birthDate">
+                Дата рождения <span class="required-mark">*</span>
+              </label>
+              <input
+                class="field-input"
+                id="birthDate"
+                type="date"
+                autocomplete="bday"
+              />
+              <p class="field-hint">Возраст должен быть не менее 16 лет</p>
+              <p class="field-error hidden" id="err-birthDate" role="alert"></p>
+            </div>
+
+          </fieldset>
+
+          <!-- ── Password ──────────────────────────────────────────────── -->
+          <fieldset class="reg-section">
+            <legend class="reg-section__title">Безопасность</legend>
+
+            <div class="field-group">
+              <label class="field-label" for="password">
+                Пароль <span class="required-mark">*</span>
+              </label>
+              <div class="password-row">
+                <input
+                  class="field-input"
+                  id="password"
+                  type="password"
+                  autocomplete="new-password"
+                  placeholder="Минимум 8 символов"
+                  maxlength="20"
+                />
+                <button
+                  type="button"
+                  id="btn-toggle-pwd"
+                  class="btn-toggle-pwd"
+                  aria-label="Показать пароль"
+                  title="Показать / скрыть пароль"
+                >👁</button>
+              </div>
+              <p class="field-hint">
+                8–20 символов: заглавная буква, строчная, цифра, спецсимвол
+              </p>
+              <p class="field-error hidden" id="err-password" role="alert"></p>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label" for="confirmPassword">
+                Повторите пароль <span class="required-mark">*</span>
+              </label>
+              <input
+                class="field-input"
+                id="confirmPassword"
+                type="password"
+                autocomplete="new-password"
+                placeholder="Введите пароль ещё раз"
+                maxlength="20"
+              />
+              <p class="field-hint">Вставка из буфера обмена отключена</p>
+              <p class="field-error hidden" id="err-confirmPassword" role="alert"></p>
+            </div>
+
+          </fieldset>
+
+          <!-- ── Agreement ─────────────────────────────────────────────── -->
+          <div class="agreement-row">
+            <input
+              class="agreement-checkbox"
+              id="agreement"
+              type="checkbox"
+            />
+            <label class="agreement-label" for="agreement">
+              Я принимаю
+              <a href="#" class="agreement-link">условия использования</a>
+              и
+              <a href="#" class="agreement-link">политику конфиденциальности</a>
+              <span class="required-mark">*</span>
+            </label>
+          </div>
+
+          <!-- ── Submit ─────────────────────────────────────────────────── -->
+          <button id="btn-submit" type="submit" class="btn-submit" disabled>
+            Зарегистрироваться
+          </button>
+
+        </form>
+      </div>
+    </main>
+
+    <script type="module" src="register.ts"></script>
+  </body>
+</html>
