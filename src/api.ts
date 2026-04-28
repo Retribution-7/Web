@@ -10,6 +10,7 @@ import type {
   IProductQuery,
 } from "../pages/catalog/types/product.interface";
 import { IFavorite } from "../pages/favorites/types/favorites.interface";
+import type { IFeedback, IFeedbackPayload } from "../pages/feedback/types/feedback.interface";
 import type { IUser, IUserPayload } from "../pages/register/types/user.interface";
 
 // ─── Orders ───────────────────────────────────────────────────────────────────
@@ -26,6 +27,7 @@ export interface IOrder {
   userId: number;
   products: IOrderProduct[];
   totalPrice: number;
+  status?: "pending" | "in_progress" | "completed";
   createdAt: string;
 }
 
@@ -114,13 +116,13 @@ export async function removeFavorite(favoriteId: number): Promise<void> {
 
 // ─── Cart ─────────────────────────────────────────────────────────────────────
 
-export async function fetchCart(): Promise<ICartItem[]> {
-  return apiFetch<ICartItem[]>(`${BASE_URL}/cart`);
+export async function fetchCart(userId: number): Promise<ICartItem[]> {
+  return apiFetch<ICartItem[]>(`${BASE_URL}/cart?userId=${userId}`);
 }
 
-export async function addToCart(product: IProduct): Promise<ICartItem> {
+export async function addToCart(product: IProduct, userId: number): Promise<ICartItem> {
   const existing = await apiFetch<ICartItem[]>(
-    `${BASE_URL}/cart?productId=${product.id}`,
+    `${BASE_URL}/cart?productId=${product.id}&userId=${userId}`,
   );
   if (existing.length > 0) {
     return updateCartQuantity(existing[0].id, existing[0].quantity + 1);
@@ -130,6 +132,7 @@ export async function addToCart(product: IProduct): Promise<ICartItem> {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
+      userId,
       productId: product.id,
       title: product.title,
       price: product.price,
@@ -157,9 +160,9 @@ export async function removeFromCart(cartItemId: number): Promise<void> {
   });
 }
 
-/** Clears the entire cart (used on checkout). */
-export async function clearCart(): Promise<void> {
-  const items = await fetchCart();
+/** Clears the current user's cart (used on checkout). */
+export async function clearCart(userId: number): Promise<void> {
+  const items = await fetchCart(userId);
   await Promise.all(items.map((item) => removeFromCart(item.id)));
 }
 
@@ -167,6 +170,20 @@ export async function clearCart(): Promise<void> {
 
 export async function postOrder(payload: IOrderPayload): Promise<IOrder> {
   return apiFetch<IOrder>(`${BASE_URL}/orders`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+}
+
+export async function fetchOrdersByUser(userId: number): Promise<IOrder[]> {
+  return apiFetch<IOrder[]>(`${BASE_URL}/orders?userId=${userId}`);
+}
+
+// ─── Feedback ─────────────────────────────────────────────────────────────────
+
+export async function postFeedback(payload: IFeedbackPayload): Promise<IFeedback> {
+  return apiFetch<IFeedback>(`${BASE_URL}/feedback`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),

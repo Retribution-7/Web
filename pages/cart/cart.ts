@@ -9,13 +9,15 @@
 
 import type { ICartItem } from "./types/cart-item.interface";
 import { postOrder } from "../../src/api";
+import { requireAuth } from "../../src/auth";
+
+// ─── Auth ─────────────────────────────────────────────────────────────────────
+
+const currentUser = requireAuth();
 
 // ─── Config ───────────────────────────────────────────────────────────────────
 
 const BASE_URL = "http://localhost:3000";
-
-// Placeholder until auth is implemented
-const GUEST_USER_ID = 1;
 
 // ─── DOM ─────────────────────────────────────────────────────────────────────
 
@@ -42,7 +44,7 @@ async function apiFetch<T>(url: string, options?: RequestInit): Promise<T> {
 }
 
 async function fetchCart(): Promise<ICartItem[]> {
-  return apiFetch<ICartItem[]>(`${BASE_URL}/cart`);
+  return apiFetch<ICartItem[]>(`${BASE_URL}/cart?userId=${currentUser.id}`);
 }
 
 async function patchQuantity(id: number, quantity: number): Promise<ICartItem> {
@@ -356,7 +358,7 @@ checkoutBtn.addEventListener("click", async () => {
 
   try {
     await postOrder({
-      userId: GUEST_USER_ID,
+      userId: currentUser.id,
       products: items.map(({ productId, title, quantity, price }) => ({
         productId,
         title,
@@ -364,6 +366,7 @@ checkoutBtn.addEventListener("click", async () => {
         price,
       })),
       totalPrice,
+      status: "pending",
       createdAt: new Date().toISOString(),
     });
 

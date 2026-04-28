@@ -11,7 +11,10 @@ import {
   fetchProducts,
   removeFavorite,
 } from "../../src/api";
+import { requireAuth } from "../../src/auth";
 import type { IProduct, IProductQuery } from "./types/product.interface";
+
+const currentUser = requireAuth();
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
@@ -148,7 +151,7 @@ function renderCards(products: IProduct[]): void {
         const product = products.find((p) => p.id === Number(btn.dataset.id));
         if (!product) return;
         try {
-          await addToCart(product);
+          await addToCart(product, currentUser.id);
           showToast("Добавлено в корзину 🛒");
         } catch {
           showToast("Ошибка при добавлении в корзину", "error");
