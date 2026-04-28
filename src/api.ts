@@ -175,6 +175,13 @@ export async function postOrder(payload: IOrderPayload): Promise<IOrder> {
 
 // ─── Users ────────────────────────────────────────────────────────────────────
 
+export async function fetchUserByEmail(email: string): Promise<IUser | null> {
+  const matches = await apiFetch<IUser[]>(
+    `${BASE_URL}/users?email=${encodeURIComponent(email)}`,
+  );
+  return matches[0] ?? null;
+}
+
 export async function checkNicknameAvailable(nickname: string): Promise<boolean> {
   const matches = await apiFetch<IUser[]>(
     `${BASE_URL}/users?nickname=${encodeURIComponent(nickname)}`,
