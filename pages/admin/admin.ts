@@ -1,7 +1,7 @@
 import type { IProduct } from "../catalog/types/product.interface";
 import type { IFeedback } from "../feedback/types/feedback.interface";
 import type { IUser } from "../register/types/user.interface";
-import { requireAuth } from "../../src/auth";
+import { requireAdmin } from "../../src/auth";
 import {
   fetchAllProducts,
   createProduct,
@@ -15,11 +15,7 @@ import {
 
 // ─── Admin guard ──────────────────────────────────────────────────────────────
 
-const currentUser = requireAuth();
-if (currentUser.role !== "admin") {
-  window.location.replace("/");
-  throw new Error("forbidden: admin only");
-}
+const currentUser = requireAdmin();
 
 // ─── DOM refs ─────────────────────────────────────────────────────────────────
 

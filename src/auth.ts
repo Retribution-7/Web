@@ -26,6 +26,15 @@ export function requireAuth(): IUser {
   return user;
 }
 
+export function requireAdmin(): IUser {
+  const user = requireAuth();
+  if (user.role !== "admin") {
+    window.location.replace("/");
+    throw new Error("forbidden: admin only");
+  }
+  return user;
+}
+
 export function logout(): void {
   localStorage.removeItem(STORAGE_KEY);
   window.location.replace("/");
