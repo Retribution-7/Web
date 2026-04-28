@@ -8,6 +8,9 @@
 
 import { IProduct } from "../catalog/types/product.interface";
 import type { IFavorite } from "./types/favorites.interface";
+import { requireAuth } from "../../src/auth";
+
+requireAuth();
 
 // ─── Config ───────────────────────────────────────────────────────────────────
 

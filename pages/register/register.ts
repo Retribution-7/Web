@@ -9,7 +9,15 @@
  */
 
 import { checkNicknameAvailable, postUser } from "../../src/api";
+import { getUser, setUser } from "../../src/auth";
 import type { IUserPayload } from "./types/user.interface";
+
+// ─── Redirect logged-in users away ────────────────────────────────────────────
+
+if (getUser()) {
+  window.location.replace("/");
+  throw new Error("already authenticated");
+}
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
@@ -404,7 +412,8 @@ form.addEventListener("submit", async (e) => {
   };
 
   try {
-    await postUser(payload);
+    const user = await postUser(payload);
+    setUser(user);
     showSuccess(firstName);
   } catch {
     showToast("Ошибка при регистрации. Попробуйте снова.", "error");

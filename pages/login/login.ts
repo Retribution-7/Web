@@ -1,9 +1,16 @@
 import { fetchUserByEmail } from "../../src/api";
+import { getUser, setUser } from "../../src/auth";
+
+// ─── Redirect logged-in users away ────────────────────────────────────────────
+
+if (getUser()) {
+  window.location.replace("/");
+  throw new Error("already authenticated");
+}
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-const STORAGE_KEY = "currentUser";
 
 // ─── State ────────────────────────────────────────────────────────────────────
 
@@ -111,8 +118,8 @@ form.addEventListener("submit", async (e) => {
       return;
     }
 
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(user));
-    window.location.href = "/";
+    setUser(user);
+    window.location.replace("/");
   } catch {
     showToast("Ошибка соединения. Попробуйте снова.", "error");
   } finally {
