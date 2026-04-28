@@ -8,10 +8,14 @@
  */
 
 import type { ICartItem } from "./types/cart-item.interface";
+import { postOrder } from "../../src/api";
 
 // ─── Config ───────────────────────────────────────────────────────────────────
 
 const BASE_URL = "http://localhost:3000";
+
+// Placeholder until auth is implemented
+const GUEST_USER_ID = 1;
 
 // ─── DOM ─────────────────────────────────────────────────────────────────────
 
@@ -331,7 +335,6 @@ function attachClearCartHandler(items: ICartItem[]): void {
 // ─── Checkout ─────────────────────────────────────────────────────────────────
 
 checkoutBtn.addEventListener("click", async () => {
-  // Read current state from server one more time to be sure
   let items: ICartItem[];
   try {
     items = await fetchCart();
@@ -341,19 +344,32 @@ checkoutBtn.addEventListener("click", async () => {
   }
 
   if (items.length === 0) {
-    alert("Корзина уже пуста.");
+    showToast("Корзина уже пуста", "error");
     return;
   }
 
+  // Disable immediately to prevent duplicate submissions
   checkoutBtn.disabled = true;
   checkoutBtn.textContent = "Оформляем...";
 
+  const totalPrice = items.reduce((sum, i) => sum + i.price * i.quantity, 0);
+
   try {
+    await postOrder({
+      userId: GUEST_USER_ID,
+      products: items.map(({ productId, title, quantity, price }) => ({
+        productId,
+        title,
+        quantity,
+        price,
+      })),
+      totalPrice,
+      createdAt: new Date().toISOString(),
+    });
+
     await clearCart(items);
     await renderCart();
-    alert(
-      "✅ Заказ успешно оформлен!\nСпасибо за покупку — мы свяжемся с вами в ближайшее время.",
-    );
+    showToast("Заказ успешно оформлен! Мы свяжемся с вами в ближайшее время.");
   } catch {
     showToast("Ошибка при оформлении заказа", "error");
     checkoutBtn.disabled = false;
