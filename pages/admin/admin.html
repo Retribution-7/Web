@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Панель администратора | Contractor</title>
+    <link rel="stylesheet" href="admin.css" />
+  </head>
+  <body class="font-inter bg-gray-50 text-[#191919]">
+
+    <!-- Header -->
+    <header class="site-header">
+      <div class="container mx-auto flex items-center justify-between px-4">
+        <div class="flex items-center gap-3">
+          <span class="header-icon">⚙️</span>
+          <h1 class="header-title">Панель администратора</h1>
+        </div>
+        <nav class="header-nav">
+          <a href="/pages/catalog/catalog.html" class="nav-link">Каталог</a>
+          <a href="/index.html" class="nav-link">← На главную</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main -->
+    <main class="container mx-auto px-4 py-10 md:py-14">
+
+      <!-- Toolbar -->
+      <div class="admin-toolbar">
+        <h2 class="admin-section-title">Товары</h2>
+        <button id="btn-new-product" class="btn-create">+ Новый товар</button>
+      </div>
+
+      <!-- Table -->
+      <div id="products-table-container"></div>
+
+      <!-- Feedback section -->
+      <div class="admin-toolbar mt-14">
+        <h2 class="admin-section-title">Отзывы</h2>
+      </div>
+
+      <div class="feedback-filters">
+        <div class="feedback-filter-group">
+          <label class="field-label" for="filter-product">По товару</label>
+          <select id="filter-product" class="field-select">
+            <option value="">— выберите товар —</option>
+          </select>
+        </div>
+        <div class="feedback-filter-sep">или</div>
+        <div class="feedback-filter-group">
+          <label class="field-label" for="filter-user">По пользователю</label>
+          <select id="filter-user" class="field-select">
+            <option value="">— выберите пользователя —</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="feedback-table-container"></div>
+
+    </main>
+
+    <!-- Modal overlay -->
+    <div id="modal-overlay" class="modal-overlay hidden" aria-hidden="true">
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+
+        <div class="modal__header">
+          <h2 id="modal-title" class="modal__title">Новый товар</h2>
+          <button id="btn-modal-close" class="modal__close" aria-label="Закрыть">✕</button>
+        </div>
+
+        <form id="product-form" class="product-form" novalidate>
+
+          <!-- Title -->
+          <div class="field-group">
+            <label class="field-label" for="f-title">
+              Название <span class="required-mark">*</span>
+            </label>
+            <input
+              id="f-title"
+              name="title"
+              type="text"
+              class="field-input"
+              placeholder="Например: Дизайн гостиной"
+              autocomplete="off"
+            />
+            <span class="field-error" id="err-title"></span>
+          </div>
+
+          <!-- Description -->
+          <div class="field-group">
+            <label class="field-label" for="f-desc">
+              Описание <span class="required-mark">*</span>
+            </label>
+            <textarea
+              id="f-desc"
+              name="description"
+              class="field-textarea"
+              rows="3"
+              placeholder="Краткое описание товара"
+            ></textarea>
+            <span class="field-error" id="err-desc"></span>
+          </div>
+
+          <!-- Category -->
+          <div class="field-group">
+            <label class="field-label" for="f-category">
+              Категория <span class="required-mark">*</span>
+            </label>
+            <select id="f-category" name="category" class="field-select">
+              <option value="">— выберите —</option>
+              <option value="interior">Интерьер</option>
+              <option value="exterior">Экстерьер</option>
+              <option value="materials">Материалы</option>
+            </select>
+            <span class="field-error" id="err-category"></span>
+          </div>
+
+          <!-- Price + Rating -->
+          <div class="form-row">
+            <div class="field-group">
+              <label class="field-label" for="f-price">
+                Цена ($) <span class="required-mark">*</span>
+              </label>
+              <input
+                id="f-price"
+                name="price"
+                type="number"
+                min="1"
+                class="field-input"
+                placeholder="0"
+              />
+              <span class="field-error" id="err-price"></span>
+            </div>
+            <div class="field-group">
+              <label class="field-label" for="f-rating">
+                Рейтинг (1–5) <span class="required-mark">*</span>
+              </label>
+              <input
+                id="f-rating"
+                name="rating"
+                type="number"
+                min="1"
+                max="5"
+                step="0.1"
+                class="field-input"
+                placeholder="4.5"
+              />
+              <span class="field-error" id="err-rating"></span>
+            </div>
+          </div>
+
+          <!-- Image URL -->
+          <div class="field-group">
+            <label class="field-label" for="f-image">
+              URL изображения <span class="required-mark">*</span>
+            </label>
+            <input
+              id="f-image"
+              name="imageUrl"
+              type="text"
+              class="field-input"
+              placeholder="/images/blog/blog-1.svg"
+            />
+            <span class="field-error" id="err-image"></span>
+          </div>
+
+          <button type="submit" id="btn-submit" class="btn-submit" disabled>
+            Создать
+          </button>
+
+        </form>
+      </div>
+    </div>
+
+    <script type="module" src="./admin.ts"></script>
+  </body>
+</html>

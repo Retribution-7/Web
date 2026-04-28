@@ -1,0 +1,218 @@
+@import "tailwindcss";
+@import "../../src/styles/style.css";
+
+@layer components {
+
+  /* ── Header ─────────────────────────────────────────────────────────── */
+
+  .site-header {
+    @apply bg-[#191919] py-4 md:py-6 text-white shadow-md sticky top-0 z-30;
+  }
+
+  .header-icon {
+    @apply text-p1 md:text-h5 leading-none;
+  }
+
+  .header-title {
+    @apply text-p1 md:text-h5 font-bold font-barlow tracking-tight;
+  }
+
+  .header-nav {
+    @apply flex items-center gap-4 md:gap-6;
+  }
+
+  .nav-link {
+    @apply font-inter text-p4 md:text-p3 font-medium text-[#EAEAEB] hover:text-white transition-colors duration-200;
+  }
+
+  /* ── Toolbar ─────────────────────────────────────────────────────────── */
+
+  .admin-toolbar {
+    @apply flex items-center justify-between mb-6;
+  }
+
+  .admin-section-title {
+    @apply font-barlow text-h5 font-bold text-[#191919];
+  }
+
+  .btn-create {
+    @apply px-5 py-2.5 rounded-xl bg-[#FF4D01] text-white font-inter font-semibold text-p3
+           hover:bg-[#e04400] hover:shadow-lg hover:shadow-orange-200 hover:-translate-y-0.5
+           active:translate-y-0 active:shadow-none transition-all duration-200;
+  }
+
+  /* ── Table ───────────────────────────────────────────────────────────── */
+
+  .admin-table-wrap {
+    @apply w-full overflow-x-auto rounded-2xl border border-gray-100 shadow-sm bg-white;
+  }
+
+  .admin-table {
+    @apply w-full border-collapse;
+  }
+
+  .admin-table thead {
+    @apply bg-gray-50 border-b border-gray-100;
+  }
+
+  .admin-table th {
+    @apply px-4 py-3 text-left font-inter font-semibold text-[#989899] text-xs uppercase tracking-wide whitespace-nowrap;
+  }
+
+  .admin-table td {
+    @apply px-4 py-3 font-inter text-[#191919] border-b border-gray-50 align-middle;
+  }
+
+  .admin-table tbody tr:last-child td {
+    @apply border-b-0;
+  }
+
+  .admin-table tbody tr:hover td {
+    @apply bg-gray-50/60 transition-colors duration-100;
+  }
+
+  .product-thumb {
+    @apply w-12 h-12 rounded-lg object-cover border border-gray-100;
+  }
+
+  .category-badge {
+    @apply inline-block px-2 py-0.5 rounded-md text-xs font-semibold;
+  }
+
+  .category-badge--interior  { @apply bg-blue-50 text-blue-600; }
+  .category-badge--exterior  { @apply bg-green-50 text-green-600; }
+  .category-badge--materials { @apply bg-amber-50 text-amber-600; }
+
+  .btn-edit {
+    @apply px-3 py-1.5 rounded-lg border border-gray-200 text-xs font-semibold
+           hover:border-[#FF4D01] hover:text-[#FF4D01] transition-colors duration-150;
+  }
+
+  .btn-delete {
+    @apply px-3 py-1.5 rounded-lg border border-gray-200 text-xs font-semibold ml-2
+           hover:border-red-400 hover:text-red-500 hover:bg-red-50 transition-colors duration-150;
+  }
+
+  /* ── State boxes ─────────────────────────────────────────────────────── */
+
+  .state-box {
+    @apply py-20 flex flex-col items-center justify-center text-center gap-3;
+  }
+
+  .state-box__icon {
+    @apply text-5xl mb-2;
+  }
+
+  .state-box__title {
+    @apply font-barlow text-h5 font-bold text-[#191919];
+  }
+
+  .state-box__subtitle {
+    @apply font-inter text-p3 text-[#605E5D];
+  }
+
+  /* ── Modal overlay ───────────────────────────────────────────────────── */
+
+  .modal-overlay {
+    @apply fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4;
+  }
+
+  .modal {
+    @apply w-full max-w-lg bg-white rounded-3xl shadow-2xl overflow-y-auto max-h-[90vh];
+  }
+
+  .modal__header {
+    @apply flex items-center justify-between px-6 pt-6 pb-4 border-b border-gray-100;
+  }
+
+  .modal__title {
+    @apply font-barlow text-h5 font-bold text-[#191919];
+  }
+
+  .modal__close {
+    @apply w-8 h-8 flex items-center justify-center rounded-full text-gray-400
+           hover:bg-gray-100 hover:text-[#191919] transition-colors duration-150 font-semibold text-sm;
+  }
+
+  /* ── Product form ────────────────────────────────────────────────────── */
+
+  .product-form {
+    @apply flex flex-col gap-5 px-6 py-6;
+  }
+
+  .form-row {
+    @apply grid grid-cols-2 gap-4;
+  }
+
+  /* ── Fields ──────────────────────────────────────────────────────────── */
+
+  .field-group {
+    @apply flex flex-col gap-1.5;
+  }
+
+  .field-label {
+    @apply font-inter text-p4 font-semibold text-[#191919];
+  }
+
+  .required-mark {
+    @apply text-[#FF4D01] font-bold ml-0.5;
+  }
+
+  .field-input,
+  .field-select,
+  .field-textarea {
+    @apply w-full rounded-xl border border-gray-200 bg-white px-4 py-2.5 font-inter text-p3 text-[#191919]
+           focus:outline-none focus:border-[#FF4D01] focus:ring-2 focus:ring-[#FF4D01]/15
+           transition-all duration-200;
+  }
+
+  .field-select { @apply cursor-pointer; }
+  .field-textarea { @apply resize-none leading-relaxed; }
+
+  .field-input.input--error,
+  .field-select.input--error,
+  .field-textarea.input--error {
+    @apply border-red-400 focus:border-red-400 focus:ring-red-100;
+  }
+
+  .field-error {
+    @apply font-inter text-p5 text-red-500 font-medium leading-snug min-h-[1.1rem];
+  }
+
+  /* ── Submit ──────────────────────────────────────────────────────────── */
+
+  .btn-submit {
+    @apply w-full py-3.5 rounded-xl bg-[#FF4D01] text-white font-inter font-bold text-p3 tracking-wide
+           hover:bg-[#e04400] hover:shadow-lg hover:shadow-orange-200 hover:-translate-y-0.5
+           active:translate-y-0 active:shadow-none
+           disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none
+           transition-all duration-200 mt-2;
+  }
+
+  /* ── Feedback filters ───────────────────────────────────────────────── */
+
+  .feedback-filters {
+    @apply flex flex-wrap items-end gap-4 mb-6 p-5 bg-white rounded-2xl border border-gray-100 shadow-sm;
+  }
+
+  .feedback-filter-group {
+    @apply flex flex-col gap-1.5 flex-1 min-w-[180px];
+  }
+
+  .feedback-filter-sep {
+    @apply font-inter text-p4 text-[#989899] pb-2 self-end;
+  }
+
+  /* ── Feedback rating stars ───────────────────────────────────────────── */
+
+  .rating-stars {
+    @apply inline-flex items-center gap-0.5 font-semibold text-[#FF4D01];
+  }
+
+  /* ── Toast ───────────────────────────────────────────────────────────── */
+
+  .toast {
+    @apply fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[60] px-4 py-2 sm:px-5 sm:py-3
+           rounded-2xl text-white font-inter text-p4 font-semibold shadow-xl transition-all duration-300;
+  }
+}

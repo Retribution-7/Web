@@ -190,7 +190,54 @@ export async function postFeedback(payload: IFeedbackPayload): Promise<IFeedback
   });
 }
 
+export async function fetchFeedbackByProduct(productId: number): Promise<IFeedback[]> {
+  return apiFetch<IFeedback[]>(`${BASE_URL}/feedback?productId=${productId}`);
+}
+
+export async function fetchFeedbackByUser(userId: number): Promise<IFeedback[]> {
+  return apiFetch<IFeedback[]>(`${BASE_URL}/feedback?userId=${userId}`);
+}
+
+export async function deleteFeedback(id: number): Promise<void> {
+  await apiFetch<unknown>(`${BASE_URL}/feedback/${id}`, { method: "DELETE" });
+}
+
+// ─── Products CRUD ────────────────────────────────────────────────────────────
+
+export async function fetchAllProducts(): Promise<IProduct[]> {
+  return apiFetch<IProduct[]>(`${BASE_URL}/products`);
+}
+
+export async function createProduct(
+  payload: Omit<IProduct, "id">,
+): Promise<IProduct> {
+  return apiFetch<IProduct>(`${BASE_URL}/products`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+}
+
+export async function updateProduct(
+  id: number,
+  payload: Omit<IProduct, "id">,
+): Promise<IProduct> {
+  return apiFetch<IProduct>(`${BASE_URL}/products/${id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+}
+
+export async function deleteProduct(id: number): Promise<void> {
+  await apiFetch<unknown>(`${BASE_URL}/products/${id}`, { method: "DELETE" });
+}
+
 // ─── Users ────────────────────────────────────────────────────────────────────
+
+export async function fetchAllUsers(): Promise<IUser[]> {
+  return apiFetch<IUser[]>(`${BASE_URL}/users`);
+}
 
 export async function fetchUserByEmail(email: string): Promise<IUser | null> {
   const matches = await apiFetch<IUser[]>(
