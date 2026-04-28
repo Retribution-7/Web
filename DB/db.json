@@ -142,5 +142,154 @@
       "id": 1
     }
   ],
-  "cart": []
+  "cart": [],
+  "users": [
+    {
+      "id": 1,
+      "firstName": "Алексей",
+      "lastName": "Морозов",
+      "middleName": "Игоревич",
+      "nickname": "alex_m",
+      "email": "alex.morozov@mail.ru",
+      "phone": "+7 (916) 234-56-78",
+      "password": "$2b$10$Kd1zQ8vLmN3oP5rS7tU9ueXwYzAb0cDeFgHiJkLmNoPqRsTuVwXyZ",
+      "role": "admin",
+      "birthDate": "1988-03-15"
+    },
+    {
+      "id": 2,
+      "firstName": "Мария",
+      "lastName": "Соколова",
+      "middleName": "Андреевна",
+      "nickname": "masha_s",
+      "email": "m.sokolova@gmail.com",
+      "phone": "+7 (903) 456-78-90",
+      "password": "$2b$10$Ab1cDe2fGh3iJk4lMn5oPq6rSt7uVw8xYz9AbCdEfGhIjKlMnOpQr",
+      "role": "client",
+      "birthDate": "1995-07-22"
+    },
+    {
+      "id": 3,
+      "firstName": "Дмитрий",
+      "lastName": "Петров",
+      "nickname": "dpetrov",
+      "email": "d.petrov@yandex.ru",
+      "phone": "+7 (926) 111-22-33",
+      "password": "$2b$10$Zx9yW8vU7tS6rQ5pO4nM3lK2jI1hG0fE9dC8bA7z6Y5x4W3v2U1tS",
+      "role": "client",
+      "birthDate": "1990-11-05"
+    }
+  ],
+  "orders": [
+    {
+      "id": 1,
+      "userId": 2,
+      "products": [
+        {
+          "productId": 1,
+          "title": "Дизайн гостиной",
+          "quantity": 1,
+          "price": 1200
+        },
+        {
+          "productId": 6,
+          "title": "Малярные работы",
+          "quantity": 2,
+          "price": 150
+        }
+      ],
+      "totalPrice": 1500,
+      "status": "completed",
+      "createdAt": "2025-11-10T09:30:00.000Z"
+    },
+    {
+      "id": 2,
+      "userId": 3,
+      "products": [
+        {
+          "productId": 3,
+          "title": "Отделка фасада",
+          "quantity": 1,
+          "price": 2800
+        },
+        {
+          "productId": 11,
+          "title": "Кованый забор",
+          "quantity": 1,
+          "price": 1500
+        }
+      ],
+      "totalPrice": 4300,
+      "status": "in_progress",
+      "createdAt": "2026-02-18T14:15:00.000Z"
+    },
+    {
+      "id": 3,
+      "userId": 2,
+      "products": [
+        {
+          "productId": 13,
+          "title": "Ремонт кухни",
+          "quantity": 1,
+          "price": 2100
+        },
+        {
+          "productId": 4,
+          "title": "Облицовочный камень",
+          "quantity": 10,
+          "price": 85
+        }
+      ],
+      "totalPrice": 2950,
+      "status": "pending",
+      "createdAt": "2026-04-01T11:00:00.000Z"
+    },
+    {
+      "userId": 1,
+      "products": [
+        {
+          "productId": 2,
+          "title": "Укладка паркета",
+          "quantity": 1,
+          "price": 450
+        }
+      ],
+      "totalPrice": 450,
+      "createdAt": "2026-04-28T05:47:02.759Z",
+      "id": 4
+    }
+  ],
+  "feedback": [
+    {
+      "id": 1,
+      "userId": 2,
+      "productId": 1,
+      "message": "Отличная работа — дизайнер учёл все пожелания, результат превзошёл ожидания.",
+      "rating": 5,
+      "createdAt": "2025-11-25T10:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "productId": 6,
+      "message": "Маляры поработали аккуратно, следов от валика нет. Рекомендую.",
+      "rating": 4,
+      "createdAt": "2025-11-26T08:45:00.000Z"
+    },
+    {
+      "id": 3,
+      "userId": 3,
+      "productId": 3,
+      "message": "Фасад выглядит великолепно, материалы качественные.",
+      "rating": 5,
+      "createdAt": "2026-03-05T16:20:00.000Z"
+    },
+    {
+      "id": 4,
+      "userId": 3,
+      "productId": 11,
+      "message": "Забор установлен ровно, но сроки немного затянули.",
+      "createdAt": "2026-03-10T13:30:00.000Z"
+    }
+  ]
 }
