@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Оставить отзыв | Contractor</title>
+    <link rel="stylesheet" href="feedback.css" />
+  </head>
+  <body class="font-inter bg-gray-50 text-[#191919]">
+
+    <!-- ── Header ──────────────────────────────────────────────────────── -->
+    <header class="site-header">
+      <div class="container mx-auto flex items-center justify-between px-4">
+        <div class="flex items-center gap-3">
+          <span class="header-icon">💬</span>
+          <h1 class="header-title">Отзывы</h1>
+        </div>
+        <nav class="header-nav">
+          <a href="/index.html" class="nav-link">← На главную</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ── Main ────────────────────────────────────────────────────────── -->
+    <main class="container mx-auto px-4 py-10 md:py-14">
+      <div class="fb-card">
+
+        <!-- Filled by JS -->
+        <div id="fb-content"></div>
+
+      </div>
+    </main>
+
+    <script type="module" src="feedback.ts"></script>
+  </body>
+</html>
