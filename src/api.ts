@@ -10,6 +10,26 @@ import type {
   IProductQuery,
 } from "../pages/catalog/types/product.interface";
 import { IFavorite } from "../pages/favorites/types/favorites.interface";
+import type { IUser, IUserPayload } from "../pages/register/types/user.interface";
+
+// ─── Orders ───────────────────────────────────────────────────────────────────
+
+interface IOrderProduct {
+  productId: number;
+  title: string;
+  quantity: number;
+  price: number;
+}
+
+export interface IOrder {
+  id: number;
+  userId: number;
+  products: IOrderProduct[];
+  totalPrice: number;
+  createdAt: string;
+}
+
+type IOrderPayload = Omit<IOrder, "id">;
 
 const BASE_URL = "http://localhost:3000";
 
@@ -141,4 +161,31 @@ export async function removeFromCart(cartItemId: number): Promise<void> {
 export async function clearCart(): Promise<void> {
   const items = await fetchCart();
   await Promise.all(items.map((item) => removeFromCart(item.id)));
+}
+
+// ─── Orders ───────────────────────────────────────────────────────────────────
+
+export async function postOrder(payload: IOrderPayload): Promise<IOrder> {
+  return apiFetch<IOrder>(`${BASE_URL}/orders`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+}
+
+// ─── Users ────────────────────────────────────────────────────────────────────
+
+export async function checkNicknameAvailable(nickname: string): Promise<boolean> {
+  const matches = await apiFetch<IUser[]>(
+    `${BASE_URL}/users?nickname=${encodeURIComponent(nickname)}`,
+  );
+  return matches.length === 0;
+}
+
+export async function postUser(payload: IUserPayload): Promise<IUser> {
+  return apiFetch<IUser>(`${BASE_URL}/users`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
 }
