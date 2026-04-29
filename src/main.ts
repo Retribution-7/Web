@@ -1,4 +1,5 @@
 import { getUser, logout } from "./auth";
+import { initBurgerMenu } from "./scripts/burger-menu";
 import { initCounters } from "./scripts/counter";
 import { initMagneticButtons } from "./scripts/magnetic-buttons";
 import { initScrollObserver } from "./scripts/observer";
@@ -13,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initScrollProgress();
   initMagneticButtons();
   initScrollObserver(".animate-typing", "active", 0.7);
+  initBurgerMenu();
 
   const user = getUser();
   const loginEl = document.getElementById("nav-login");
