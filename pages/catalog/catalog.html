@@ -30,9 +30,10 @@
 
     <main class="container mx-auto px-4 py-12">
       <!-- Filter Panel -->
-      <section class="filter-panel">
+      <section class="filter-panel" aria-label="Фильтры каталога">
         <div class="w-full flex-1">
           <label
+            for="searchInput"
             class="mb-2 ml-1 block text-xs font-bold text-gray-400 uppercase"
             >Поиск</label
           >
@@ -45,6 +46,7 @@
         </div>
         <div class="w-full md:w-64">
           <label
+            for="categorySelect"
             class="mb-2 ml-1 block text-xs font-bold text-gray-400 uppercase"
             >Категория</label
           >
@@ -54,6 +56,7 @@
         </div>
         <div class="w-full md:w-64">
           <label
+            for="sortSelect"
             class="mb-2 ml-1 block text-xs font-bold text-gray-400 uppercase"
             >Сортировка</label
           >
@@ -67,6 +70,7 @@
         </div>
         <div class="w-full md:w-32">
           <label
+            for="priceMin"
             class="mb-2 ml-1 block text-xs font-bold text-gray-400 uppercase"
             >Цена от</label
           >
@@ -74,11 +78,13 @@
             type="number"
             id="priceMin"
             placeholder="0"
+            min="0"
             class="filter-input"
           />
         </div>
         <div class="w-full md:w-32">
           <label
+            for="priceMax"
             class="mb-2 ml-1 block text-xs font-bold text-gray-400 uppercase"
             >Цена до</label
           >
@@ -86,6 +92,7 @@
             type="number"
             id="priceMax"
             placeholder="9999"
+            min="0"
             class="filter-input"
           />
         </div>

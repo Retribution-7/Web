@@ -1,80 +1,91 @@
-@import "tailwindcss";
-@import "../../src/styles/style.css";
-/* Относительный путь для исправления ошибки разрешения */
+@import "../shared/shared.css";
 
 @layer components {
 
-    /* Сетка каталога */
-    .catalog-grid {
-        @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 py-10;
-    }
+  /* ── Catalog grid ────────────────────────────────────────────────────── */
 
-    /* Стили для контейнера кнопок методов */
-    .methods-container {
-        @apply flex flex-wrap gap-3 justify-center p-6 border-2 border-dashed border-gray-100 rounded-3xl mb-12;
-    }
+  .catalog-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 py-10;
+  }
 
-    /* Базовый стиль для кнопок методов */
-    .method-btn {
-        @apply px-4 py-2 text-sm font-medium transition-all duration-300 rounded-xl border border-gray-200 text-gray-600 bg-white hover:border-[#FF4D01] hover:text-[#FF4D01] hover:shadow-sm;
-    }
+  /* ── Filter panel ────────────────────────────────────────────────────── */
 
-    /* Карточка товара */
-    .product-card {
-        @apply bg-white rounded-2xl shadow-sm overflow-hidden border border-gray-100 transition-all duration-500 hover:shadow-xl hover:-translate-y-2 flex flex-col h-full;
-    }
+  .filter-panel {
+    @apply bg-white p-6 rounded-2xl shadow-sm mb-10 flex flex-col md:flex-row gap-6 items-end border border-gray-100;
+  }
 
-    .product-card__image {
-        @apply w-full h-64 object-cover transition-transform duration-700;
-    }
+  .filter-input {
+    @apply w-full border border-gray-200 p-3 rounded-xl
+           focus:outline-none focus:ring-2 focus:ring-[#FF4D01]/20 focus:border-[#FF4D01]
+           transition-all bg-gray-50;
+  }
 
-    .product-card:hover .product-card__image {
-        @apply scale-110;
-    }
+  /* ── Array method demo buttons ───────────────────────────────────────── */
 
-    .product-card__content {
-        @apply p-6 flex flex-col grow;
-    }
+  .methods-container {
+    @apply flex flex-wrap gap-3 justify-center p-6 border-2 border-dashed border-gray-100 rounded-3xl mb-12;
+  }
 
-    .product-card__title {
-        @apply text-h5 font-bold text-[#191919] mb-2 font-inter leading-tight;
-    }
+  .method-btn {
+    @apply px-4 py-2 text-sm font-medium transition-all duration-300 rounded-xl
+           border border-gray-200 text-gray-600 bg-white
+           hover:border-[#FF4D01] hover:text-[#FF4D01] hover:shadow-sm;
+  }
 
-    .product-card__desc {
-        @apply text-[#605E5D] text-sm mb-6 grow line-clamp-3;
-    }
+  /* ── Product card ────────────────────────────────────────────────────── */
 
-    .product-card__footer {
-        @apply flex justify-between items-center pt-4 border-t border-gray-50 mt-auto;
-    }
+  .product-card {
+    @apply bg-white rounded-2xl shadow-sm overflow-hidden border border-gray-100
+           transition-all duration-500 hover:shadow-xl hover:-translate-y-2
+           flex flex-col h-full;
+  }
 
-    .product-card__price {
-        @apply text-xl font-bold text-[#191919];
-    }
+  .product-card__image {
+    @apply w-full h-64 object-cover transition-transform duration-700;
+  }
 
-    .badge-rating {
-        @apply bg-[#FF4D01] text-white text-xs font-bold px-2.5 py-1 rounded-lg flex items-center gap-1 text-nowrap;
-    }
+  .product-card:hover .product-card__image {
+    @apply scale-110;
+  }
 
-    /* Панель фильтров */
-    .filter-panel {
-        @apply bg-white p-6 rounded-2xl shadow-sm mb-10 flex flex-col md:flex-row gap-6 items-end border border-gray-100;
-    }
+  .product-card__content {
+    @apply p-6 flex flex-col grow;
+  }
 
-    .filter-input {
-        @apply w-full border border-gray-200 p-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FF4D01]/20 focus:border-[#FF4D01] transition-all bg-gray-50;
-    }
+  .product-card__title {
+    @apply font-inter text-h5 font-bold text-[#191919] mb-2 leading-tight;
+  }
 
-    .empty-state {
-        @apply col-span-full py-20 flex flex-col items-center justify-center text-center bg-white rounded-3xl border-2 border-dashed border-gray-100;
-    }
+  .product-card__desc {
+    @apply font-inter text-p4 text-[#605E5D] mb-6 grow line-clamp-3;
+  }
 
-    .badge-discount {
-        @apply absolute top-4 left-4 bg-[#FF4D01] text-white text-xs font-black px-3 py-1.5 rounded-lg shadow-lg z-10 animate-bounce;
-    }
+  .product-card__footer {
+    @apply flex justify-between items-center pt-4 border-t border-gray-50 mt-auto;
+  }
 
-    /* Добавим акцент на новую цену */
-    .product-card__price.text-discount {
-        @apply text-[#FF4D01];
-    }
+  .product-card__price {
+    @apply font-inter text-p1 font-bold text-[#191919];
+  }
+
+  .product-card__price.text-discount {
+    @apply text-[#FF4D01];
+  }
+
+  .badge-rating {
+    @apply bg-[#FF4D01] text-white font-inter text-p5 font-bold px-2.5 py-1 rounded-lg flex items-center gap-1 text-nowrap;
+  }
+
+  .badge-category {
+    @apply font-inter text-p5 font-black uppercase text-gray-300 tracking-widest;
+  }
+
+  .badge-discount {
+    @apply absolute top-4 left-4 bg-[#FF4D01] text-white text-xs font-black px-3 py-1.5 rounded-lg shadow-lg z-10 animate-bounce;
+  }
+
+  /* empty-state with col-span override for grid context */
+  .catalog-grid .empty-state {
+    @apply col-span-full py-20;
+  }
 }

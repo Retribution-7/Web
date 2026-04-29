@@ -1,29 +1,6 @@
-@import "tailwindcss";
-@import "../../src/styles/style.css";
+@import "../shared/shared.css";
 
 @layer components {
-
-  /* ── Header ──────────────────────────────────────────────────────────── */
-
-  .site-header {
-    @apply bg-[#191919] py-4 md:py-6 text-white shadow-md sticky top-0 z-30;
-  }
-
-  .header-icon {
-    @apply text-p1 md:text-h5 leading-none;
-  }
-
-  .header-title {
-    @apply text-p1 md:text-h5 font-bold font-barlow tracking-tight;
-  }
-
-  .header-nav {
-    @apply flex items-center gap-4 md:gap-6;
-  }
-
-  .nav-link {
-    @apply font-inter text-p4 md:text-p3 font-medium text-[#EAEAEB] hover:text-white transition-colors duration-200;
-  }
 
   /* ── Card ────────────────────────────────────────────────────────────── */
 
@@ -49,56 +26,7 @@
     @apply flex flex-col gap-6;
   }
 
-  /* ── Field group ─────────────────────────────────────────────────────── */
-
-  .field-group {
-    @apply flex flex-col gap-1.5;
-  }
-
-  .field-label {
-    @apply font-inter text-p4 font-semibold text-[#191919];
-  }
-
-  .field-input {
-    @apply w-full rounded-xl border border-gray-200 bg-white px-4 py-2.5 font-inter text-p3 text-[#191919]
-           placeholder:text-gray-300
-           focus:outline-none focus:border-[#FF4D01] focus:ring-2 focus:ring-[#FF4D01]/15
-           transition-all duration-200;
-  }
-
-  .field-input.input--error {
-    @apply border-red-400 focus:border-red-400 focus:ring-red-100;
-  }
-
-  .field-error {
-    @apply font-inter text-p5 text-red-500 font-medium leading-snug;
-  }
-
-  /* ── Password row ────────────────────────────────────────────────────── */
-
-  .password-row {
-    @apply relative flex items-center;
-  }
-
-  .password-row .field-input {
-    @apply pr-12;
-  }
-
-  .btn-toggle-pwd {
-    @apply absolute right-3 text-p3 text-[#989899] hover:text-[#191919] transition-colors leading-none p-1 rounded select-none;
-  }
-
-  /* ── Submit ──────────────────────────────────────────────────────────── */
-
-  .btn-submit {
-    @apply w-full py-3.5 rounded-xl bg-[#FF4D01] text-white font-inter font-bold text-p3 tracking-wide
-           hover:bg-[#e04400] hover:shadow-lg hover:shadow-orange-200 hover:-translate-y-0.5
-           active:translate-y-0 active:shadow-none
-           disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none
-           transition-all duration-200 mt-2;
-  }
-
-  /* ── Footer ──────────────────────────────────────────────────────────── */
+  /* ── Footer link ─────────────────────────────────────────────────────── */
 
   .login-footer {
     @apply font-inter text-p4 text-[#605E5D] text-center;
@@ -106,12 +34,5 @@
 
   .login-link {
     @apply text-[#FF4D01] font-semibold hover:text-[#e04400] transition-colors;
-  }
-
-  /* ── Toast ───────────────────────────────────────────────────────────── */
-
-  .toast {
-    @apply fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 px-4 py-2 sm:px-5 sm:py-3
-           rounded-2xl text-white font-inter text-p4 font-semibold shadow-xl transition-all duration-300;
   }
 }

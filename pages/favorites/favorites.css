@@ -1,138 +1,86 @@
-@import "tailwindcss";
-/* Adjust path to match your project root */
-@import "../../src/styles/style.css";
+@import "../shared/shared.css";
 
 @layer components {
 
-    /* ── Layout ─────────────────────────────────────────────────────────── */
+  /* ── Favorites grid ──────────────────────────────────────────────────── */
 
-    .site-header {
-        @apply bg-[#191919] py-4 md:py-8 text-white shadow-md sticky top-0 z-30;
-    }
+  .fav-grid {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8;
+  }
 
-    .header-icon {
-        @apply text-p1 md:text-h5 leading-none;
-    }
+  /* ── Product card ────────────────────────────────────────────────────── */
 
-    .header-title {
-        @apply text-p1 md:text-h5 font-bold font-barlow tracking-tight;
-    }
+  .product-card {
+    @apply bg-white rounded-2xl shadow-sm overflow-hidden border border-gray-100
+           transition-all duration-500 hover:shadow-xl hover:-translate-y-1 sm:hover:-translate-y-2
+           flex flex-col h-full;
+  }
 
-    .header-nav {
-        @apply flex items-center gap-4 md:gap-6;
-    }
+  .product-card__image {
+    @apply w-full h-48 sm:h-56 object-cover transition-transform duration-700;
+  }
 
-    .nav-link {
-        @apply font-inter text-p4 md:text-p3 font-medium text-[#EAEAEB] hover:text-white transition-colors duration-200;
-    }
+  .product-card:hover .product-card__image {
+    @apply scale-110;
+  }
 
-    /* ── Count bar ───────────────────────────────────────────────────────── */
+  .product-card__content {
+    @apply p-4 sm:p-6 flex flex-col grow;
+  }
 
-    .count-bar {
-        @apply flex items-center justify-between mb-4 md:mb-8;
-    }
+  .product-card__title {
+    @apply font-inter text-p2 sm:text-h5 font-bold text-[#191919] mb-1 leading-tight;
+  }
 
-    .count-label {
-        @apply font-inter text-p5 sm:text-p4 font-semibold text-[#989899] uppercase tracking-widest;
-    }
+  .product-card__desc {
+    @apply font-inter text-p4 text-[#605E5D] mb-4 grow line-clamp-3;
+  }
 
-    .btn-clear {
-        @apply font-inter text-p5 sm:text-p4 font-semibold text-[#989899] hover:text-red-400 border border-gray-200 hover:border-red-300 px-3 py-1.5 md:px-4 md:py-2 rounded-xl transition-all duration-200;
-    }
+  .product-card__footer {
+    @apply flex justify-between items-center pt-3 sm:pt-4 border-t border-gray-50 mt-auto;
+  }
 
-    /* ── Favorites grid ──────────────────────────────────────────────────── */
+  .product-card__price {
+    @apply font-inter text-p1 sm:text-h5 font-bold text-[#191919];
+  }
 
-    .fav-grid {
-        @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8;
-    }
+  .badge-rating {
+    @apply bg-[#FF4D01] text-white font-inter text-p5 font-bold px-2 py-1 sm:px-2.5 rounded-lg flex items-center gap-1 text-nowrap;
+  }
 
-    /* ── Product card (same as catalog) ─────────────────────────────────── */
+  .badge-category {
+    @apply font-inter text-[10px] sm:text-p5 font-black uppercase text-gray-300 tracking-widest;
+  }
 
-    .product-card {
-        @apply bg-white rounded-2xl shadow-sm overflow-hidden border border-gray-100 transition-all duration-500 hover:shadow-xl hover:-translate-y-1 sm:hover:-translate-y-2 flex flex-col h-full;
-    }
+  /* ── Remove button ───────────────────────────────────────────────────── */
 
-    .product-card__image {
-        @apply w-full h-48 sm:h-56 object-cover transition-transform duration-700;
-    }
+  .btn-remove-fav {
+    @apply mt-3 sm:mt-4 w-full py-2 sm:py-2.5 rounded-xl border border-gray-200
+           font-inter text-p4 font-semibold text-[#605E5D]
+           hover:border-red-400 hover:text-red-500 hover:bg-red-50
+           transition-all duration-200 flex items-center justify-center gap-2;
+  }
 
-    .product-card:hover .product-card__image {
-        @apply scale-110;
-    }
+  /* ── Skeleton loader ─────────────────────────────────────────────────── */
 
-    .product-card__content {
-        @apply p-4 sm:p-6 flex flex-col grow;
-    }
+  .skeleton-card {
+    @apply bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden animate-pulse;
+  }
 
-    .product-card__title {
-        @apply font-inter text-p2 sm:text-h5 font-bold text-[#191919] mb-1 leading-tight;
-    }
+  .skeleton-img {
+    @apply w-full h-48 sm:h-56 bg-gray-100;
+  }
 
-    .product-card__desc {
-        @apply font-inter text-p4 text-[#605E5D] mb-4 grow line-clamp-3;
-    }
+  .skeleton-body {
+    @apply p-4 sm:p-6 flex flex-col gap-3;
+  }
 
-    .product-card__footer {
-        @apply flex justify-between items-center pt-3 sm:pt-4 border-t border-gray-50 mt-auto;
-    }
+  .skeleton-line {
+    @apply h-3 sm:h-4 bg-gray-100 rounded;
+  }
 
-    .product-card__price {
-        @apply font-inter text-p1 sm:text-h5 font-bold text-[#191919];
-    }
-
-    .badge-rating {
-        @apply bg-[#FF4D01] text-white font-inter text-p5 font-bold px-2 py-1 sm:px-2.5 rounded-lg flex items-center gap-1 text-nowrap;
-    }
-
-    .badge-category {
-        @apply font-inter text-[10px] sm:text-p5 font-black uppercase text-gray-300 tracking-widest;
-    }
-
-    /* ── Remove button ───────────────────────────────────────────────────── */
-
-    .btn-remove-fav {
-        @apply mt-3 sm:mt-4 w-full py-2 sm:py-2.5 rounded-xl border border-gray-200 font-inter text-p4 font-semibold text-[#605E5D] hover:border-red-400 hover:text-red-500 hover:bg-red-50 transition-all duration-200 flex items-center justify-center gap-2;
-    }
-
-    /* ── Empty state ─────────────────────────────────────────────────────── */
-
-    .empty-state {
-        @apply col-span-full py-12 sm:py-24 flex flex-col items-center justify-center text-center bg-white rounded-3xl border-2 border-dashed border-gray-100;
-    }
-
-    .empty-state__icon {
-        @apply text-h3 sm:text-h2 mb-4 opacity-30;
-    }
-
-    .empty-state__title {
-        @apply font-inter text-p2 sm:text-p1 font-semibold text-[#989899] mb-2;
-    }
-
-    .empty-state__subtitle {
-        @apply font-inter text-p4 sm:text-p3 text-gray-300;
-    }
-
-    /* ── Skeleton loader ─────────────────────────────────────────────────── */
-
-    .skeleton-card {
-        @apply bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden animate-pulse;
-    }
-
-    .skeleton-img {
-        @apply w-full h-48 sm:h-56 bg-gray-100;
-    }
-
-    .skeleton-body {
-        @apply p-4 sm:p-6 flex flex-col gap-3;
-    }
-
-    .skeleton-line {
-        @apply h-3 sm:h-4 bg-gray-100 rounded;
-    }
-
-    /* ── Toast ───────────────────────────────────────────────────────────── */
-
-    .toast {
-        @apply fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 px-4 py-2 sm:px-5 sm:py-3 rounded-2xl text-white font-inter text-p4 font-semibold shadow-xl transition-all duration-300;
-    }
+  /* empty-state with col-span override for grid context */
+  .fav-grid .empty-state {
+    @apply col-span-full;
+  }
 }

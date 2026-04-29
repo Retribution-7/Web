@@ -1,29 +1,6 @@
-@import "tailwindcss";
-@import "../../src/styles/style.css";
+@import "../shared/shared.css";
 
 @layer components {
-
-  /* ── Header ─────────────────────────────────────────────────────────── */
-
-  .site-header {
-    @apply bg-[#191919] py-4 md:py-6 text-white shadow-md sticky top-0 z-30;
-  }
-
-  .header-icon {
-    @apply text-p1 md:text-h5 leading-none;
-  }
-
-  .header-title {
-    @apply text-p1 md:text-h5 font-bold font-barlow tracking-tight;
-  }
-
-  .header-nav {
-    @apply flex items-center gap-4 md:gap-6;
-  }
-
-  .nav-link {
-    @apply font-inter text-p4 md:text-p3 font-medium text-[#EAEAEB] hover:text-white transition-colors duration-200;
-  }
 
   /* ── Toolbar ─────────────────────────────────────────────────────────── */
 
@@ -93,24 +70,6 @@
            hover:border-red-400 hover:text-red-500 hover:bg-red-50 transition-colors duration-150;
   }
 
-  /* ── State boxes ─────────────────────────────────────────────────────── */
-
-  .state-box {
-    @apply py-20 flex flex-col items-center justify-center text-center gap-3;
-  }
-
-  .state-box__icon {
-    @apply text-5xl mb-2;
-  }
-
-  .state-box__title {
-    @apply font-barlow text-h5 font-bold text-[#191919];
-  }
-
-  .state-box__subtitle {
-    @apply font-inter text-p3 text-[#605E5D];
-  }
-
   /* ── Modal overlay ───────────────────────────────────────────────────── */
 
   .modal-overlay {
@@ -144,52 +103,12 @@
     @apply grid grid-cols-2 gap-4;
   }
 
-  /* ── Fields ──────────────────────────────────────────────────────────── */
-
-  .field-group {
-    @apply flex flex-col gap-1.5;
+  /* admin field-error gets min-height to prevent layout shift */
+  .product-form .field-error {
+    @apply min-h-[1.1rem];
   }
 
-  .field-label {
-    @apply font-inter text-p4 font-semibold text-[#191919];
-  }
-
-  .required-mark {
-    @apply text-[#FF4D01] font-bold ml-0.5;
-  }
-
-  .field-input,
-  .field-select,
-  .field-textarea {
-    @apply w-full rounded-xl border border-gray-200 bg-white px-4 py-2.5 font-inter text-p3 text-[#191919]
-           focus:outline-none focus:border-[#FF4D01] focus:ring-2 focus:ring-[#FF4D01]/15
-           transition-all duration-200;
-  }
-
-  .field-select { @apply cursor-pointer; }
-  .field-textarea { @apply resize-none leading-relaxed; }
-
-  .field-input.input--error,
-  .field-select.input--error,
-  .field-textarea.input--error {
-    @apply border-red-400 focus:border-red-400 focus:ring-red-100;
-  }
-
-  .field-error {
-    @apply font-inter text-p5 text-red-500 font-medium leading-snug min-h-[1.1rem];
-  }
-
-  /* ── Submit ──────────────────────────────────────────────────────────── */
-
-  .btn-submit {
-    @apply w-full py-3.5 rounded-xl bg-[#FF4D01] text-white font-inter font-bold text-p3 tracking-wide
-           hover:bg-[#e04400] hover:shadow-lg hover:shadow-orange-200 hover:-translate-y-0.5
-           active:translate-y-0 active:shadow-none
-           disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none
-           transition-all duration-200 mt-2;
-  }
-
-  /* ── Feedback filters ───────────────────────────────────────────────── */
+  /* ── Feedback filters ────────────────────────────────────────────────── */
 
   .feedback-filters {
     @apply flex flex-wrap items-end gap-4 mb-6 p-5 bg-white rounded-2xl border border-gray-100 shadow-sm;
@@ -209,10 +128,8 @@
     @apply inline-flex items-center gap-0.5 font-semibold text-[#FF4D01];
   }
 
-  /* ── Toast ───────────────────────────────────────────────────────────── */
-
+  /* admin toast needs higher z-index due to modal overlay */
   .toast {
-    @apply fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[60] px-4 py-2 sm:px-5 sm:py-3
-           rounded-2xl text-white font-inter text-p4 font-semibold shadow-xl transition-all duration-300;
+    @apply z-[60];
   }
 }

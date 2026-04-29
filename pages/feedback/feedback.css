@@ -1,29 +1,6 @@
-@import "tailwindcss";
-@import "../../src/styles/style.css";
+@import "../shared/shared.css";
 
 @layer components {
-
-  /* ── Header ──────────────────────────────────────────────────────────── */
-
-  .site-header {
-    @apply bg-[#191919] py-4 md:py-6 text-white shadow-md sticky top-0 z-30;
-  }
-
-  .header-icon {
-    @apply text-p1 md:text-h5 leading-none;
-  }
-
-  .header-title {
-    @apply text-p1 md:text-h5 font-bold font-barlow tracking-tight;
-  }
-
-  .header-nav {
-    @apply flex items-center gap-4 md:gap-6;
-  }
-
-  .nav-link {
-    @apply font-inter text-p4 md:text-p3 font-medium text-[#EAEAEB] hover:text-white transition-colors duration-200;
-  }
 
   /* ── Card ────────────────────────────────────────────────────────────── */
 
@@ -31,66 +8,10 @@
     @apply mx-auto w-full max-w-xl bg-white rounded-3xl border border-gray-100 shadow-sm p-6 md:p-10;
   }
 
-  .fb-card__header {
-    @apply mb-8;
-  }
-
-  .fb-card__title {
-    @apply font-barlow text-h5 md:text-h4 font-bold text-[#191919] mb-1;
-  }
-
-  .fb-card__subtitle {
-    @apply font-inter text-p4 text-[#989899];
-  }
-
   /* ── Form ────────────────────────────────────────────────────────────── */
 
   .fb-form {
     @apply flex flex-col gap-6;
-  }
-
-  /* ── Field group ─────────────────────────────────────────────────────── */
-
-  .field-group {
-    @apply flex flex-col gap-1.5;
-  }
-
-  .field-label {
-    @apply font-inter text-p4 font-semibold text-[#191919];
-  }
-
-  .required-mark {
-    @apply text-[#FF4D01] font-bold ml-0.5;
-  }
-
-  .field-input,
-  .field-select,
-  .field-textarea {
-    @apply w-full rounded-xl border border-gray-200 bg-white px-4 py-2.5 font-inter text-p3 text-[#191919]
-           focus:outline-none focus:border-[#FF4D01] focus:ring-2 focus:ring-[#FF4D01]/15
-           transition-all duration-200;
-  }
-
-  .field-select {
-    @apply cursor-pointer;
-  }
-
-  .field-textarea {
-    @apply resize-none leading-relaxed;
-  }
-
-  .field-input.input--error,
-  .field-select.input--error,
-  .field-textarea.input--error {
-    @apply border-red-400 focus:border-red-400 focus:ring-red-100;
-  }
-
-  .field-hint {
-    @apply font-inter text-p5 text-[#989899] leading-relaxed;
-  }
-
-  .field-error {
-    @apply font-inter text-p5 text-red-500 font-medium leading-snug;
   }
 
   /* ── Star rating ─────────────────────────────────────────────────────── */
@@ -111,59 +32,12 @@
     @apply cursor-pointer text-2xl text-gray-300 transition-colors duration-100 select-none leading-none;
   }
 
-  /* Highlight hovered star and all stars to its right (flex-row-reverse) */
   .star-row label:hover,
   .star-row label:hover ~ label {
     @apply text-[#FF4D01];
   }
 
-  /* Highlight checked star and all stars to its right */
   .star-row input[type="radio"]:checked ~ label {
     @apply text-[#FF4D01];
-  }
-
-  /* ── Submit ──────────────────────────────────────────────────────────── */
-
-  .btn-submit {
-    @apply w-full py-3.5 rounded-xl bg-[#FF4D01] text-white font-inter font-bold text-p3 tracking-wide
-           hover:bg-[#e04400] hover:shadow-lg hover:shadow-orange-200 hover:-translate-y-0.5
-           active:translate-y-0 active:shadow-none
-           disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none
-           transition-all duration-200 mt-2;
-  }
-
-  /* ── Info / success / error states ──────────────────────────────────── */
-
-  .state-box {
-    @apply py-14 flex flex-col items-center justify-center text-center gap-4;
-  }
-
-  .state-box__icon {
-    @apply text-h2 mb-2;
-  }
-
-  .state-box__title {
-    @apply font-barlow text-h5 md:text-h4 font-bold text-[#191919];
-  }
-
-  .state-box__subtitle {
-    @apply font-inter text-p3 text-[#605E5D];
-  }
-
-  .btn-primary {
-    @apply inline-block px-8 py-3 bg-[#FF4D01] text-white font-inter font-bold text-p3 rounded-xl
-           hover:bg-[#e04400] transition-colors duration-200 no-underline;
-  }
-
-  .btn-secondary {
-    @apply inline-block px-8 py-3 border-2 border-[#191919] text-[#191919] font-inter font-bold text-p3 rounded-xl
-           hover:bg-gray-50 transition-colors duration-200 no-underline;
-  }
-
-  /* ── Toast ───────────────────────────────────────────────────────────── */
-
-  .toast {
-    @apply fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 px-4 py-2 sm:px-5 sm:py-3
-           rounded-2xl text-white font-inter text-p4 font-semibold shadow-xl transition-all duration-300;
   }
 }
