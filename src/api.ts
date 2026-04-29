@@ -12,26 +12,9 @@ import type {
 import { IFavorite } from "../pages/favorites/types/favorites.interface";
 import type { IFeedback, IFeedbackPayload } from "../pages/feedback/types/feedback.interface";
 import type { IUser, IUserPayload } from "../pages/register/types/user.interface";
+import type { IOrder, IOrderPayload } from "./types/order.interface";
 
-// ─── Orders ───────────────────────────────────────────────────────────────────
-
-interface IOrderProduct {
-  productId: number;
-  title: string;
-  quantity: number;
-  price: number;
-}
-
-export interface IOrder {
-  id: number;
-  userId: number;
-  products: IOrderProduct[];
-  totalPrice: number;
-  status?: "pending" | "in_progress" | "completed";
-  createdAt: string;
-}
-
-type IOrderPayload = Omit<IOrder, "id">;
+export type { IOrder, IOrderPayload };
 
 const BASE_URL = "http://localhost:3000";
 
