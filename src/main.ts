@@ -5,6 +5,8 @@ import { initScrollObserver } from "./scripts/observer";
 import { initScrollProgress } from "./scripts/scroll-progress";
 import { initSwiper } from "./scripts/swiper";
 
+import "./scripts/preloader";
+
 document.addEventListener("DOMContentLoaded", () => {
   initSwiper();
   initCounters();

@@ -1,3 +1,4 @@
+import "../../src/scripts/preloader";
 import { fetchOrdersByUser, postFeedback } from "../../src/api";
 import { requireAuth } from "../../src/auth";
 import type { IFeedbackPayload } from "./types/feedback.interface";

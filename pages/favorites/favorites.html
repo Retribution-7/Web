@@ -5,8 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Избранное | Contractor</title>
     <link rel="stylesheet" href="favorites.css" />
+    <!-- Critical preloader styles inline to prevent FOUC -->
+    <style>
+      #preloader {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: #191919;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
   </head>
   <body class="font-inter bg-gray-50 text-[#191919]">
+    <div id="preloader" aria-hidden="true" aria-label="Loading">
+      <div class="preloader__ring"></div>
+    </div>
     <!-- ── Header ──────────────────────────────────────────────────────── -->
     <header class="site-header">
       <div class="container mx-auto flex items-center justify-between px-4">

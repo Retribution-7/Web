@@ -4,6 +4,7 @@
  * No .filter() / .sort() / .map() on raw arrays for business logic.
  */
 
+import "../../src/scripts/preloader";
 import {
   addFavorite,
   addToCart,

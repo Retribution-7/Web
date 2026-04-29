@@ -1,3 +1,4 @@
+import "../../src/scripts/preloader";
 import type { IProduct } from "../catalog/types/product.interface";
 import type { IFeedback } from "../feedback/types/feedback.interface";
 import type { IUser } from "../register/types/user.interface";

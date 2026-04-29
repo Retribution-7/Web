@@ -12,8 +12,24 @@
     />
     <link rel="stylesheet" href="src/styles/style.css" />
     <script type="module" src="src/main.ts"></script>
+    <!-- Critical preloader styles — inline so the overlay is painted before
+         any external CSS or font finishes loading, eliminating FOUC. -->
+    <style>
+      #preloader {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: #191919;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
   </head>
   <body>
+    <div id="preloader" aria-hidden="true" aria-label="Loading">
+      <div class="preloader__ring"></div>
+    </div>
     <div
       class="bg-hero relative flex w-full flex-col items-center bg-center pb-10 md:pb-20 lg:pb-40"
     >

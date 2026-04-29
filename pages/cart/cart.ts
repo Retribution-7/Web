@@ -7,6 +7,7 @@
  * ─────────────────────────────────────────────────────────────────────────────
  */
 
+import "../../src/scripts/preloader";
 import type { ICartItem } from "./types/cart-item.interface";
 import { postOrder } from "../../src/api";
 import { requireAuth } from "../../src/auth";

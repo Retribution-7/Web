@@ -8,6 +8,7 @@
  * ─────────────────────────────────────────────────────────────────────────────
  */
 
+import "../../src/scripts/preloader";
 import { checkNicknameAvailable, postUser } from "../../src/api";
 import { getUser, setUser } from "../../src/auth";
 import type { IUserPayload } from "./types/user.interface";

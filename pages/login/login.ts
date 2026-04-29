@@ -1,3 +1,4 @@
+import "../../src/scripts/preloader";
 import { fetchUserByEmail } from "../../src/api";
 import { getUser, setUser } from "../../src/auth";
 
