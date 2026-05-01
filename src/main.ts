@@ -1,3 +1,4 @@
+import "./styles/style.css";
 import { getUser, logout } from "./auth";
 import { initBurgerMenu } from "./scripts/burger-menu";
 import { initCounters } from "./scripts/counter";

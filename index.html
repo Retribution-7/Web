@@ -10,7 +10,6 @@
       href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="src/styles/style.css" />
     <script type="module" src="src/main.ts"></script>
     <!-- Critical preloader styles — inline so the overlay is painted before
          any external CSS or font finishes loading, eliminating FOUC. -->
@@ -559,8 +558,8 @@
       </header>
 
       <div class="swiper mySwiper w-full overflow-hidden">
-        <ul class="swiper-wrapper px-4 md:px-11 2xl:p-0">
-          <li class="swiper-slide swiper-slide-projects group">
+        <ul class="swiper-wrapper">
+          <li class="swiper-slide swiper-slide-projects">
             <article class="bg-[url('/backgrounds/projects/project-1.png')]">
               <h5 class="md:text-h4 font-inter text-[#FFF]">
                 Building construction in Los Angeles, CA
@@ -582,7 +581,7 @@
           </li>
           <li class="swiper-slide swiper-slide-projects">
             <article class="bg-[url('/backgrounds/projects/project-2.png')]">
-              <h5 class="text-h4 font-inter text-[#FFF]">
+              <h5 class="md:text-h4 font-inter text-[#FFF]">
                 Kitchen remodeling in Hollywood Hills, CA
               </h5>
               <div class="project-details">
@@ -643,137 +642,60 @@
     <section
       class="flex flex-col items-start gap-16 px-4 py-5 md:px-11 md:py-17 lg:px-20 lg:py-32"
     >
-      <header
-        class="flex flex-col items-center justify-center gap-16 xl:flex-row"
-      >
-        <div class="flex flex-col items-start gap-4 lg:w-211">
-          <span class="text-p3 md:text-p1 font-inter text-[#FF4D01]"
-            >/Testimonials</span
-          >
-          <h5 class="font-inter md:text-h2 md:font-barlow text-[#191919]">
-            What our clients say about us and<br class="hidden lg:block" />
-            our work
-          </h5>
-        </div>
-
-        <nav class="flex justify-center gap-4 md:gap-8">
-          <button
-            type="button"
-            class="swiper-button-prev-custom h-13.75 w-13.75 cursor-pointer border-2 border-[#191919] bg-white transition-colors hover:bg-[#FF4D01] focus:outline-hidden md:h-18 md:w-18"
-            aria-label="Previous slide"
-          ></button>
-
-          <button
-            type="button"
-            class="swiper-button-next-custom h-13.75 w-13.75 cursor-pointer border-2 border-[#FF4D01] bg-[#FF4D01] transition-colors hover:border-[#191919] hover:bg-[#191919] focus:outline-hidden md:h-18 md:w-18"
-            aria-label="Next slide"
-          ></button>
-        </nav>
+      <header class="flex flex-col items-start gap-4">
+        <span class="text-p3 md:text-p1 font-inter text-[#FF4D01]"
+          >/Testimonials</span
+        >
+        <h5 class="font-inter md:text-h2 md:font-barlow text-[#191919]">
+          What our clients say about us and<br class="hidden lg:block" />
+          our work
+        </h5>
       </header>
 
-      <div class="swiper mySwiper w-full overflow-hidden">
-        <ul class="swiper-wrapper">
-          <li class="swiper-slide testimonial-slide">
-            <article class="testimonial-card">
-              <img
-                src="images/testimonials/testimonial-1.svg"
-                alt="Portrait of John Carter"
-                class="testimonial-card__image"
-              />
-              <div class="testimonial-card__content">
-                <p class="testimonial-card__quote">
-                  “A true team of expert<br />contractors”
-                </p>
-                <p class="testimonial-card__text">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Convallis senectus non dui vel tortor. Justo lectus integer
-                  arcu elit.
-                </p>
-                <div class="testimonial-card__author-info">
-                  <span class="testimonial-card__name">John Carter</span>
-                  <span class="testimonial-card__location"
-                    >Malibu Beach, CA</span
-                  >
-                </div>
-              </div>
-            </article>
-          </li>
-          <li class="swiper-slide testimonial-slide">
-            <article class="testimonial-card">
-              <img
-                src="images/testimonials/testimonial-2.svg"
-                alt="Portrait of Lily Woods"
-                class="testimonial-card__image"
-              />
-              <div class="testimonial-card__content">
-                <p class=”testimonial-card__quote”>
-                  “A team that never undelivers”
-                </p>
-                <p class=”testimonial-card__text”>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Convallis senectus non dui vel tortor. Justo lectus integer
-                  arcu elit.
-                </p>
-                <div class=”testimonial-card__author-info”>
-                  <span class=”testimonial-card__name”>Lily Woods</span>
-                  <span class=”testimonial-card__location”
-                    >Hollywood Hills, CA</span
-                  >
-                </div>
-              </div>
-            </article>
-          </li>
-          <li class=”swiper-slide testimonial-slide”>
-            <article class=”testimonial-card”>
-              <img
-                src=”images/testimonials/testimonial-1.svg”
-                alt=”Portrait of John Carter”
-                class=”testimonial-card__image”
-              />
-              <div class=”testimonial-card__content”>
-                <p class=”testimonial-card__quote”>
-                  “A true team of expert contractors”
-                </p>
-                <p class=”testimonial-card__text”>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Convallis senectus non dui vel tortor. Justo lectus integer
-                  arcu elit.
-                </p>
-                <div class=”testimonial-card__author-info”>
-                  <span class=”testimonial-card__name”>John Carter</span>
-                  <span class=”testimonial-card__location”
-                    >Malibu Beach, CA</span
-                  >
-                </div>
-              </div>
-            </article>
-          </li>
-          <li class=”swiper-slide testimonial-slide”>
-            <article class=”testimonial-card”>
-              <img
-                src=”images/testimonials/testimonial-2.svg”
-                alt=”Portrait of Lily Woods”
-                class=”testimonial-card__image”
-              />
-              <div class=”testimonial-card__content”>
-                <p class=”testimonial-card__quote”>
-                  “A team that never undelivers”
-                </p>
-                <p class=”testimonial-card__text”>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Convallis senectus non dui vel tortor. Justo lectus integer
-                  arcu elit.
-                </p>
-                <div class=”testimonial-card__author-info”>
-                  <span class=”testimonial-card__name”>Lily Woods</span>
-                  <span class=”testimonial-card__location”
-                    >Hollywood Hills, CA</span
-                  >
-                </div>
-              </div>
-            </article>
-          </li>
-        </ul>
+      <div class="flex w-full flex-col gap-12 2xl:flex-row">
+        <article class="flex w-full flex-col items-center gap-9.5 md:flex-row 2xl:flex-1">
+          <img
+            src="images/testimonials/testimonial-1.svg"
+            alt="Portrait of John Carter"
+            class="h-79.5 w-[288px] shrink-0 object-cover md:w-85.25 lg:h-85 lg:w-85 2xl:h-65 2xl:w-52"
+          />
+          <div class="flex w-[288px] flex-col items-start gap-6 md:w-85.25 lg:w-90.5 2xl:w-auto 2xl:flex-1">
+            <p class="font-inter text-p1 md:text-h5">
+              "A true team of expert<br />contractors"
+            </p>
+            <p class="font-inter text-p4 text-[#989899] md:text-p2">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Convallis senectus non dui vel tortor. Justo lectus integer
+              arcu elit.
+            </p>
+            <div class="flex flex-col items-start lg:gap-1.5">
+              <span class="font-inter text-p4 text-[#191919] md:text-p2">John Carter</span>
+              <span class="font-inter text-p4 text-[#989899]">Malibu Beach, CA</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="flex w-full flex-col items-center gap-9.5 md:flex-row 2xl:flex-1">
+          <img
+            src="images/testimonials/testimonial-2.svg"
+            alt="Portrait of Lily Woods"
+            class="h-79.5 w-[288px] shrink-0 object-cover md:w-85.25 lg:h-85 lg:w-85 2xl:h-65 2xl:w-52"
+          />
+          <div class="flex w-[288px] flex-col items-start gap-6 md:w-85.25 lg:w-90.5 2xl:w-auto 2xl:flex-1">
+            <p class="font-inter text-p1 md:text-h5">
+              "A team that never undelivers"
+            </p>
+            <p class="font-inter text-p4 text-[#989899] md:text-p2">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Convallis senectus non dui vel tortor. Justo lectus integer
+              arcu elit.
+            </p>
+            <div class="flex flex-col items-start lg:gap-1.5">
+              <span class="font-inter text-p4 text-[#191919] md:text-p2">Lily Woods</span>
+              <span class="font-inter text-p4 text-[#989899]">Hollywood Hills, CA</span>
+            </div>
+          </div>
+        </article>
       </div>
     </section>
     <section

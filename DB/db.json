@@ -142,7 +142,18 @@
       "id": 2
     }
   ],
-  "cart": [],
+  "cart": [
+    {
+      "userId": 1,
+      "productId": 2,
+      "title": "Укладка паркета",
+      "price": 450,
+      "imageUrl": "/images/blog/blog-2.svg",
+      "category": "interior",
+      "quantity": 1,
+      "id": 1
+    }
+  ],
   "users": [
     {
       "id": 1,
