@@ -1,15 +1,6 @@
 {
   "products": [
     {
-      "id": 1,
-      "title": "Дизайн гостиной",
-      "description": "Современный минимализм с элементами лофта",
-      "category": "interior",
-      "price": 1200,
-      "rating": 4.9,
-      "imageUrl": "/images/blog/blog-1.svg"
-    },
-    {
       "id": 2,
       "title": "Укладка паркета",
       "description": "Натуральный дуб, идеальная стыковка",
@@ -37,13 +28,13 @@
       "imageUrl": "/images/blog/blog-4.svg"
     },
     {
-      "id": 5,
       "title": "Проект коттеджа",
       "description": "Индивидуальная планировка и чертежи",
       "category": "exterior",
-      "price": 5000,
+      "price": 5001,
       "rating": 5,
-      "imageUrl": "/images/blog/blog-1.svg"
+      "imageUrl": "/images/blog/blog-1.svg",
+      "id": 5
     },
     {
       "id": 6,
@@ -136,24 +127,8 @@
       "imageUrl": "/images/blog/blog-3.svg"
     }
   ],
-  "favorites": [
-    {
-      "productId": 2,
-      "id": 2
-    }
-  ],
-  "cart": [
-    {
-      "userId": 1,
-      "productId": 2,
-      "title": "Укладка паркета",
-      "price": 450,
-      "imageUrl": "/images/blog/blog-2.svg",
-      "category": "interior",
-      "quantity": 1,
-      "id": 1
-    }
-  ],
+  "favorites": [],
+  "cart": [],
   "users": [
     {
       "id": 1,
@@ -308,17 +283,99 @@
       "status": "pending",
       "createdAt": "2026-04-28T14:47:46.006Z",
       "id": 6
+    },
+    {
+      "userId": 1,
+      "products": [
+        {
+          "productId": 2,
+          "title": "Укладка паркета",
+          "quantity": 1,
+          "price": 450
+        }
+      ],
+      "totalPrice": 450,
+      "status": "pending",
+      "createdAt": "2026-05-02T03:44:05.587Z",
+      "id": 7
+    },
+    {
+      "userId": 1,
+      "products": [
+        {
+          "productId": 2,
+          "title": "Укладка паркета",
+          "quantity": 1,
+          "price": 450
+        }
+      ],
+      "totalPrice": 450,
+      "status": "pending",
+      "createdAt": "2026-05-02T03:52:43.292Z",
+      "id": 8
+    },
+    {
+      "userId": 1,
+      "products": [
+        {
+          "productId": 2,
+          "title": "Укладка паркета",
+          "quantity": 1,
+          "price": 450
+        }
+      ],
+      "totalPrice": 450,
+      "status": "pending",
+      "createdAt": "2026-05-02T03:52:59.397Z",
+      "id": 9
+    },
+    {
+      "userId": 1,
+      "products": [
+        {
+          "productId": 2,
+          "title": "Укладка паркета",
+          "quantity": 1,
+          "price": 450
+        }
+      ],
+      "totalPrice": 450,
+      "status": "pending",
+      "createdAt": "2026-05-02T03:53:23.393Z",
+      "id": 10
+    },
+    {
+      "userId": 1,
+      "products": [
+        {
+          "productId": 2,
+          "title": "Укладка паркета",
+          "quantity": 3,
+          "price": 450
+        }
+      ],
+      "totalPrice": 1350,
+      "status": "pending",
+      "createdAt": "2026-05-02T04:11:56.540Z",
+      "id": 11
+    },
+    {
+      "userId": 1,
+      "products": [
+        {
+          "productId": 2,
+          "title": "Укладка паркета",
+          "quantity": 1,
+          "price": 450
+        }
+      ],
+      "totalPrice": 450,
+      "status": "pending",
+      "createdAt": "2026-05-02T04:15:58.642Z",
+      "id": 12
     }
   ],
   "feedback": [
-    {
-      "id": 1,
-      "userId": 2,
-      "productId": 1,
-      "message": "Отличная работа — дизайнер учёл все пожелания, результат превзошёл ожидания.",
-      "rating": 5,
-      "createdAt": "2025-11-25T10:00:00.000Z"
-    },
     {
       "id": 2,
       "userId": 2,
