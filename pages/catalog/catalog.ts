@@ -5,6 +5,7 @@
  */
 
 import "../../src/scripts/preloader";
+import { showToast } from "../../src/scripts/toast";
 import {
   addFavorite,
   addToCart,
@@ -170,11 +171,40 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && productModal.classList.contains("is-open")) closeProductModal();
 });
 
-// ─── Card click → open product modal ─────────────────────────────────────────
+// ─── Card & button delegation (single listener, no stacking) ─────────────────
 
-container.addEventListener("click", (e) => {
+container.addEventListener("click", async (e) => {
   const target = e.target as HTMLElement;
-  if (target.closest("button")) return;
+
+  const cartBtn = target.closest<HTMLButtonElement>(".btn-add-cart");
+  if (cartBtn) {
+    e.preventDefault();
+    const product = currentProducts.find((p) => p.id === Number(cartBtn.dataset.id));
+    if (!product) return;
+    try {
+      await addToCart(product, currentUser.id);
+      showToast("Добавлено в корзину 🛒");
+    } catch {
+      showToast("Ошибка при добавлении в корзину", "error");
+    }
+    return;
+  }
+
+  const favBtn = target.closest<HTMLButtonElement>(".btn-toggle-fav");
+  if (favBtn) {
+    e.preventDefault();
+    const productId = Number(favBtn.dataset.id);
+    try {
+      await toggleFavorite(productId);
+      const isFav = favoriteIds.has(productId);
+      favBtn.textContent = isFav ? "❤️" : "🤍";
+      favBtn.title = isFav ? "Удалить из избранного" : "В избранное";
+    } catch {
+      showToast("Ошибка при работе с избранным", "error");
+    }
+    return;
+  }
+
   const card = target.closest<HTMLElement>(".product-card[data-id]");
   if (!card) return;
   const product = currentProducts.find((p) => p.id === Number(card.dataset.id));
@@ -248,47 +278,6 @@ function renderCards(products: IProduct[]): void {
         </article>`;
     })
     .join("");
-
-  container.addEventListener("click", (e) => {
-    const target = e.target as HTMLElement;
-
-    if (target.closest("button")) {
-      e.preventDefault();
-    }
-  });
-
-  // Delegate click events for cart & favorites
-  container
-    .querySelectorAll<HTMLButtonElement>(".btn-add-cart")
-    .forEach((btn) => {
-      btn.addEventListener("click", async () => {
-        const product = products.find((p) => p.id === Number(btn.dataset.id));
-        if (!product) return;
-        try {
-          await addToCart(product, currentUser.id);
-          showToast("Добавлено в корзину 🛒");
-        } catch {
-          showToast("Ошибка при добавлении в корзину", "error");
-        }
-      });
-    });
-
-  container
-    .querySelectorAll<HTMLButtonElement>(".btn-toggle-fav")
-    .forEach((btn) => {
-      btn.addEventListener("click", async () => {
-        const productId = Number(btn.dataset.id);
-        try {
-          await toggleFavorite(productId);
-          // Re-render only the icon without a full reload
-          const isFav = favoriteIds.has(productId);
-          btn.textContent = isFav ? "❤️" : "🤍";
-          btn.title = isFav ? "Удалить из избранного" : "В избранное";
-        } catch {
-          showToast("Ошибка при работе с избранным", "error");
-        }
-      });
-    });
 }
 
 function renderPagination(): void {
@@ -393,38 +382,6 @@ async function toggleFavorite(productId: number): Promise<void> {
 }
 
 // ─── Toast notification ───────────────────────────────────────────────────────
-
-function showToast(
-  message: string,
-  type: "success" | "error" = "success",
-): void {
-  const existing = document.getElementById("toast-notification");
-  if (existing) existing.remove();
-
-  const toast = document.createElement("div");
-  toast.id = "toast-notification";
-  toast.className = `
-    fixed bottom-6 right-6 z-50 px-5 py-3 rounded-2xl text-white text-sm font-semibold
-    shadow-xl transition-all duration-300 opacity-0 translate-y-2
-    ${type === "error" ? "bg-red-500" : "bg-[#191919]"}
-  `;
-  toast.textContent = message;
-  document.body.appendChild(toast);
-
-  // Fade in
-  requestAnimationFrame(() => {
-    toast.classList.remove("opacity-0", "translate-y-2");
-    toast.classList.add("opacity-100", "translate-y-0");
-  });
-
-  // Fade out & remove
-  setTimeout(() => {
-    toast.classList.add("opacity-0", "translate-y-2");
-    toast.addEventListener("transitionend", () => toast.remove(), {
-      once: true,
-    });
-  }, 2500);
-}
 
 async function initCategories(): Promise<void> {
   // Получаем товары, чтобы извлечь категории

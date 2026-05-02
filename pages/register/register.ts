@@ -9,6 +9,7 @@
  */
 
 import "../../src/scripts/preloader";
+import { showToast } from "../../src/scripts/toast";
 import { checkNicknameAvailable, postUser } from "../../src/api";
 import { getUser, setUser } from "../../src/auth";
 import type { IUserPayload } from "./types/user.interface";
@@ -440,26 +441,6 @@ function showSuccess(name: string): void {
 
 // ─── Toast ────────────────────────────────────────────────────────────────────
 
-function showToast(msg: string, type: "success" | "error" = "success"): void {
-  document.getElementById("__toast")?.remove();
-  const t = document.createElement("div");
-  t.id = "__toast";
-  t.className = `toast opacity-0 translate-y-2 ${
-    type === "error" ? "bg-red-500" : "bg-[#191919]"
-  }`;
-  t.textContent = msg;
-  document.body.appendChild(t);
-
-  requestAnimationFrame(() => {
-    t.classList.replace("opacity-0", "opacity-100");
-    t.classList.replace("translate-y-2", "translate-y-0");
-  });
-
-  setTimeout(() => {
-    t.classList.replace("opacity-100", "opacity-0");
-    t.addEventListener("transitionend", () => t.remove(), { once: true });
-  }, 2600);
-}
 
 // ─── Init ─────────────────────────────────────────────────────────────────────
 

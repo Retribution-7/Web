@@ -1,4 +1,5 @@
 import "../../src/scripts/preloader";
+import { showToast } from "../../src/scripts/toast";
 import type { IProduct } from "../catalog/types/product.interface";
 import type { IFeedback } from "../feedback/types/feedback.interface";
 import type { IUser } from "../register/types/user.interface";
@@ -422,32 +423,6 @@ async function confirmDelete(id: number, btn: HTMLButtonElement): Promise<void> 
 }
 
 // ─── Toast ────────────────────────────────────────────────────────────────────
-
-function showToast(
-  message: string,
-  type: "success" | "error" = "success",
-): void {
-  document.getElementById("__toast")?.remove();
-  const toast = document.createElement("div");
-  toast.id = "__toast";
-  toast.className = `toast opacity-0 translate-y-2 ${
-    type === "error" ? "bg-red-500" : "bg-[#191919]"
-  }`;
-  toast.textContent = message;
-  document.body.appendChild(toast);
-
-  requestAnimationFrame(() => {
-    toast.classList.replace("opacity-0", "opacity-100");
-    toast.classList.replace("translate-y-2", "translate-y-0");
-  });
-
-  setTimeout(() => {
-    toast.classList.replace("opacity-100", "opacity-0");
-    toast.addEventListener("transitionend", () => toast.remove(), {
-      once: true,
-    });
-  }, 2600);
-}
 
 // ─── Feedback management ──────────────────────────────────────────────────────
 
