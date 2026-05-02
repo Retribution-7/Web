@@ -46,9 +46,18 @@ const errPrice = document.getElementById("err-price") as HTMLElement;
 const errRating = document.getElementById("err-rating") as HTMLElement;
 const errImage = document.getElementById("err-image") as HTMLElement;
 
+// ─── Delete modal refs ────────────────────────────────────────────────────────
+
+const deleteModalOverlay = document.getElementById("delete-modal") as HTMLElement;
+const btnDeleteModalClose = document.getElementById("btn-delete-modal-close") as HTMLButtonElement;
+const btnDeleteCancel = document.getElementById("btn-delete-cancel") as HTMLButtonElement;
+const btnDeleteConfirm = document.getElementById("btn-delete-confirm") as HTMLButtonElement;
+
 // ─── State ────────────────────────────────────────────────────────────────────
 
 let editingId: number | null = null;
+let pendingDeleteId: number | null = null;
+let pendingDeleteBtn: HTMLButtonElement | null = null;
 
 // ─── Validation ───────────────────────────────────────────────────────────────
 
@@ -151,7 +160,19 @@ function syncSubmitBtn(): void {
   el.addEventListener("input", syncSubmitBtn),
 );
 
-// ─── Modal ────────────────────────────────────────────────────────────────────
+// ─── Modal helpers ────────────────────────────────────────────────────────────
+
+function lockScroll(): void {
+  document.body.style.overflow = "hidden";
+}
+
+function unlockScroll(): void {
+  if (!document.querySelector(".modal-overlay.is-open")) {
+    document.body.style.overflow = "";
+  }
+}
+
+// ─── Product form modal ───────────────────────────────────────────────────────
 
 function openModal(product?: IProduct): void {
   editingId = product?.id ?? null;
@@ -175,15 +196,36 @@ function openModal(product?: IProduct): void {
   }
 
   syncSubmitBtn();
-  modalOverlay.classList.remove("hidden");
+  modalOverlay.classList.add("is-open");
   modalOverlay.removeAttribute("aria-hidden");
+  lockScroll();
   fTitle.focus();
 }
 
 function closeModal(): void {
-  modalOverlay.classList.add("hidden");
+  modalOverlay.classList.remove("is-open");
   modalOverlay.setAttribute("aria-hidden", "true");
   editingId = null;
+  unlockScroll();
+}
+
+// ─── Delete confirmation modal ────────────────────────────────────────────────
+
+function openDeleteModal(id: number, btn: HTMLButtonElement): void {
+  pendingDeleteId = id;
+  pendingDeleteBtn = btn;
+  deleteModalOverlay.classList.add("is-open");
+  deleteModalOverlay.removeAttribute("aria-hidden");
+  lockScroll();
+  btnDeleteConfirm.focus();
+}
+
+function closeDeleteModal(): void {
+  deleteModalOverlay.classList.remove("is-open");
+  deleteModalOverlay.setAttribute("aria-hidden", "true");
+  pendingDeleteId = null;
+  pendingDeleteBtn = null;
+  unlockScroll();
 }
 
 btnNew.addEventListener("click", () => openModal());
@@ -191,9 +233,25 @@ btnModalClose.addEventListener("click", closeModal);
 modalOverlay.addEventListener("click", (e) => {
   if (e.target === modalOverlay) closeModal();
 });
+
+btnDeleteModalClose.addEventListener("click", closeDeleteModal);
+btnDeleteCancel.addEventListener("click", closeDeleteModal);
+deleteModalOverlay.addEventListener("click", (e) => {
+  if (e.target === deleteModalOverlay) closeDeleteModal();
+});
+
+btnDeleteConfirm.addEventListener("click", async () => {
+  if (pendingDeleteId === null || !pendingDeleteBtn) return;
+  const id = pendingDeleteId;
+  const btn = pendingDeleteBtn;
+  closeDeleteModal();
+  await confirmDelete(id, btn);
+});
+
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape" && !modalOverlay.classList.contains("hidden"))
-    closeModal();
+  if (e.key !== "Escape") return;
+  if (deleteModalOverlay.classList.contains("is-open")) closeDeleteModal();
+  else if (modalOverlay.classList.contains("is-open")) closeModal();
 });
 
 // ─── Table render ─────────────────────────────────────────────────────────────
@@ -344,9 +402,11 @@ form.addEventListener("submit", async (e) => {
 
 // ─── Delete ───────────────────────────────────────────────────────────────────
 
-async function handleDelete(id: number, btn: HTMLButtonElement): Promise<void> {
-  if (!confirm("Удалить этот товар? Это действие необратимо.")) return;
+function handleDelete(id: number, btn: HTMLButtonElement): void {
+  openDeleteModal(id, btn);
+}
 
+async function confirmDelete(id: number, btn: HTMLButtonElement): Promise<void> {
   btn.disabled = true;
   btn.textContent = "...";
 

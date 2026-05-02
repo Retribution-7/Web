@@ -139,6 +139,55 @@
       <div id="pagination"></div>
     </main>
 
+    <!-- Product Details Modal -->
+    <div id="product-modal" class="modal-overlay" aria-hidden="true">
+      <div
+        class="modal-box max-w-2xl"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="product-modal-title"
+      >
+        <div class="modal__header">
+          <h2 id="product-modal-title" class="modal__title">Детали</h2>
+          <button
+            id="btn-product-modal-close"
+            class="modal__close"
+            aria-label="Закрыть"
+          >✕</button>
+        </div>
+        <div class="product-modal__body">
+          <img
+            id="product-modal-img"
+            src=""
+            alt=""
+            class="product-modal__img"
+          />
+          <div class="product-modal__info">
+            <div class="flex flex-wrap items-center gap-3 mb-4">
+              <span id="product-modal-category" class="category-badge"></span>
+              <span id="product-modal-rating" class="badge-rating"></span>
+            </div>
+            <p id="product-modal-desc" class="font-inter text-p3 text-[#605E5D] leading-relaxed mb-5"></p>
+            <div id="product-modal-price" class="mb-6"></div>
+            <div class="flex gap-3">
+              <button
+                id="product-modal-cart-btn"
+                class="flex-1 py-3 rounded-xl bg-[#FF4D01] text-white font-inter font-bold text-p3
+                       hover:bg-[#e04400] hover:shadow-lg hover:shadow-orange-200
+                       disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-200"
+              >🛒 В корзину</button>
+              <button
+                id="product-modal-fav-btn"
+                class="w-12 h-12 rounded-xl border-2 border-gray-200 flex items-center justify-center
+                       text-xl hover:border-[#FF4D01] transition-colors shrink-0"
+                title="В избранное"
+              >🤍</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script type="module" src="./catalog.ts"></script>
   </body>
 </html>

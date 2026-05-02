@@ -52,14 +52,6 @@
     @apply w-12 h-12 rounded-lg object-cover border border-gray-100;
   }
 
-  .category-badge {
-    @apply inline-block px-2 py-0.5 rounded-md text-xs font-semibold;
-  }
-
-  .category-badge--interior  { @apply bg-blue-50 text-blue-600; }
-  .category-badge--exterior  { @apply bg-green-50 text-green-600; }
-  .category-badge--materials { @apply bg-amber-50 text-amber-600; }
-
   .btn-edit {
     @apply px-3 py-1.5 rounded-lg border border-gray-200 text-xs font-semibold
            hover:border-[#FF4D01] hover:text-[#FF4D01] transition-colors duration-150;
@@ -68,29 +60,6 @@
   .btn-delete {
     @apply px-3 py-1.5 rounded-lg border border-gray-200 text-xs font-semibold ml-2
            hover:border-red-400 hover:text-red-500 hover:bg-red-50 transition-colors duration-150;
-  }
-
-  /* ── Modal overlay ───────────────────────────────────────────────────── */
-
-  .modal-overlay {
-    @apply fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4;
-  }
-
-  .modal {
-    @apply w-full max-w-lg bg-white rounded-3xl shadow-2xl overflow-y-auto max-h-[90vh];
-  }
-
-  .modal__header {
-    @apply flex items-center justify-between px-6 pt-6 pb-4 border-b border-gray-100;
-  }
-
-  .modal__title {
-    @apply font-barlow text-h5 font-bold text-[#191919];
-  }
-
-  .modal__close {
-    @apply w-8 h-8 flex items-center justify-center rounded-full text-gray-400
-           hover:bg-gray-100 hover:text-[#191919] transition-colors duration-150 font-semibold text-sm;
   }
 
   /* ── Product form ────────────────────────────────────────────────────── */

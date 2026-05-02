@@ -21,12 +21,26 @@ const currentUser = requireAuth();
 
 const PAGE_LIMIT = 6;
 
+const CATEGORY_LABELS: Record<string, string> = {
+  interior: "Интерьер",
+  exterior: "Экстерьер",
+  materials: "Материалы",
+};
+
+const CATEGORY_MODAL_CLASSES: Record<string, string> = {
+  interior: "category-badge--interior",
+  exterior: "category-badge--exterior",
+  materials: "category-badge--materials",
+};
+
 // ─── State ────────────────────────────────────────────────────────────────────
 
 let currentPage = 1;
 let totalItems = 0;
 /** Set of productIds the user has favourited (for toggle UI). */
 let favoriteIds = new Set<number>();
+/** Products rendered on the current page — used by the card-click handler. */
+let currentProducts: IProduct[] = [];
 
 // ─── DOM References ───────────────────────────────────────────────────────────
 
@@ -70,9 +84,108 @@ function buildQuery(): IProductQuery {
   return query;
 }
 
+// ─── Product modal DOM refs ───────────────────────────────────────────────────
+
+const productModal = document.getElementById("product-modal") as HTMLElement;
+const productModalTitle = document.getElementById("product-modal-title") as HTMLElement;
+const productModalImg = document.getElementById("product-modal-img") as HTMLImageElement;
+const productModalCategory = document.getElementById("product-modal-category") as HTMLElement;
+const productModalRating = document.getElementById("product-modal-rating") as HTMLElement;
+const productModalDesc = document.getElementById("product-modal-desc") as HTMLElement;
+const productModalPrice = document.getElementById("product-modal-price") as HTMLElement;
+const productModalCartBtn = document.getElementById("product-modal-cart-btn") as HTMLButtonElement;
+const productModalFavBtn = document.getElementById("product-modal-fav-btn") as HTMLButtonElement;
+const btnProductModalClose = document.getElementById("btn-product-modal-close") as HTMLButtonElement;
+
+// ─── Product modal logic ──────────────────────────────────────────────────────
+
+function openProductModal(product: IProduct): void {
+  productModalTitle.textContent = product.title;
+  productModalImg.src = product.imageUrl;
+  productModalImg.alt = product.title;
+
+  productModalCategory.textContent = CATEGORY_LABELS[product.category] ?? product.category;
+  productModalCategory.className = `category-badge ${CATEGORY_MODAL_CLASSES[product.category] ?? ""}`;
+
+  productModalRating.textContent = `★ ${product.rating}`;
+
+  productModalDesc.textContent = product.description;
+
+  if (product.oldPrice) {
+    const pct = Math.round((1 - product.price / product.oldPrice) * 100);
+    productModalPrice.innerHTML = `
+      <div class="flex items-center gap-3">
+        <span class="font-inter text-h5 font-bold text-[#FF4D01]">$${product.price}</span>
+        <span class="font-inter text-p2 text-gray-400 line-through">$${product.oldPrice}</span>
+        <span class="text-xs font-black bg-[#FF4D01] text-white px-2 py-0.5 rounded-lg">-${pct}%</span>
+      </div>`;
+  } else {
+    productModalPrice.innerHTML =
+      `<span class="font-inter text-h5 font-bold text-[#191919]">$${product.price}</span>`;
+  }
+
+  productModalCartBtn.onclick = async () => {
+    try {
+      await addToCart(product, currentUser.id);
+      showToast("Добавлено в корзину 🛒");
+      closeProductModal();
+    } catch {
+      showToast("Ошибка при добавлении в корзину", "error");
+    }
+  };
+
+  const isFav = favoriteIds.has(product.id);
+  productModalFavBtn.textContent = isFav ? "❤️" : "🤍";
+  productModalFavBtn.title = isFav ? "Удалить из избранного" : "В избранное";
+  productModalFavBtn.onclick = async () => {
+    try {
+      await toggleFavorite(product.id);
+      const nowFav = favoriteIds.has(product.id);
+      productModalFavBtn.textContent = nowFav ? "❤️" : "🤍";
+      productModalFavBtn.title = nowFav ? "Удалить из избранного" : "В избранное";
+    } catch {
+      showToast("Ошибка при работе с избранным", "error");
+    }
+  };
+
+  productModal.classList.add("is-open");
+  productModal.removeAttribute("aria-hidden");
+  document.body.style.overflow = "hidden";
+  btnProductModalClose.focus();
+}
+
+function closeProductModal(): void {
+  productModal.classList.remove("is-open");
+  productModal.setAttribute("aria-hidden", "true");
+  if (!document.querySelector(".modal-overlay.is-open")) {
+    document.body.style.overflow = "";
+  }
+}
+
+btnProductModalClose.addEventListener("click", closeProductModal);
+productModal.addEventListener("click", (e) => {
+  if (e.target === productModal) closeProductModal();
+});
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && productModal.classList.contains("is-open")) closeProductModal();
+});
+
+// ─── Card click → open product modal ─────────────────────────────────────────
+
+container.addEventListener("click", (e) => {
+  const target = e.target as HTMLElement;
+  if (target.closest("button")) return;
+  const card = target.closest<HTMLElement>(".product-card[data-id]");
+  if (!card) return;
+  const product = currentProducts.find((p) => p.id === Number(card.dataset.id));
+  if (product) openProductModal(product);
+});
+
 // ─── Render ───────────────────────────────────────────────────────────────────
 
 function renderCards(products: IProduct[]): void {
+  currentProducts = products;
+
   if (products.length === 0) {
     container.innerHTML = `
       <div class="empty-state col-span-full">

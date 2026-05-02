@@ -74,9 +74,9 @@
 
     </main>
 
-    <!-- Modal overlay -->
-    <div id="modal-overlay" class="modal-overlay hidden" aria-hidden="true">
-      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <!-- Product form modal -->
+    <div id="modal-overlay" class="modal-overlay" aria-hidden="true">
+      <div class="modal-box max-w-lg" role="dialog" aria-modal="true" aria-labelledby="modal-title">
 
         <div class="modal__header">
           <h2 id="modal-title" class="modal__title">Новый товар</h2>
@@ -184,6 +184,35 @@
           </button>
 
         </form>
+      </div>
+    </div>
+
+    <!-- Delete confirmation modal -->
+    <div id="delete-modal" class="modal-overlay" aria-hidden="true">
+      <div class="modal-box max-w-sm" role="dialog" aria-modal="true" aria-labelledby="delete-modal-title">
+        <div class="modal__header">
+          <h2 id="delete-modal-title" class="modal__title">Удалить товар?</h2>
+          <button id="btn-delete-modal-close" class="modal__close" aria-label="Закрыть">✕</button>
+        </div>
+        <div class="px-6 py-6 flex flex-col gap-5">
+          <p class="font-inter text-p3 text-[#605E5D]">
+            Это действие необратимо. Товар будет удалён навсегда.
+          </p>
+          <div class="flex gap-3 justify-end">
+            <button
+              id="btn-delete-cancel"
+              class="px-5 py-2.5 rounded-xl border-2 border-gray-200 text-[#191919] font-inter font-semibold text-p4 hover:border-gray-400 transition-colors"
+            >
+              Отмена
+            </button>
+            <button
+              id="btn-delete-confirm"
+              class="px-5 py-2.5 rounded-xl bg-red-500 text-white font-inter font-semibold text-p4 hover:bg-red-600 transition-colors"
+            >
+              Удалить
+            </button>
+          </div>
+        </div>
       </div>
     </div>
 

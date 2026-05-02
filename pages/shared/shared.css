@@ -171,4 +171,55 @@
     @apply fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 px-4 py-2 sm:px-5 sm:py-3
            rounded-2xl text-white font-inter text-p4 font-semibold shadow-xl transition-all duration-300;
   }
+
+  /* ── Modal overlay & box ─────────────────────────────────────────────── */
+
+  .modal-overlay {
+    @apply fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4;
+    pointer-events: none;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+  }
+
+  .modal-overlay.is-open {
+    pointer-events: auto;
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .modal-box {
+    @apply w-full bg-white rounded-3xl shadow-2xl overflow-y-auto max-h-[90vh];
+    opacity: 0;
+    transform: scale(0.95) translateY(12px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+
+  .modal-overlay.is-open .modal-box {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+
+  .modal__header {
+    @apply flex items-center justify-between px-6 pt-6 pb-4 border-b border-gray-100;
+  }
+
+  .modal__title {
+    @apply font-barlow text-h5 font-bold text-[#191919];
+  }
+
+  .modal__close {
+    @apply w-8 h-8 flex items-center justify-center rounded-full text-gray-400
+           hover:bg-gray-100 hover:text-[#191919] transition-colors duration-150 font-semibold text-sm;
+  }
+
+  /* ── Category badge ──────────────────────────────────────────────────── */
+
+  .category-badge {
+    @apply inline-block px-2 py-0.5 rounded-md text-xs font-semibold;
+  }
+
+  .category-badge--interior  { @apply bg-blue-50 text-blue-600; }
+  .category-badge--exterior  { @apply bg-green-50 text-green-600; }
+  .category-badge--materials { @apply bg-amber-50 text-amber-600; }
 }
