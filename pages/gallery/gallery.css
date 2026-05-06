@@ -1,0 +1,98 @@
+@import "../shared/shared.css";
+
+@layer components {
+
+  /* ── Page layout ─────────────────────────────────────────────────────── */
+
+  .gallery-page {
+    @apply container mx-auto px-4 py-10 flex flex-col items-center gap-8;
+  }
+
+  /* ── Image display ───────────────────────────────────────────────────── */
+
+  .gallery-display {
+    @apply w-full max-w-3xl;
+  }
+
+  .gallery-img-wrap {
+    @apply relative w-full rounded-2xl overflow-hidden shadow-2xl bg-[#191919];
+    aspect-ratio: 16 / 9;
+  }
+
+  .gallery-img {
+    @apply w-full h-full object-cover;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+
+  .gallery-img.is-transitioning {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+
+  /* ── Indicator badge ─────────────────────────────────────────────────── */
+
+  .gallery-indicator {
+    @apply absolute top-3 right-3 px-3 py-1.5 rounded-full text-white font-inter font-semibold text-p5 shadow-lg;
+    background: rgba(25, 25, 25, 0.75);
+    backdrop-filter: blur(6px);
+    transition: background 0.2s ease;
+  }
+
+  .gallery-indicator.is-playing {
+    @apply bg-[#FF4D01];
+  }
+
+  /* ── Counter badge ───────────────────────────────────────────────────── */
+
+  .gallery-counter {
+    @apply absolute bottom-3 left-3 px-3 py-1 rounded-full text-white font-inter text-p5 font-medium;
+    background: rgba(25, 25, 25, 0.65);
+    backdrop-filter: blur(4px);
+  }
+
+  /* ── Controls ────────────────────────────────────────────────────────── */
+
+  .gallery-controls {
+    @apply flex items-center gap-4;
+  }
+
+  .gallery-btn {
+    @apply font-inter font-semibold rounded-xl px-5 py-2.5 text-p3 transition-all duration-200 cursor-pointer;
+  }
+
+  .gallery-btn--primary {
+    @apply bg-[#FF4D01] text-white hover:bg-[#e04400] active:scale-95;
+  }
+
+  .gallery-btn--secondary {
+    @apply bg-[#191919] text-white hover:bg-[#2e2e2e] active:scale-95;
+  }
+
+  /* ── Volume ──────────────────────────────────────────────────────────── */
+
+  .gallery-volume {
+    @apply flex items-center gap-3 w-full max-w-xs;
+  }
+
+  .gallery-volume__label {
+    @apply flex items-center gap-1.5 font-inter text-p4 font-semibold text-[#191919] whitespace-nowrap;
+  }
+
+  .gallery-volume__icon {
+    @apply text-p3;
+  }
+
+  .gallery-volume__slider {
+    @apply flex-1 accent-[#FF4D01] cursor-pointer;
+  }
+
+  .gallery-volume__value {
+    @apply font-inter text-p5 text-[#605E5D] w-9 text-right tabular-nums;
+  }
+
+  /* ── Keyboard hint ───────────────────────────────────────────────────── */
+
+  .gallery-hint {
+    @apply font-inter text-p5 text-[#989899] text-center;
+  }
+}

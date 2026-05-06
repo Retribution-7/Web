@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gallery | Contractor</title>
+    <link rel="stylesheet" href="gallery.css" />
+    <style>
+      #preloader {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: #191919;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body class="font-inter bg-gray-50 text-[#191919]">
+    <div id="preloader" aria-hidden="true" aria-label="Loading">
+      <div class="preloader__ring"></div>
+    </div>
+
+    <header class="bg-[#191919] py-6 text-white shadow-md">
+      <div class="container mx-auto flex items-center justify-between px-4">
+        <h1 class="text-h4 font-barlow tracking-tight">Media Gallery</h1>
+        <nav>
+          <a href="/" class="nav-link font-medium text-[#FF4D01]">← На главную</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="gallery-page">
+      <section class="gallery-display" aria-label="Gallery image viewer">
+        <div class="gallery-img-wrap">
+          <img
+            id="gallery-img"
+            class="gallery-img"
+            src="/backgrounds/projects/project-1.png"
+            alt="Gallery image 1"
+          />
+          <div id="gallery-indicator" class="gallery-indicator" aria-live="polite">
+            ⏸ Stopped
+          </div>
+          <div id="gallery-counter" class="gallery-counter">1 / 12</div>
+        </div>
+      </section>
+
+      <section class="gallery-controls" aria-label="Gallery controls">
+        <button id="btn-prev" class="gallery-btn gallery-btn--secondary" type="button">
+          ← Prev
+        </button>
+        <button id="btn-random" class="gallery-btn gallery-btn--primary" type="button">
+          ⚡ Random
+        </button>
+        <button id="btn-next" class="gallery-btn gallery-btn--secondary" type="button">
+          Next →
+        </button>
+      </section>
+
+      <section class="gallery-volume" aria-label="Volume control">
+        <label for="volume-slider" class="gallery-volume__label">
+          <span class="gallery-volume__icon" id="volume-icon">🔊</span>
+          Volume
+        </label>
+        <input
+          type="range"
+          id="volume-slider"
+          class="gallery-volume__slider"
+          min="0"
+          max="1"
+          step="0.01"
+          value="0.5"
+          aria-label="Volume"
+        />
+        <span id="volume-value" class="gallery-volume__value">50%</span>
+      </section>
+
+      <p class="gallery-hint">
+        Space — replay sound &nbsp;·&nbsp; ← → arrows — navigate
+      </p>
+    </main>
+
+    <script type="module" src="gallery.ts"></script>
+  </body>
+</html>
