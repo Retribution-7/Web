@@ -1,14 +1,15 @@
-import "./styles/style.css";
 import { getUser, logout } from "./auth";
 import { initBurgerMenu } from "./scripts/burger-menu";
 import { initCounters } from "./scripts/counter";
-import { initMap } from "./scripts/map";
 import { initMagneticButtons } from "./scripts/magnetic-buttons";
+import { initMap } from "./scripts/map";
 import { initScrollObserver } from "./scripts/observer";
 import { initScrollProgress } from "./scripts/scroll-progress";
 import { initSwiper } from "./scripts/swiper";
+import "./styles/style.css";
 
 import "./scripts/preloader";
+import { handleAnchorOnLoad, initSmoothScroll } from "./scripts/smoothScroll";
 
 document.addEventListener("DOMContentLoaded", () => {
   initSwiper();
@@ -18,6 +19,8 @@ document.addEventListener("DOMContentLoaded", () => {
   initMagneticButtons();
   initScrollObserver(".animate-typing", "active", 0.7);
   initBurgerMenu();
+  initSmoothScroll();
+  handleAnchorOnLoad();
 
   const user = getUser();
   const loginEl = document.getElementById("nav-login");

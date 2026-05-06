@@ -83,7 +83,7 @@
 
     body,
     html {
-        @apply tracking-[0.009em] h-full w-full font-inter;
+        @apply tracking-[0.009em] h-full w-full font-inter scroll-auto;
     }
 
     h1 {
@@ -618,4 +618,3 @@
         border-color: #FF4D01;
     }
 }
-
