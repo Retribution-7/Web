@@ -6,6 +6,7 @@ import { initMap } from "./scripts/map";
 import { initScrollObserver } from "./scripts/observer";
 import { initScrollProgress } from "./scripts/scroll-progress";
 import { initSwiper } from "./scripts/swiper";
+import { initParallax } from "./scripts/parallax";
 import "./styles/style.css";
 
 import "./scripts/preloader";
@@ -19,6 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initMagneticButtons();
   initScrollObserver(".animate-typing", "active", 0.7);
   initBurgerMenu();
+  initParallax();
   initSmoothScroll();
   handleAnchorOnLoad();
 

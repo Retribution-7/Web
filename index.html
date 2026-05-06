@@ -411,6 +411,77 @@
         </li>
       </ul>
     </section>
+
+    <!-- ── Parallax Banner ────────────────────────────────────────────────── -->
+    <section id="parallax-scene" class="parallax-scene" aria-label="Our promise">
+
+      <!-- Layer 1: Background (slowest) — blueprint grid + soft bloom -->
+      <div class="parallax-layer parallax-layer--bg" data-parallax-strength="80">
+        <div class="parallax-bg-grid"></div>
+        <div class="parallax-bg-bloom"></div>
+      </div>
+
+      <!-- Layer 2: Middle — diagonal stripe, large frame, ruler line -->
+      <div class="parallax-layer parallax-layer--mid" data-parallax-strength="220">
+        <div class="parallax-mid-stripe"></div>
+        <div class="parallax-mid-frame"></div>
+        <div class="parallax-mid-ring"></div>
+        <div class="parallax-mid-ruler"></div>
+      </div>
+
+      <!-- Layer 3: Foreground (fastest) — bar, scope, squares, diamonds, dots -->
+      <div class="parallax-layer parallax-layer--fg" data-parallax-strength="380">
+        <!-- Vertical accent bar -->
+        <div class="parallax-fg-bar"></div>
+        <!-- Crosshair scope -->
+        <div class="parallax-fg-scope"></div>
+        <!-- Solid orange squares -->
+        <div class="parallax-fg-block parallax-fg-block--a"></div>
+        <div class="parallax-fg-block parallax-fg-block--b"></div>
+        <div class="parallax-fg-block parallax-fg-block--c"></div>
+        <!-- Outline diamonds -->
+        <div class="parallax-fg-diamond parallax-fg-diamond--a"></div>
+        <div class="parallax-fg-diamond parallax-fg-diamond--b"></div>
+        <!-- Horizontal accent line -->
+        <div class="parallax-fg-hline"></div>
+        <!-- Diagonal slash -->
+        <div class="parallax-fg-slash"></div>
+        <!-- Rivet dots -->
+        <div class="parallax-fg-rivet parallax-fg-rivet--a"></div>
+        <div class="parallax-fg-rivet parallax-fg-rivet--b"></div>
+        <div class="parallax-fg-rivet parallax-fg-rivet--c"></div>
+        <div class="parallax-fg-rivet parallax-fg-rivet--d"></div>
+        <div class="parallax-fg-rivet parallax-fg-rivet--e"></div>
+      </div>
+
+      <!-- Counter element: moves in the opposite direction -->
+      <div class="parallax-layer parallax-layer--counter" data-parallax-strength="-160">
+        <span class="parallax-counter-text" aria-hidden="true">15<span class="parallax-counter-suffix">+</span></span>
+      </div>
+
+      <!-- Static content overlay -->
+      <div class="parallax-content">
+        <span class="parallax-tag">/Our Promise</span>
+        <h2 class="parallax-heading">Built to last,<br />designed to impress</h2>
+        <p class="parallax-body">From the first blueprint to the final finish — we deliver excellence at every stage.</p>
+        <div class="parallax-stats">
+          <div class="parallax-stat">
+            <dd class="parallax-stat__num"><span>+</span>350</dd>
+            <dt class="parallax-stat__label">Executed Projects</dt>
+          </div>
+          <div class="parallax-stat">
+            <dd class="parallax-stat__num">12<span>Y</span></dd>
+            <dt class="parallax-stat__label">Experience</dt>
+          </div>
+          <div class="parallax-stat">
+            <dd class="parallax-stat__num">100<span>%</span></dd>
+            <dt class="parallax-stat__label">Satisfaction</dt>
+          </div>
+        </div>
+        <button class="button--orange btn-magnetic parallax-cta">Get a quote</button>
+      </div>
+    </section>
+
     <section
       class="bg-cover bg-center px-4 py-5 md:bg-[url('/backgrounds/quote-bg.png')] md:px-11 md:py-17 lg:px-20 lg:py-32"
     >
