@@ -15,13 +15,13 @@
          any external CSS or font finishes loading, eliminating FOUC. -->
     <style>
       #preloader {
-        position: fixed;
-        inset: 0;
-        z-index: 9999;
-        background: #191919;
         display: flex;
-        align-items: center;
+        position: fixed;
         justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        inset: 0;
+        background: #191919;
       }
     </style>
   </head>
@@ -36,27 +36,65 @@
         <li><a href="#" class="mobile-menu__link">Home</a></li>
         <li><a href="#" class="mobile-menu__link">About</a></li>
         <li><a href="#" class="mobile-menu__link">Blog</a></li>
-        <li><a href="/pages/catalog/catalog.html" class="mobile-menu__link">Catalog</a></li>
+        <li>
+          <a href="/pages/catalog/catalog.html" class="mobile-menu__link"
+            >Catalog</a
+          >
+        </li>
         <li><a href="#" class="mobile-menu__link">Contact</a></li>
-        <li><a href="/pages/cart/cart.html" class="mobile-menu__link">Cart</a></li>
-        <li><a href="/pages/feedback/feedback.html" class="mobile-menu__link">Feedback</a></li>
-        <li><a href="/pages/gallery/gallery.html" class="mobile-menu__link">Gallery</a></li>
+        <li>
+          <a href="/pages/cart/cart.html" class="mobile-menu__link">Cart</a>
+        </li>
+        <li>
+          <a href="/pages/feedback/feedback.html" class="mobile-menu__link"
+            >Feedback</a
+          >
+        </li>
+        <li>
+          <a href="/pages/gallery/gallery.html" class="mobile-menu__link"
+            >Gallery</a
+          >
+        </li>
       </ul>
       <div class="mobile-menu__auth">
-        <a id="mob-nav-login" href="/pages/login/login.html" class="mobile-menu__btn">Login</a>
-        <a id="mob-nav-register" href="/pages/register/register.html" class="mobile-menu__btn">Register</a>
-        <a id="mob-nav-admin" href="/pages/admin/admin.html" class="mobile-menu__btn hidden">Admin</a>
-        <button id="mob-nav-logout" class="mobile-menu__btn hidden">Logout</button>
-        <a href="#" class="mobile-menu__btn mobile-menu__btn--orange">Get&nbsp;a&nbsp;quote</a>
+        <a
+          id="mob-nav-login"
+          href="/pages/login/login.html"
+          class="mobile-menu__btn"
+          >Login</a
+        >
+        <a
+          id="mob-nav-register"
+          href="/pages/register/register.html"
+          class="mobile-menu__btn"
+          >Register</a
+        >
+        <a
+          id="mob-nav-admin"
+          href="/pages/admin/admin.html"
+          class="mobile-menu__btn hidden"
+          >Admin</a
+        >
+        <button id="mob-nav-logout" class="mobile-menu__btn hidden">
+          Logout
+        </button>
+        <a href="#" class="mobile-menu__btn mobile-menu__btn--orange"
+          >Get&nbsp;a&nbsp;quote</a
+        >
       </div>
     </nav>
     <div
       class="bg-hero relative flex w-full flex-col items-center bg-center pb-10 md:pb-20 lg:pb-40"
     >
       <header
-        class="flex w-full items-center justify-between gap-8 px-4 pt-7.5 lg:justify-end md:py-8 md:pr-8 lg:pl-0 lg:pb-0"
+        class="flex w-full items-center justify-between gap-8 px-4 pt-7.5 md:py-8 md:pr-8 lg:justify-end lg:pb-0 lg:pl-0"
       >
-        <button id="burger-btn" class="hidden max-lg:flex items-center justify-center p-2" aria-label="Open navigation menu" aria-expanded="false">
+        <button
+          id="burger-btn"
+          class="hidden items-center justify-center p-2 max-lg:flex"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+        >
           <span class="burger-icon" aria-hidden="true">
             <span class="burger-line"></span>
             <span class="burger-line"></span>
@@ -65,9 +103,6 @@
         </button>
         <nav class="hidden lg:block">
           <ul class="font-inter flex grow items-center gap-8">
-            <li class="nav-item">
-              <a href="#" class="nav-link-animated">Home</a>
-            </li>
             <li class="nav-item">
               <a href="#" class="nav-link-animated">About</a>
             </li>
@@ -86,10 +121,14 @@
               <a href="/pages/cart/cart.html" class="nav-link-animated">Cart</a>
             </li>
             <li class="nav-item">
-              <a href="/pages/feedback/feedback.html" class="nav-link-animated">Feedback</a>
+              <a href="/pages/feedback/feedback.html" class="nav-link-animated"
+                >Feedback</a
+              >
             </li>
             <li class="nav-item">
-              <a href="/pages/gallery/gallery.html" class="nav-link-animated">Gallery</a>
+              <a href="/pages/gallery/gallery.html" class="nav-link-animated"
+                >Gallery</a
+              >
             </li>
           </ul>
         </nav>
@@ -97,27 +136,27 @@
           <a
             id="nav-login"
             href="/pages/login/login.html"
-            class="button--outline text-p5 md:text-p3 max-sm:text-p5 btn-magnetic p-2.5 max-sm:p-2.5 md:p-4.25 no-underline max-lg:hidden"
+            class="button--outline text-p5 md:text-p3 max-sm:text-p5 btn-magnetic p-2.5 no-underline max-lg:hidden max-sm:p-2.5 md:p-4.25"
           >
             Login
           </a>
           <a
             id="nav-register"
             href="/pages/register/register.html"
-            class="button--outline text-p5 md:text-p3 max-sm:text-p5 btn-magnetic p-2.5 max-sm:p-2.5 md:p-4.25 no-underline max-lg:hidden"
+            class="button--outline text-p5 md:text-p3 max-sm:text-p5 btn-magnetic p-2.5 no-underline max-lg:hidden max-sm:p-2.5 md:p-4.25"
           >
             Register
           </a>
           <a
             id="nav-admin"
             href="/pages/admin/admin.html"
-            class="button--outline text-p5 md:text-p3 max-sm:text-p5 btn-magnetic p-2.5 max-sm:p-2.5 md:p-4.25 no-underline hidden max-lg:hidden"
+            class="button--outline text-p5 md:text-p3 max-sm:text-p5 btn-magnetic hidden p-2.5 no-underline max-lg:hidden max-sm:p-2.5 md:p-4.25"
           >
             Admin
           </a>
           <button
             id="nav-logout"
-            class="button--outline text-p5 md:text-p3 max-sm:text-p5 btn-magnetic p-2.5 max-sm:p-2.5 md:p-4.25 hidden max-lg:hidden"
+            class="button--outline text-p5 md:text-p3 max-sm:text-p5 btn-magnetic hidden p-2.5 max-lg:hidden max-sm:p-2.5 md:p-4.25"
           >
             Logout
           </button>
@@ -657,46 +696,60 @@
       </header>
 
       <div class="flex w-full flex-col gap-12 2xl:flex-row">
-        <article class="flex w-full flex-col items-center gap-9.5 md:flex-row 2xl:flex-1">
+        <article
+          class="flex w-full flex-col items-center gap-9.5 md:flex-row 2xl:flex-1"
+        >
           <img
             src="images/testimonials/testimonial-1.svg"
             alt="Portrait of John Carter"
             class="h-79.5 w-[288px] shrink-0 object-cover md:w-85.25 lg:h-85 lg:w-85 2xl:h-65 2xl:w-52"
           />
-          <div class="flex w-[288px] flex-col items-start gap-6 md:w-85.25 lg:w-90.5 2xl:w-auto 2xl:flex-1">
+          <div
+            class="flex w-[288px] flex-col items-start gap-6 md:w-85.25 lg:w-90.5 2xl:w-auto 2xl:flex-1"
+          >
             <p class="font-inter text-p1 md:text-h5">
               "A true team of expert<br />contractors"
             </p>
-            <p class="font-inter text-p4 text-[#989899] md:text-p2">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Convallis senectus non dui vel tortor. Justo lectus integer
-              arcu elit.
+            <p class="font-inter text-p4 md:text-p2 text-[#989899]">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Convallis
+              senectus non dui vel tortor. Justo lectus integer arcu elit.
             </p>
             <div class="flex flex-col items-start lg:gap-1.5">
-              <span class="font-inter text-p4 text-[#191919] md:text-p2">John Carter</span>
-              <span class="font-inter text-p4 text-[#989899]">Malibu Beach, CA</span>
+              <span class="font-inter text-p4 md:text-p2 text-[#191919]"
+                >John Carter</span
+              >
+              <span class="font-inter text-p4 text-[#989899]"
+                >Malibu Beach, CA</span
+              >
             </div>
           </div>
         </article>
 
-        <article class="flex w-full flex-col items-center gap-9.5 md:flex-row 2xl:flex-1">
+        <article
+          class="flex w-full flex-col items-center gap-9.5 md:flex-row 2xl:flex-1"
+        >
           <img
             src="images/testimonials/testimonial-2.svg"
             alt="Portrait of Lily Woods"
             class="h-79.5 w-[288px] shrink-0 object-cover md:w-85.25 lg:h-85 lg:w-85 2xl:h-65 2xl:w-52"
           />
-          <div class="flex w-[288px] flex-col items-start gap-6 md:w-85.25 lg:w-90.5 2xl:w-auto 2xl:flex-1">
+          <div
+            class="flex w-[288px] flex-col items-start gap-6 md:w-85.25 lg:w-90.5 2xl:w-auto 2xl:flex-1"
+          >
             <p class="font-inter text-p1 md:text-h5">
               "A team that never undelivers"
             </p>
-            <p class="font-inter text-p4 text-[#989899] md:text-p2">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Convallis senectus non dui vel tortor. Justo lectus integer
-              arcu elit.
+            <p class="font-inter text-p4 md:text-p2 text-[#989899]">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Convallis
+              senectus non dui vel tortor. Justo lectus integer arcu elit.
             </p>
             <div class="flex flex-col items-start lg:gap-1.5">
-              <span class="font-inter text-p4 text-[#191919] md:text-p2">Lily Woods</span>
-              <span class="font-inter text-p4 text-[#989899]">Hollywood Hills, CA</span>
+              <span class="font-inter text-p4 md:text-p2 text-[#191919]"
+                >Lily Woods</span
+              >
+              <span class="font-inter text-p4 text-[#989899]"
+                >Hollywood Hills, CA</span
+              >
             </div>
           </div>
         </article>
@@ -724,7 +777,10 @@
         class="flex flex-col items-start gap-6 lg:w-full lg:flex-row lg:justify-between"
       >
         <article class="flex w-[320px] flex-col items-start gap-4 md:w-140.5">
-          <img src="images/blog/blog-1.svg" alt="Home interior with color palette samples" />
+          <img
+            src="images/blog/blog-1.svg"
+            alt="Home interior with color palette samples"
+          />
           <div class="flex flex-col items-start gap-4 max-md:px-4">
             <p class="text-p1 md:text-h4 font-inter text-[#191919]">
               12 designers tricks for picking the perfect home color<br
@@ -739,7 +795,11 @@
         </article>
         <div class="flex w-[320px] flex-col items-start gap-8 md:w-140.5">
           <article class="blog-card">
-            <img src="images/blog/blog-2.svg" alt="Paint color swatches for 2022 trends" class="blog-card__image" />
+            <img
+              src="images/blog/blog-2.svg"
+              alt="Paint color swatches for 2022 trends"
+              class="blog-card__image"
+            />
             <div class="blog-card__content">
               <p class="blog-card__text">
                 Paint trends 2022 - the 17 colors you need for the ultimate
@@ -749,7 +809,11 @@
             </div>
           </article>
           <article class="blog-card">
-            <img src="images/blog/blog-3.svg" alt="DIY home improvement tools and materials" class="blog-card__image" />
+            <img
+              src="images/blog/blog-3.svg"
+              alt="DIY home improvement tools and materials"
+              class="blog-card__image"
+            />
             <div class="blog-card__content">
               <p class="blog-card__text">
                 Clever DIY home improvements you can do during the pandemic
@@ -758,7 +822,11 @@
             </div>
           </article>
           <article class="blog-card">
-            <img src="images/blog/blog-4.svg" alt="Decorative floor tile design pattern" class="blog-card__image" />
+            <img
+              src="images/blog/blog-4.svg"
+              alt="Decorative floor tile design pattern"
+              class="blog-card__image"
+            />
             <div class="blog-card__content">
               <p class="blog-card__text">
                 15 mind blowing floor designs to make your home look great
@@ -773,34 +841,56 @@
     <!-- ── Find Us ─────────────────────────────────────────────────────────── -->
     <section id="find-us" class="bg-white pb-[120px]">
       <div class="mx-auto flex max-w-7xl flex-col lg:flex-row">
-
         <!-- Info panel -->
-        <div class="flex flex-col justify-center gap-8 px-6 py-14 lg:w-96 lg:shrink-0 lg:px-12 lg:py-20">
+        <div
+          class="flex flex-col justify-center gap-8 px-6 py-14 lg:w-96 lg:shrink-0 lg:px-12 lg:py-20"
+        >
           <div>
-            <span class="font-inter text-sm font-bold uppercase tracking-widest text-[#FF4D01]">/Find Us</span>
-            <h2 class="mt-2 font-barlow text-3xl font-bold text-[#191919] md:text-4xl">Our Locations</h2>
+            <span
+              class="font-inter text-sm font-bold tracking-widest text-[#FF4D01] uppercase"
+              >/Find Us</span
+            >
+            <h2
+              class="font-barlow mt-2 text-3xl font-bold text-[#191919] md:text-4xl"
+            >
+              Our Locations
+            </h2>
           </div>
 
           <div class="flex flex-col gap-6">
             <div class="flex items-start gap-3">
               <span class="mt-0.5 text-xl">📍</span>
               <div>
-                <p class="font-inter text-sm font-semibold text-[#191919]">Main Office</p>
-                <p class="font-inter text-sm text-[#605E5D]">пр. Независимости, 38<br>Минск, Беларусь</p>
+                <p class="font-inter text-sm font-semibold text-[#191919]">
+                  Main Office
+                </p>
+                <p class="font-inter text-sm text-[#605E5D]">
+                  пр. Независимости, 38<br />Минск, Беларусь
+                </p>
               </div>
             </div>
             <div class="flex items-start gap-3">
               <span class="mt-0.5 text-xl">🕐</span>
               <div>
-                <p class="font-inter text-sm font-semibold text-[#191919]">Working Hours</p>
-                <p class="font-inter text-sm text-[#605E5D]">Mon – Fri: 8:00 – 18:00<br>Sat: 9:00 – 14:00</p>
+                <p class="font-inter text-sm font-semibold text-[#191919]">
+                  Working Hours
+                </p>
+                <p class="font-inter text-sm text-[#605E5D]">
+                  Mon – Fri: 8:00 – 18:00<br />Sat: 9:00 – 14:00
+                </p>
               </div>
             </div>
             <div class="flex items-start gap-3">
               <span class="mt-0.5 text-xl">📞</span>
               <div>
-                <p class="font-inter text-sm font-semibold text-[#191919]">Phone</p>
-                <a href="tel:375171234567" class="font-inter text-sm text-[#FF4D01] hover:underline">+375 (17) 123-45-67</a>
+                <p class="font-inter text-sm font-semibold text-[#191919]">
+                  Phone
+                </p>
+                <a
+                  href="tel:375171234567"
+                  class="font-inter text-sm text-[#FF4D01] hover:underline"
+                  >+375 (17) 123-45-67</a
+                >
               </div>
             </div>
           </div>
@@ -809,14 +899,17 @@
             href="https://www.google.com/maps/dir/?api=1&destination=pr.+Nezavisimosti+38,+Minsk,+Belarus"
             target="_blank"
             rel="noopener"
-            class="inline-flex w-fit items-center gap-2 rounded-xl bg-[#FF4D01] px-6 py-3 font-inter text-sm font-semibold text-white hover:bg-[#e04400] transition-colors"
+            class="font-inter inline-flex w-fit items-center gap-2 rounded-xl bg-[#FF4D01] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#e04400]"
           >
             Get Directions →
           </a>
         </div>
 
         <!-- Map -->
-        <div id="business-map" class="h-80 w-full lg:h-auto lg:min-h-[480px] lg:flex-1"></div>
+        <div
+          id="business-map"
+          class="h-80 w-full lg:h-auto lg:min-h-[480px] lg:flex-1"
+        ></div>
       </div>
     </section>
 

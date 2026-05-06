@@ -128,7 +128,18 @@
     }
   ],
   "favorites": [],
-  "cart": [],
+  "cart": [
+    {
+      "userId": 1,
+      "productId": 3,
+      "title": "Отделка фасада",
+      "price": 2800,
+      "imageUrl": "/images/blog/blog-3.svg",
+      "category": "exterior",
+      "quantity": 2,
+      "id": 1
+    }
+  ],
   "users": [
     {
       "id": 1,

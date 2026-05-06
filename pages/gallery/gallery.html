@@ -7,13 +7,13 @@
     <link rel="stylesheet" href="gallery.css" />
     <style>
       #preloader {
-        position: fixed;
-        inset: 0;
-        z-index: 9999;
-        background: #191919;
         display: flex;
-        align-items: center;
+        position: fixed;
         justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        inset: 0;
+        background: #191919;
       }
     </style>
   </head>
@@ -26,7 +26,9 @@
       <div class="container mx-auto flex items-center justify-between px-4">
         <h1 class="text-h4 font-barlow tracking-tight">Media Gallery</h1>
         <nav>
-          <a href="/" class="nav-link font-medium text-[#FF4D01]">← На главную</a>
+          <a href="/" class="nav-link font-medium text-[#FF4D01]"
+            >← На главную</a
+          >
         </nav>
       </div>
     </header>
@@ -40,7 +42,11 @@
             src="/backgrounds/projects/project-1.png"
             alt="Gallery image 1"
           />
-          <div id="gallery-indicator" class="gallery-indicator" aria-live="polite">
+          <div
+            id="gallery-indicator"
+            class="gallery-indicator"
+            aria-live="polite"
+          >
             ⏸ Stopped
           </div>
           <div id="gallery-counter" class="gallery-counter">1 / 12</div>
@@ -48,13 +54,25 @@
       </section>
 
       <section class="gallery-controls" aria-label="Gallery controls">
-        <button id="btn-prev" class="gallery-btn gallery-btn--secondary" type="button">
+        <button
+          id="btn-prev"
+          class="gallery-btn gallery-btn--secondary"
+          type="button"
+        >
           ← Prev
         </button>
-        <button id="btn-random" class="gallery-btn gallery-btn--primary" type="button">
+        <button
+          id="btn-random"
+          class="gallery-btn gallery-btn--primary"
+          type="button"
+        >
           ⚡ Random
         </button>
-        <button id="btn-next" class="gallery-btn gallery-btn--secondary" type="button">
+        <button
+          id="btn-next"
+          class="gallery-btn gallery-btn--secondary"
+          type="button"
+        >
           Next →
         </button>
       </section>
@@ -80,6 +98,30 @@
       <p class="gallery-hint">
         Space — replay sound &nbsp;·&nbsp; ← → arrows — navigate
       </p>
+      <!-- VIDEO TRIGGER -->
+      <div class="video-trigger" id="video-trigger">
+        <img
+          src="/images/blog/blog-1.svg"
+          alt="Play video"
+          class="video-trigger__img"
+        />
+        <div class="video-trigger__play">
+          <span class="video-trigger__icon">▶</span>
+        </div>
+      </div>
+
+      <!-- VIDEO MODAL -->
+      <div class="video-modal" id="video-modal">
+        <div class="video-modal__overlay" id="video-overlay"></div>
+
+        <div class="video-modal__content">
+          <button class="video-modal__close" id="video-close">✕</button>
+
+          <video id="video-player" class="video-modal__video" controls>
+            <source src="/videos/video.mp4" type="video/mp4" />
+          </video>
+        </div>
+      </div>
     </main>
 
     <script type="module" src="gallery.ts"></script>

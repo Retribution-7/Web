@@ -95,4 +95,73 @@
   .gallery-hint {
     @apply font-inter text-p5 text-[#989899] text-center;
   }
+
+  @layer components {
+
+    /* ── Video trigger ───────────────────────────────────────────── */
+
+    .video-trigger {
+      @apply relative w-full max-w-md cursor-pointer rounded-2xl overflow-hidden shadow-xl;
+    }
+
+    .video-trigger__img {
+      @apply w-full h-full object-cover;
+    }
+
+    .video-trigger__play {
+      @apply absolute inset-0 flex items-center justify-center;
+    }
+
+    .video-trigger__icon {
+      @apply text-white text-4xl bg-black/60 rounded-full px-4 py-2 transition-transform duration-200;
+    }
+
+    .video-trigger:hover .video-trigger__icon {
+      @apply scale-110;
+    }
+
+    /* ── Modal ───────────────────────────────────────────────────── */
+
+    .video-modal {
+      @apply fixed inset-0 z-1000 hidden;
+    }
+
+    .video-modal.is-open {
+      @apply block;
+    }
+
+    /* Overlay */
+    .video-modal__overlay {
+      @apply absolute inset-0 bg-black/70 backdrop-blur-sm;
+    }
+
+    /* Content */
+    .video-modal__content {
+      @apply relative z-10 w-full max-w-4xl mx-auto mt-20 px-4;
+    }
+
+    .video-modal__video {
+      @apply w-full rounded-2xl shadow-2xl bg-black;
+    }
+
+    /* Close button */
+    .video-modal__close {
+      @apply absolute -top-10 right-4 text-white text-xl cursor-pointer transition-opacity;
+    }
+
+    .video-modal__close:hover {
+      @apply opacity-70;
+    }
+  }
+
+  .video-modal__content {
+    @apply transition-all duration-300;
+    transform: translateY(20px);
+    opacity: 0;
+  }
+
+  .video-modal.is-open .video-modal__content {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }

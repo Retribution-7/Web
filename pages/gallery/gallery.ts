@@ -14,31 +14,107 @@ interface GalleryItem {
 // Each item has a unique (waveType, frequency) pair — no duplicates.
 
 const ITEMS: GalleryItem[] = [
-  { src: "/backgrounds/projects/project-1.png",                 alt: "Project 1",          waveType: "sine",     frequency: 261, duration: 1.2 },
-  { src: "/backgrounds/projects/project-2.png",                 alt: "Project 2",          waveType: "sine",     frequency: 293, duration: 1.2 },
-  { src: "/backgrounds/projects/project-3.png",                 alt: "Project 3",          waveType: "sine",     frequency: 329, duration: 1.2 },
-  { src: "/backgrounds/wrapper-img.png",                        alt: "Wrapper",            waveType: "triangle", frequency: 349, duration: 1.0 },
-  { src: "/backgrounds/quote-bg.png",                           alt: "Quote background",   waveType: "triangle", frequency: 392, duration: 1.0 },
-  { src: "/images/blog/blog-1.svg",                             alt: "Blog post 1",        waveType: "square",   frequency: 440, duration: 0.7 },
-  { src: "/images/blog/blog-2.svg",                             alt: "Blog post 2",        waveType: "square",   frequency: 493, duration: 0.7 },
-  { src: "/images/blog/blog-3.svg",                             alt: "Blog post 3",        waveType: "sawtooth", frequency: 523, duration: 0.8 },
-  { src: "/images/blog/blog-4.svg",                             alt: "Blog post 4",        waveType: "sawtooth", frequency: 587, duration: 0.8 },
-  { src: "/images/about-us.svg",                                alt: "About us",           waveType: "sine",     frequency: 659, duration: 1.4 },
-  { src: "/images/why-choose-us/why-choose-us-first.svg",       alt: "Why choose us 1",   waveType: "triangle", frequency: 698, duration: 1.1 },
-  { src: "/images/why-choose-us/why-choose-us-second.svg",      alt: "Why choose us 2",   waveType: "sawtooth", frequency: 784, duration: 0.9 },
+  {
+    src: "/backgrounds/projects/project-1.png",
+    alt: "Project 1",
+    waveType: "sine",
+    frequency: 261,
+    duration: 1.2,
+  },
+  {
+    src: "/backgrounds/projects/project-2.png",
+    alt: "Project 2",
+    waveType: "sine",
+    frequency: 293,
+    duration: 1.2,
+  },
+  {
+    src: "/backgrounds/projects/project-3.png",
+    alt: "Project 3",
+    waveType: "sine",
+    frequency: 329,
+    duration: 1.2,
+  },
+  {
+    src: "/backgrounds/wrapper-img.png",
+    alt: "Wrapper",
+    waveType: "triangle",
+    frequency: 349,
+    duration: 1.0,
+  },
+  {
+    src: "/backgrounds/quote-bg.png",
+    alt: "Quote background",
+    waveType: "triangle",
+    frequency: 392,
+    duration: 1.0,
+  },
+  {
+    src: "/images/blog/blog-1.svg",
+    alt: "Blog post 1",
+    waveType: "square",
+    frequency: 440,
+    duration: 0.7,
+  },
+  {
+    src: "/images/blog/blog-2.svg",
+    alt: "Blog post 2",
+    waveType: "square",
+    frequency: 493,
+    duration: 0.7,
+  },
+  {
+    src: "/images/blog/blog-3.svg",
+    alt: "Blog post 3",
+    waveType: "sawtooth",
+    frequency: 523,
+    duration: 0.8,
+  },
+  {
+    src: "/images/blog/blog-4.svg",
+    alt: "Blog post 4",
+    waveType: "sawtooth",
+    frequency: 587,
+    duration: 0.8,
+  },
+  {
+    src: "/images/about-us.svg",
+    alt: "About us",
+    waveType: "sine",
+    frequency: 659,
+    duration: 1.4,
+  },
+  {
+    src: "/images/why-choose-us/why-choose-us-first.svg",
+    alt: "Why choose us 1",
+    waveType: "triangle",
+    frequency: 698,
+    duration: 1.1,
+  },
+  {
+    src: "/images/why-choose-us/why-choose-us-second.svg",
+    alt: "Why choose us 2",
+    waveType: "sawtooth",
+    frequency: 784,
+    duration: 0.9,
+  },
 ];
 
 // ─── DOM refs ─────────────────────────────────────────────────────────────────
 
-const imgEl        = document.getElementById("gallery-img")      as HTMLImageElement;
-const indicator    = document.getElementById("gallery-indicator") as HTMLDivElement;
-const counter      = document.getElementById("gallery-counter")   as HTMLDivElement;
-const btnPrev      = document.getElementById("btn-prev")          as HTMLButtonElement;
-const btnRandom    = document.getElementById("btn-random")        as HTMLButtonElement;
-const btnNext      = document.getElementById("btn-next")          as HTMLButtonElement;
-const volumeSlider = document.getElementById("volume-slider")     as HTMLInputElement;
-const volumeValue  = document.getElementById("volume-value")      as HTMLSpanElement;
-const volumeIcon   = document.getElementById("volume-icon")       as HTMLSpanElement;
+const imgEl = document.getElementById("gallery-img") as HTMLImageElement;
+const indicator = document.getElementById(
+  "gallery-indicator",
+) as HTMLDivElement;
+const counter = document.getElementById("gallery-counter") as HTMLDivElement;
+const btnPrev = document.getElementById("btn-prev") as HTMLButtonElement;
+const btnRandom = document.getElementById("btn-random") as HTMLButtonElement;
+const btnNext = document.getElementById("btn-next") as HTMLButtonElement;
+const volumeSlider = document.getElementById(
+  "volume-slider",
+) as HTMLInputElement;
+const volumeValue = document.getElementById("volume-value") as HTMLSpanElement;
+const volumeIcon = document.getElementById("volume-icon") as HTMLSpanElement;
 
 // ─── Audio state ──────────────────────────────────────────────────────────────
 
@@ -58,7 +134,11 @@ function getAudioCtx(): { ctx: AudioContext; gain: GainNode } {
 
 function stopCurrent(): void {
   if (currentSource) {
-    try { currentSource.stop(); } catch { /* already stopped */ }
+    try {
+      currentSource.stop();
+    } catch {
+      /* already stopped */
+    }
     currentSource = null;
   }
 }
@@ -175,3 +255,50 @@ document.addEventListener("keydown", (e) => {
 
 updateCounter();
 updateVolumeDisplay(Number(volumeSlider.value));
+
+const trigger = document.getElementById("video-trigger")!;
+const modal = document.getElementById("video-modal")!;
+const overlay = document.getElementById("video-overlay")!;
+const closeBtn = document.getElementById("video-close")!;
+const video = document.getElementById("video-player") as HTMLVideoElement;
+
+// OPEN
+function openModal() {
+  modal.classList.add("is-open");
+  document.body.style.overflow = "hidden";
+
+  video.currentTime = 0;
+  video.play().catch(() => {
+    // autoplay может быть заблокирован — это нормально
+  });
+}
+
+// CLOSE
+function closeModal() {
+  modal.classList.remove("is-open");
+  document.body.style.overflow = "";
+
+  video.pause();
+  video.currentTime = 0;
+}
+
+// EVENTS
+trigger.addEventListener("click", openModal);
+overlay.addEventListener("click", closeModal);
+closeBtn.addEventListener("click", closeModal);
+
+// ESC
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && modal.classList.contains("is-open")) {
+    closeModal();
+  }
+});
+
+// play/pause toggle
+video.addEventListener("click", () => {
+  if (video.paused) {
+    video.play();
+  } else {
+    video.pause();
+  }
+});
