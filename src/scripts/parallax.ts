@@ -35,7 +35,6 @@ export function initParallax(): void {
     }
   }
 
-  // Add/remove the scroll listener only while the section is in (or near) the viewport
   const observer = new IntersectionObserver(
     (entries) => {
       if (entries[0].isIntersecting) {

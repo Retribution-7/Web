@@ -35,10 +35,7 @@ export function initMap(): void {
   const el = document.getElementById("business-map");
   if (!el) return;
 
-  // Destroy existing map instance on HMR re-init to avoid "already initialized" error
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   if ((el as any)._leaflet_id != null) {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (el as any)._leaflet_id = null;
     el.innerHTML = "";
   }

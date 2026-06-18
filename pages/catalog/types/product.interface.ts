@@ -1,4 +1,3 @@
-// ─── Core product shape returned by JSON Server ───────────────────────────────
 export interface IProduct {
   id: number;
   title: string;
@@ -10,7 +9,6 @@ export interface IProduct {
   imageUrl: string;
 }
 
-// ─── Query params accepted by buildProductsUrl() ──────────────────────────────
 export interface IProductQuery {
   q?: string;
   category?: string;

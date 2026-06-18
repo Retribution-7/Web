@@ -1,9 +1,3 @@
-/**
- * catalog.ts
- * All data operations go through JSON Server.
- * No .filter() / .sort() / .map() on raw arrays for business logic.
- */
-
 import "../../src/scripts/preloader";
 import { showToast } from "../../src/scripts/toast";
 import {
@@ -21,8 +15,6 @@ initPageControls();
 
 requireAuth();
 
-// ─── Constants ────────────────────────────────────────────────────────────────
-
 const PAGE_LIMIT = 6;
 
 const CATEGORY_LABELS: Record<string, string> = {
@@ -37,16 +29,10 @@ const CATEGORY_MODAL_CLASSES: Record<string, string> = {
   materials: "category-badge--materials",
 };
 
-// ─── State ────────────────────────────────────────────────────────────────────
-
 let currentPage = 1;
 let totalItems = 0;
-/** Set of productIds the user has favourited (for toggle UI). */
 let favoriteIds = new Set<number>();
-/** Products rendered on the current page — used by the card-click handler. */
 let currentProducts: IProduct[] = [];
-
-// ─── DOM References ───────────────────────────────────────────────────────────
 
 const container = document.getElementById("catalog-container") as HTMLElement;
 const searchInput = document.getElementById("searchInput") as HTMLInputElement;
@@ -57,8 +43,6 @@ const sortSelect = document.getElementById("sortSelect") as HTMLSelectElement;
 const paginationEl = document.getElementById("pagination") as HTMLElement;
 const priceMinInput = document.getElementById("priceMin") as HTMLInputElement;
 const priceMaxInput = document.getElementById("priceMax") as HTMLInputElement;
-
-// ─── Query Builder ────────────────────────────────────────────────────────────
 
 function buildQuery(): IProductQuery {
   const sortValue = sortSelect.value;
@@ -76,19 +60,15 @@ function buildQuery(): IProductQuery {
     _limit: PAGE_LIMIT,
   };
 
-  // Если категория выбрана - добавляем
   if (categorySelect.value && categorySelect.value !== "all") {
     query.category = categorySelect.value;
   }
 
-  // Если введены цены - добавляем в запрос
   if (priceMinInput.value) query.price_gte = Number(priceMinInput.value);
   if (priceMaxInput.value) query.price_lte = Number(priceMaxInput.value);
 
   return query;
 }
-
-// ─── Product modal DOM refs ───────────────────────────────────────────────────
 
 const productModal = document.getElementById("product-modal") as HTMLElement;
 const productModalTitle = document.getElementById("product-modal-title") as HTMLElement;
@@ -100,8 +80,6 @@ const productModalPrice = document.getElementById("product-modal-price") as HTML
 const productModalCartBtn = document.getElementById("product-modal-cart-btn") as HTMLButtonElement;
 const productModalFavBtn = document.getElementById("product-modal-fav-btn") as HTMLButtonElement;
 const btnProductModalClose = document.getElementById("btn-product-modal-close") as HTMLButtonElement;
-
-// ─── Product modal logic ──────────────────────────────────────────────────────
 
 function openProductModal(product: IProduct): void {
   productModalTitle.textContent = product.title;
@@ -174,8 +152,6 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && productModal.classList.contains("is-open")) closeProductModal();
 });
 
-// ─── Card & button delegation (single listener, no stacking) ─────────────────
-
 container.addEventListener("click", async (e) => {
   const target = e.target as HTMLElement;
 
@@ -213,8 +189,6 @@ container.addEventListener("click", async (e) => {
   const product = currentProducts.find((p) => p.id === Number(card.dataset.id));
   if (product) openProductModal(product);
 });
-
-// ─── Render ───────────────────────────────────────────────────────────────────
 
 function renderCards(products: IProduct[]): void {
   currentProducts = products;
@@ -327,8 +301,6 @@ function renderPagination(): void {
   });
 }
 
-// ─── Load & Render ────────────────────────────────────────────────────────────
-
 async function loadAndRender(): Promise<void> {
   showLoadingState();
   try {
@@ -362,8 +334,6 @@ function showLoadingState(): void {
     .join("");
 }
 
-// ─── Favorites logic ──────────────────────────────────────────────────────────
-
 async function loadFavoriteIds(): Promise<void> {
   const favs = await fetchFavorites();
   favoriteIds = new Set(favs.map((f) => f.productId));
@@ -371,7 +341,6 @@ async function loadFavoriteIds(): Promise<void> {
 
 async function toggleFavorite(productId: number): Promise<void> {
   if (favoriteIds.has(productId)) {
-    // Find the favorite record to get its JSON Server id
     const favs = await fetchFavorites();
     const fav = favs.find((f) => f.productId === productId);
     if (fav) {
@@ -384,13 +353,9 @@ async function toggleFavorite(productId: number): Promise<void> {
   }
 }
 
-// ─── Toast notification ───────────────────────────────────────────────────────
-
 async function initCategories(): Promise<void> {
-  // Получаем товары, чтобы извлечь категории
   const { data } = await fetchProducts({ _limit: 100 });
 
-  // ТРЕБОВАНИЕ: Создать список категорий (использовать тип данных Set)
   const uniqueCategories = new Set(data.map((p) => p.category));
 
   const categoryMap: Record<string, string> = {
@@ -408,25 +373,24 @@ async function initCategories(): Promise<void> {
     categorySelect.appendChild(option);
   });
 }
-// ─── Filter / Sort listeners ──────────────────────────────────────────────────
+
 const handlePriceInput = () => {
   clearTimeout(debounceTimer);
   debounceTimer = setTimeout(() => {
     currentPage = 1;
     loadAndRender();
-  }, 350); // Делаем с задержкой, чтобы не спамить запросами при вводе цифр
+  }, 350);
 };
 
 priceMinInput?.addEventListener("input", handlePriceInput);
 priceMaxInput?.addEventListener("input", handlePriceInput);
 
-// Debounce search to avoid firing on every keystroke
 let debounceTimer: ReturnType<typeof setTimeout>;
 
 searchInput?.addEventListener("input", () => {
   clearTimeout(debounceTimer);
   debounceTimer = setTimeout(() => {
-    currentPage = 1; // reset to first page on new search
+    currentPage = 1;
     loadAndRender();
   }, 350);
 });
@@ -441,8 +405,6 @@ sortSelect?.addEventListener("change", () => {
   loadAndRender();
 });
 
-// ─── Reset button ─────────────────────────────────────────────────────────────
-
 document.getElementById("btn-reset")?.addEventListener("click", () => {
   searchInput.value = "";
   categorySelect.value = "";
@@ -453,11 +415,8 @@ document.getElementById("btn-reset")?.addEventListener("click", () => {
   loadAndRender();
 });
 
-// ─── Array-method demo buttons (now use server-side equivalents) ──────────────
-
-// .map() → apply 20% discount via query param (client renders oldPrice)
 document.getElementById("btn-map")?.addEventListener("click", async () => {
-  const { data } = await fetchProducts({ _limit: 100 }); // all items
+  const { data } = await fetchProducts({ _limit: 100 });
   const discounted = data.map((item) => ({
     ...item,
     oldPrice: item.price,
@@ -467,14 +426,12 @@ document.getElementById("btn-map")?.addEventListener("click", async () => {
   renderCards(discounted);
 });
 
-// .filter() → server: price_gte=1000
 document.getElementById("btn-filter")?.addEventListener("click", async () => {
   const res = await fetch("http://localhost:3000/products?price_gte=1000");
   const data: IProduct[] = await res.json();
   renderCards(data);
 });
 
-// .sort() → server: _sort=rating&_order=desc
 document.getElementById("btn-sort")?.addEventListener("click", async () => {
   const { data } = await fetchProducts({
     _sort: "rating",
@@ -484,34 +441,29 @@ document.getElementById("btn-sort")?.addEventListener("click", async () => {
   renderCards(data);
 });
 
-// .reduce() → fetch all, sum on client (aggregation not supported by json-server)
 document.getElementById("btn-reduce")?.addEventListener("click", async () => {
   const { data } = await fetchProducts({ _limit: 100 });
   const total = data.reduce((sum, item) => sum + item.price, 0);
   alert(`Общая стоимость всех услуг в каталоге: $${total}`);
 });
 
-// .slice() → server: _page=1&_limit=3
 document.getElementById("btn-slice")?.addEventListener("click", async () => {
   const { data } = await fetchProducts({ _page: 1, _limit: 3 });
   renderCards(data);
 });
 
-// .find() → server: price=12000
 document.getElementById("btn-find")?.addEventListener("click", async () => {
   const res = await fetch("http://localhost:3000/products?price=12000");
   const data: IProduct[] = await res.json();
   renderCards(data.length ? [data[0]] : []);
 });
 
-// .every() → fetch all, check client-side (logical predicate)
 document.getElementById("btn-every")?.addEventListener("click", async () => {
   const { data } = await fetchProducts({ _limit: 100 });
   const allAbove10 = data.every((item) => item.price > 10);
   alert(allAbove10 ? "Да, все услуги дороже $10" : "Нет, есть дешевле");
 });
 
-// .some() → server: price_lt=50 (check if any exist)
 document.getElementById("btn-some")?.addEventListener("click", async () => {
   const res = await fetch("http://localhost:3000/products?price_lt=50");
   const data: IProduct[] = await res.json();
@@ -522,7 +474,6 @@ document.getElementById("btn-some")?.addEventListener("click", async () => {
   );
 });
 
-// .reverse() → server: _sort=id&_order=desc
 document.getElementById("btn-reverse")?.addEventListener("click", async () => {
   const { data } = await fetchProducts({
     _sort: "id",
@@ -532,7 +483,6 @@ document.getElementById("btn-reverse")?.addEventListener("click", async () => {
   renderCards(data);
 });
 
-// .findIndex() → fetch all, find index client-side
 document
   .getElementById("btn-findindex")
   ?.addEventListener("click", async () => {
@@ -544,8 +494,6 @@ document
         : `Товар "Бетонная смесь" не найден`,
     );
   });
-
-// ─── Bootstrap ────────────────────────────────────────────────────────────────
 
 (async () => {
   await initCategories();

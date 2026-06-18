@@ -18,11 +18,7 @@ import { initPageControls } from "../../src/scripts/init-page";
 
 initPageControls();
 
-// ─── Admin guard ──────────────────────────────────────────────────────────────
-
 const currentUser = requireAdmin();
-
-// ─── DOM refs ─────────────────────────────────────────────────────────────────
 
 const tableContainer = document.getElementById(
   "products-table-container",
@@ -50,8 +46,6 @@ const errPrice = document.getElementById("err-price") as HTMLElement;
 const errRating = document.getElementById("err-rating") as HTMLElement;
 const errImage = document.getElementById("err-image") as HTMLElement;
 
-// ─── Delete modal refs ────────────────────────────────────────────────────────
-
 const deleteModalOverlay = document.getElementById(
   "delete-modal",
 ) as HTMLElement;
@@ -65,13 +59,9 @@ const btnDeleteConfirm = document.getElementById(
   "btn-delete-confirm",
 ) as HTMLButtonElement;
 
-// ─── State ────────────────────────────────────────────────────────────────────
-
 let editingId: number | null = null;
 let pendingDeleteId: number | null = null;
 let pendingDeleteBtn: HTMLButtonElement | null = null;
-
-// ─── Validation ───────────────────────────────────────────────────────────────
 
 interface FieldResult {
   valid: boolean;
@@ -177,8 +167,6 @@ function syncSubmitBtn(): void {
   el.addEventListener("input", syncSubmitBtn),
 );
 
-// ─── Modal helpers ────────────────────────────────────────────────────────────
-
 function lockScroll(): void {
   document.body.style.overflow = "hidden";
 }
@@ -188,8 +176,6 @@ function unlockScroll(): void {
     document.body.style.overflow = "";
   }
 }
-
-// ─── Product form modal ───────────────────────────────────────────────────────
 
 function openModal(product?: IProduct): void {
   editingId = product?.id ?? null;
@@ -225,8 +211,6 @@ function closeModal(): void {
   editingId = null;
   unlockScroll();
 }
-
-// ─── Delete confirmation modal ────────────────────────────────────────────────
 
 function openDeleteModal(id: number, btn: HTMLButtonElement): void {
   pendingDeleteId = id;
@@ -270,8 +254,6 @@ document.addEventListener("keydown", (e) => {
   if (deleteModalOverlay.classList.contains("is-open")) closeDeleteModal();
   else if (modalOverlay.classList.contains("is-open")) closeModal();
 });
-
-// ─── Table render ─────────────────────────────────────────────────────────────
 
 const CATEGORY_LABELS: Record<string, string> = {
   interior: "Интерьер",
@@ -359,8 +341,6 @@ function renderTable(products: IProduct[]): void {
     });
 }
 
-// ─── Load products ────────────────────────────────────────────────────────────
-
 async function loadProducts(): Promise<void> {
   tableContainer.innerHTML = `
     <div class="state-box">
@@ -380,8 +360,6 @@ async function loadProducts(): Promise<void> {
       </div>`;
   }
 }
-
-// ─── Form submit ──────────────────────────────────────────────────────────────
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -417,8 +395,6 @@ form.addEventListener("submit", async (e) => {
   }
 });
 
-// ─── Delete ───────────────────────────────────────────────────────────────────
-
 function handleDelete(id: number, btn: HTMLButtonElement): void {
   openDeleteModal(id, btn);
 }
@@ -441,9 +417,6 @@ async function confirmDelete(
   }
 }
 
-// ─── Toast ────────────────────────────────────────────────────────────────────
-
-// ─── Feedback management ──────────────────────────────────────────────────────
 
 const filterProduct = document.getElementById(
   "filter-product",
@@ -455,8 +428,6 @@ const feedbackContainer = document.getElementById(
 
 let cachedProducts: IProduct[] = [];
 let cachedUsers: IUser[] = [];
-
-// ─── Boot ─────────────────────────────────────────────────────────────────────
 
 loadProducts();
 initFeedbackSection();

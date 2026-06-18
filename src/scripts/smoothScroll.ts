@@ -13,7 +13,6 @@ function smoothScrollTo(target: HTMLElement) {
   });
 }
 
-// КЛИК ПО ССЫЛКАМ
 export function initSmoothScroll() {
   const links = document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]');
 
@@ -33,7 +32,6 @@ export function initSmoothScroll() {
   });
 }
 
-// ПЕРЕХОД С ХЕШЕМ (index.html#section)
 export function handleAnchorOnLoad() {
   const hash = window.location.hash;
 

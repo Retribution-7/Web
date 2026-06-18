@@ -1,9 +1,3 @@
-/**
- * api.ts
- * Thin wrapper around JSON Server.
- * Every function is async and returns typed data – no .filter()/.sort() anywhere.
- */
-
 import { ICartItem } from "../pages/cart/types/cart-item.interface";
 import type {
   IProduct,
@@ -24,18 +18,10 @@ export type { IOrder, IOrderPayload };
 
 const BASE_URL = "http://localhost:3000";
 
-// ─── Helpers ──────────────────────────────────────────────────────────────────
-
-/**
- * Build a URL with query-string params for /products.
- * Универсальная сборка: проходит по всем ключам объекта query.
- */
 export function buildProductsUrl(query: IProductQuery): string {
   const params = new URLSearchParams();
 
-  // Итерируемся по всем ключам объекта query
   Object.entries(query).forEach(([key, value]) => {
-    // Добавляем параметр, если значение не пустое, не null и не равно "all"/"default"
     if (
       value !== undefined &&
       value !== null &&
@@ -43,7 +29,6 @@ export function buildProductsUrl(query: IProductQuery): string {
       value !== "all" &&
       value !== "default"
     ) {
-      // Если это строка поиска, удаляем лишние пробелы
       const finalValue =
         typeof value === "string" ? value.trim() : String(value);
 
@@ -57,18 +42,12 @@ export function buildProductsUrl(query: IProductQuery): string {
   return qs ? `${BASE_URL}/products?${qs}` : `${BASE_URL}/products`;
 }
 
-/** Generic JSON fetch – throws on non-2xx. */
 async function apiFetch<T>(url: string, options?: RequestInit): Promise<T> {
   const res = await fetch(url, options);
   if (!res.ok) throw new Error(`HTTP ${res.status}: ${url}`);
   return res.json() as Promise<T>;
 }
 
-// ─── Products ─────────────────────────────────────────────────────────────────
-
-/**
- * Fetch a page of products. Returns the array AND total count
- */
 export async function fetchProducts(
   query: IProductQuery,
 ): Promise<{ data: IProduct[]; total: number }> {
@@ -76,14 +55,11 @@ export async function fetchProducts(
   const res = await fetch(url);
   if (!res.ok) throw new Error(`HTTP ${res.status}: ${url}`);
 
-  // JSON Server возвращает общее количество в заголовке X-Total-Count
   const total = parseInt(res.headers.get("X-Total-Count") ?? "0", 10);
   const data: IProduct[] = await res.json();
 
   return { data, total };
 }
-
-// ─── Favorites ────────────────────────────────────────────────────────────────
 
 export async function fetchFavorites(): Promise<IFavorite[]> {
   return apiFetch<IFavorite[]>(`${BASE_URL}/favorites`);
@@ -102,8 +78,6 @@ export async function removeFavorite(favoriteId: number): Promise<void> {
     method: "DELETE",
   });
 }
-
-// ─── Cart ─────────────────────────────────────────────────────────────────────
 
 export async function fetchCart(userId: number): Promise<ICartItem[]> {
   return apiFetch<ICartItem[]>(`${BASE_URL}/cart?userId=${userId}`);
@@ -152,13 +126,10 @@ export async function removeFromCart(cartItemId: number): Promise<void> {
   });
 }
 
-/** Clears the current user's cart (used on checkout). */
 export async function clearCart(userId: number): Promise<void> {
   const items = await fetchCart(userId);
   await Promise.all(items.map((item) => removeFromCart(item.id)));
 }
-
-// ─── Orders ───────────────────────────────────────────────────────────────────
 
 export async function postOrder(payload: IOrderPayload): Promise<IOrder> {
   return apiFetch<IOrder>(`${BASE_URL}/orders`, {
@@ -171,8 +142,6 @@ export async function postOrder(payload: IOrderPayload): Promise<IOrder> {
 export async function fetchOrdersByUser(userId: number): Promise<IOrder[]> {
   return apiFetch<IOrder[]>(`${BASE_URL}/orders?userId=${userId}`);
 }
-
-// ─── Feedback ─────────────────────────────────────────────────────────────────
 
 export async function postFeedback(
   payload: IFeedbackPayload,
@@ -199,8 +168,6 @@ export async function fetchFeedbackByUser(
 export async function deleteFeedback(id: number): Promise<void> {
   await apiFetch<unknown>(`${BASE_URL}/feedback/${id}`, { method: "DELETE" });
 }
-
-// ─── Products CRUD ────────────────────────────────────────────────────────────
 
 export async function fetchAllProducts(): Promise<IProduct[]> {
   return apiFetch<IProduct[]>(`${BASE_URL}/products`);
@@ -230,8 +197,6 @@ export async function updateProduct(
 export async function deleteProduct(id: number): Promise<void> {
   await apiFetch<unknown>(`${BASE_URL}/products/${id}`, { method: "DELETE" });
 }
-
-// ─── Users ────────────────────────────────────────────────────────────────────
 
 export async function fetchAllUsers(): Promise<IUser[]> {
   return apiFetch<IUser[]>(`${BASE_URL}/users`);

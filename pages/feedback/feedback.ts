@@ -12,24 +12,14 @@ import { initPageControls } from "../../src/scripts/init-page";
 
 initPageControls();
 
-// ─── Constants ────────────────────────────────────────────────────────────────
-
 const MIN_MESSAGE_LEN = 20;
-
-// ─── Auth guard ───────────────────────────────────────────────────────────────
 
 const currentUser = requireAuth();
 
-// ─── DOM root ─────────────────────────────────────────────────────────────────
-
 const root = document.getElementById("fb-content") as HTMLElement;
-
-// ─── State ────────────────────────────────────────────────────────────────────
 
 let isSubmitting = false;
 let allFeedbacks: IFeedback[] = [];
-
-// ─── Render helpers ───────────────────────────────────────────────────────────
 
 function renderState(
   icon: string,
@@ -74,8 +64,6 @@ function renderSuccess(productTitle: string): void {
   );
 }
 
-// ─── Error helpers ────────────────────────────────────────────────────────────
-
 function setError(id: string, msg: string | null): void {
   const errEl = document.getElementById(`err-${id}`);
   const fieldEl = document.getElementById(id);
@@ -89,8 +77,6 @@ function setError(id: string, msg: string | null): void {
 function clearError(id: string): void {
   setError(id, null);
 }
-
-// ─── Validators ───────────────────────────────────────────────────────────────
 
 function errProduct(v: string): string | null {
   return v ? null : "Выберите товар из списка";
@@ -107,15 +93,11 @@ function errRating(v: string): string | null {
   return v ? null : "Поставьте оценку";
 }
 
-// ─── Fetch feedbacks ──────────────────────────────────────────────────────────
-
 async function fetchAllFeedbacks(): Promise<IFeedback[]> {
   const response = await fetch("http://localhost:3000/feedback");
   if (!response.ok) throw new Error("Failed to fetch feedbacks");
   return response.json();
 }
-
-// ─── Form renderer ────────────────────────────────────────────────────────────
 
 interface PurchasedProduct {
   productId: number;
@@ -198,8 +180,6 @@ function renderForm(products: PurchasedProduct[]): void {
   bindFormListeners(products);
 }
 
-// ─── Render existing reviews ──────────────────────────────────────────────────
-
 interface ReviewWithDetails {
   id: number;
   userId: number;
@@ -216,7 +196,6 @@ async function renderExistingReviews(): Promise<void> {
   if (!reviewsContainer) return;
 
   try {
-    // Fetch all data in parallel using existing API functions
     const [feedbacks, products, users] = await Promise.all([
       fetchAllFeedbacks(),
       fetchAllProducts(),
@@ -235,13 +214,11 @@ async function renderExistingReviews(): Promise<void> {
       return;
     }
 
-    // Create maps for quick access
     const productsMap = new Map(products.map((p) => [p.id, p.title]));
     const usersMap = new Map(
       users.map((u) => [u.id, `${u.firstName} ${u.lastName}`]),
     );
 
-    // Sort feedbacks by date (newest first)
     const sortedFeedbacks = [...feedbacks].sort(
       (a, b) =>
         new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
@@ -258,7 +235,6 @@ async function renderExistingReviews(): Promise<void> {
           day: "numeric",
         });
 
-        // Generate star rating
         const stars = Array.from({ length: 5 }, (_, i) =>
           i < feedback.rating ? "★" : "☆",
         ).join("");
@@ -303,14 +279,11 @@ async function renderExistingReviews(): Promise<void> {
   }
 }
 
-// Helper function to escape HTML
 function escapeHtml(str: string): string {
   const div = document.createElement("div");
   div.textContent = str;
   return div.innerHTML;
 }
-
-// ─── Form listeners ───────────────────────────────────────────────────────────
 
 function bindFormListeners(products: PurchasedProduct[]): void {
   const form = document.getElementById("fb-form") as HTMLFormElement;
@@ -337,7 +310,6 @@ function bindFormListeners(products: PurchasedProduct[]): void {
     submitBtn.disabled = !isFormValid() || isSubmitting;
   }
 
-  // Product select
   productEl.addEventListener("change", () => {
     clearError("product");
     updateSubmit();
@@ -395,9 +367,7 @@ function bindFormListeners(products: PurchasedProduct[]): void {
 
     try {
       await postFeedback(payload);
-      // Refresh reviews after successful submission
       await renderExistingReviews();
-      // Reset form
       form.reset();
       submitBtn.disabled = true;
       showToast("Отзыв успешно отправлен!", "success");
@@ -411,8 +381,6 @@ function bindFormListeners(products: PurchasedProduct[]): void {
     }
   });
 }
-
-// ─── Init ─────────────────────────────────────────────────────────────────────
 
 async function init(): Promise<void> {
   if (currentUser.role === "admin") {
@@ -432,7 +400,6 @@ async function init(): Promise<void> {
     return;
   }
 
-  // Collect unique purchased products from all orders
   const seen = new Set<number>();
   const purchased: PurchasedProduct[] = [];
 
@@ -452,7 +419,6 @@ async function init(): Promise<void> {
 
   renderForm(purchased);
 
-  // Load existing reviews
   await renderExistingReviews();
 }
 

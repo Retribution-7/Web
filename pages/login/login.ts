@@ -6,22 +6,14 @@ import { initPageControls } from "../../src/scripts/init-page";
 
 initPageControls();
 
-// ─── Redirect logged-in users away ────────────────────────────────────────────
-
 if (getUser()) {
   window.location.replace("/");
   throw new Error("already authenticated");
 }
 
-// ─── Constants ────────────────────────────────────────────────────────────────
-
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
-// ─── State ────────────────────────────────────────────────────────────────────
-
 let isSubmitting = false;
-
-// ─── DOM refs ─────────────────────────────────────────────────────────────────
 
 const form = document.getElementById("login-form") as HTMLFormElement;
 const emailEl = document.getElementById("email") as HTMLInputElement;
@@ -29,8 +21,6 @@ const passwordEl = document.getElementById("password") as HTMLInputElement;
 const togglePwdBtn = document.getElementById("btn-toggle-pwd") as HTMLButtonElement;
 const submitBtn = document.getElementById("btn-submit") as HTMLButtonElement;
 const credentialsErrEl = document.getElementById("err-credentials") as HTMLElement;
-
-// ─── Validators ───────────────────────────────────────────────────────────────
 
 function errEmail(v: string): string | null {
   if (!v.trim()) return "Введите email";
@@ -40,8 +30,6 @@ function errEmail(v: string): string | null {
 function errPassword(v: string): string | null {
   return v ? null : "Введите пароль";
 }
-
-// ─── Error helpers ────────────────────────────────────────────────────────────
 
 function setError(id: string, msg: string | null): void {
   const errEl = document.getElementById(`err-${id}`);
@@ -62,8 +50,6 @@ function setCredentialsError(msg: string | null): void {
   credentialsErrEl.classList.toggle("hidden", !msg);
 }
 
-// ─── Form validity ────────────────────────────────────────────────────────────
-
 function isFormValid(): boolean {
   return errEmail(emailEl.value) === null && errPassword(passwordEl.value) === null;
 }
@@ -71,8 +57,6 @@ function isFormValid(): boolean {
 function updateSubmit(): void {
   submitBtn.disabled = !isFormValid() || isSubmitting;
 }
-
-// ─── Field listeners ──────────────────────────────────────────────────────────
 
 function bindField(
   el: HTMLInputElement,
@@ -92,15 +76,12 @@ function bindField(
 bindField(emailEl, errEmail);
 bindField(passwordEl, errPassword);
 
-// Toggle password visibility
 togglePwdBtn.addEventListener("click", () => {
   const isText = passwordEl.type === "text";
   passwordEl.type = isText ? "password" : "text";
   togglePwdBtn.textContent = isText ? "👁" : "🙈";
   togglePwdBtn.setAttribute("aria-label", isText ? "Показать пароль" : "Скрыть пароль");
 });
-
-// ─── Submit ───────────────────────────────────────────────────────────────────
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -134,9 +115,5 @@ form.addEventListener("submit", async (e) => {
   }
 });
 
-// ─── Toast ────────────────────────────────────────────────────────────────────
-
-
-// ─── Init ─────────────────────────────────────────────────────────────────────
 
 updateSubmit();

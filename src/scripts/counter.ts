@@ -1,21 +1,16 @@
-/**
- * Скрипт для анимации счетчиков чисел на TypeScript
- */
-
 interface CounterElement extends HTMLElement {
   startTime?: number;
 }
 
 export const initCounters = (): void => {
-  const animationDuration: number = 1000; // 2 секунды
+  const animationDuration: number = 1000;
 
   const startCounter = (el: HTMLElement): void => {
-    // Можно просто HTMLElement
     const targetAttr = el.getAttribute("data-target");
     if (!targetAttr) return;
 
     const target = parseInt(targetAttr, 10);
-    let startTime: number | null = null; // Локальная переменная вместо свойства объекта
+    let startTime: number | null = null;
 
     const countIt = (timestamp: number): void => {
       if (!startTime) startTime = timestamp;
@@ -43,7 +38,6 @@ export const initCounters = (): void => {
         if (entry.isIntersecting) {
           const el = entry.target as CounterElement;
 
-          // Сохраняем целевое число и обнуляем текст
           el.setAttribute("data-target", el.innerText);
           el.innerText = "0";
 
@@ -55,7 +49,6 @@ export const initCounters = (): void => {
     observerOptions,
   );
 
-  // Выбираем все элементы с классом .count-me
   const counterNodes = document.querySelectorAll<HTMLElement>(".count-me");
   counterNodes.forEach((n) => observer.observe(n));
 };

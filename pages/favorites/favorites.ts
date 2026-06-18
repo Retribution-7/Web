@@ -1,11 +1,3 @@
-/**
- * favorites.ts
- * ─────────────────────────────────────────────────────────────────────────────
- * Favorites page logic.
- * All data comes from JSON Server — no local arrays, no client-side filtering.
- * ─────────────────────────────────────────────────────────────────────────────
- */
-
 import "../../src/scripts/preloader";
 import { showToast } from "../../src/scripts/toast";
 import { IProduct } from "../catalog/types/product.interface";
@@ -17,19 +9,13 @@ initPageControls();
 
 requireAuth();
 
-// ─── Config ───────────────────────────────────────────────────────────────────
-
 const BASE_URL = "http://localhost:3000";
-
-// ─── DOM ─────────────────────────────────────────────────────────────────────
 
 const container = document.getElementById("favorites-container") as HTMLElement;
 const countLabel = document.getElementById("favorites-count") as HTMLElement;
 const clearAllBtn = document.getElementById(
   "btn-clear-all",
 ) as HTMLButtonElement;
-
-// ─── API ─────────────────────────────────────────────────────────────────────
 
 async function apiFetch<T>(url: string, options?: RequestInit): Promise<T> {
   const res = await fetch(url, options);
@@ -50,8 +36,6 @@ async function removeFavorite(favoriteId: number): Promise<void> {
     method: "DELETE",
   });
 }
-
-// ─── Render helpers ───────────────────────────────────────────────────────────
 
 function renderSkeletons(count = 3): void {
   container.innerHTML = Array.from({ length: count })
@@ -136,8 +120,6 @@ function buildCard(fav: IFavorite, product: IProduct): string {
     </article>`;
 }
 
-// ─── Core render ─────────────────────────────────────────────────────────────
-
 async function renderFavorites(): Promise<void> {
   renderSkeletons();
 
@@ -149,7 +131,6 @@ async function renderFavorites(): Promise<void> {
       return;
     }
 
-    // Fetch all matching products in parallel
     const products = await Promise.all(
       favorites.map((fav) => fetchProductById(fav.productId)),
     );
@@ -167,8 +148,6 @@ async function renderFavorites(): Promise<void> {
   }
 }
 
-// ─── Interactivity ────────────────────────────────────────────────────────────
-
 function attachRemoveHandlers(): void {
   container
     .querySelectorAll<HTMLButtonElement>(".btn-remove-fav")
@@ -176,7 +155,6 @@ function attachRemoveHandlers(): void {
       btn.addEventListener("click", async () => {
         const favId = Number(btn.dataset.favId);
 
-        // Optimistic UI — fade the card out immediately
         const card = container.querySelector<HTMLElement>(
           `[data-fav-id="${favId}"]`,
         );
@@ -189,10 +167,8 @@ function attachRemoveHandlers(): void {
         try {
           await removeFavorite(favId);
           showToast("Удалено из избранного");
-          // Full re-render to update the count bar correctly
           await renderFavorites();
         } catch {
-          // Restore card on failure
           if (card) {
             card.style.opacity = "1";
             card.style.transform = "scale(1)";
@@ -206,7 +182,6 @@ function attachRemoveHandlers(): void {
 function attachClearAllHandler(favorites: IFavorite[]): void {
   clearAllBtn.style.display = "block";
 
-  // Clone to remove stale listeners
   const fresh = clearAllBtn.cloneNode(true) as HTMLButtonElement;
   clearAllBtn.replaceWith(fresh);
 
@@ -236,9 +211,5 @@ function updateCountBar(count: number): void {
   countLabel.textContent = `${count} ${noun} в избранном`;
 }
 
-// ─── Toast ────────────────────────────────────────────────────────────────────
-
-
-// ─── Bootstrap ────────────────────────────────────────────────────────────────
 
 renderFavorites();

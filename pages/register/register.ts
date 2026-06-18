@@ -1,13 +1,3 @@
-/**
- * register.ts
- * ─────────────────────────────────────────────────────────────────────────────
- * Registration page logic.
- * Validation runs on blur; errors clear on input. Submit enabled only when
- * every field is valid. Nickname is generated from name (max 5 attempts),
- * then falls back to manual input with debounced uniqueness check.
- * ─────────────────────────────────────────────────────────────────────────────
- */
-
 import { checkNicknameAvailable, postUser } from "../../src/api";
 import { getUser, setUser } from "../../src/auth";
 import "../../src/scripts/preloader";
@@ -17,14 +7,10 @@ import { initPageControls } from "../../src/scripts/init-page";
 
 initPageControls();
 
-// ─── Redirect logged-in users away ────────────────────────────────────────────
-
 if (getUser()) {
   window.location.replace("/");
   throw new Error("already authenticated");
 }
-
-// ─── Constants ────────────────────────────────────────────────────────────────
 
 const MAX_REGEN = 5;
 
@@ -94,14 +80,10 @@ const TRANSLIT: Record<string, string> = {
   я: "ya",
 };
 
-// ─── State ────────────────────────────────────────────────────────────────────
-
 let regenUsed = 0;
 let nicknameOk = false;
 let debounceTimer = 0;
 let isSubmitting = false;
-
-// ─── DOM refs ─────────────────────────────────────────────────────────────────
 
 const form = document.getElementById("register-form") as HTMLFormElement;
 const firstNameEl = document.getElementById("firstName") as HTMLInputElement;
@@ -125,8 +107,6 @@ const togglePwdBtn = document.getElementById(
 ) as HTMLButtonElement;
 const agreementEl = document.getElementById("agreement") as HTMLInputElement;
 const submitBtn = document.getElementById("btn-submit") as HTMLButtonElement;
-
-// ─── Validators ───────────────────────────────────────────────────────────────
 
 function errFirstName(v: string): string | null {
   return v.trim().length >= 2 ? null : "Введите имя (минимум 2 символа)";
@@ -181,8 +161,6 @@ function errConfirm(v: string): string | null {
   return v === passwordEl.value ? null : "Пароли не совпадают";
 }
 
-// ─── Error helpers ────────────────────────────────────────────────────────────
-
 function setError(id: string, msg: string | null): void {
   const errEl = document.getElementById(`err-${id}`);
   const inputEl = document.getElementById(id);
@@ -196,8 +174,6 @@ function setError(id: string, msg: string | null): void {
 function clearError(id: string): void {
   setError(id, null);
 }
-
-// ─── Form validity ────────────────────────────────────────────────────────────
 
 function isFormValid(): boolean {
   return (
@@ -216,8 +192,6 @@ function isFormValid(): boolean {
 function updateSubmit(): void {
   submitBtn.disabled = !isFormValid() || isSubmitting;
 }
-
-// ─── Nickname helpers ─────────────────────────────────────────────────────────
 
 function translit(s: string): string {
   return s
@@ -281,8 +255,6 @@ function resetNicknameState(): void {
   updateSubmit();
 }
 
-// ─── Nickname generation ──────────────────────────────────────────────────────
-
 genBtn.addEventListener("click", async () => {
   const first = firstNameEl.value.trim();
   const last = lastNameEl.value.trim();
@@ -326,7 +298,6 @@ genBtn.addEventListener("click", async () => {
   }
 });
 
-// Manual nickname input (after regeneration limit is exhausted)
 nicknameEl.addEventListener("input", () => {
   if (nicknameEl.readOnly) return;
 
@@ -359,8 +330,6 @@ nicknameEl.addEventListener("input", () => {
   }, 600);
 });
 
-// ─── Name fields → reset nickname ─────────────────────────────────────────────
-
 [firstNameEl, lastNameEl].forEach((el) => {
   el.addEventListener("input", () => {
     clearError(el.id);
@@ -374,9 +343,6 @@ nicknameEl.addEventListener("input", () => {
   });
 });
 
-// ─── Other field listeners ────────────────────────────────────────────────────
-
-// Clear error on input, validate on blur
 function bindField(
   el: HTMLInputElement,
   validator: (v: string) => string | null,
@@ -397,7 +363,6 @@ bindField(birthDateEl, errBirthDate);
 
 passwordEl.addEventListener("input", () => {
   clearError("password");
-  // Re-evaluate confirm live if already filled
   if (confirmEl.value) setError("confirmPassword", errConfirm(confirmEl.value));
   updateSubmit();
 });
@@ -409,10 +374,8 @@ passwordEl.addEventListener("blur", () => {
 
 bindField(confirmEl, errConfirm);
 
-// Prevent paste into confirm field
 confirmEl.addEventListener("paste", (e) => e.preventDefault());
 
-// Toggle password visibility
 togglePwdBtn.addEventListener("click", () => {
   const isText = passwordEl.type === "text";
   passwordEl.type = isText ? "password" : "text";
@@ -426,10 +389,7 @@ togglePwdBtn.addEventListener("click", () => {
 // Middle name: no validation, just clear on input
 middleNameEl.addEventListener("input", () => updateSubmit());
 
-// Agreement
 agreementEl.addEventListener("change", updateSubmit);
-
-// ─── Submit ───────────────────────────────────────────────────────────────────
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -479,8 +439,6 @@ form.addEventListener("submit", async (e) => {
   }
 });
 
-// ─── Success screen ───────────────────────────────────────────────────────────
-
 function showSuccess(name: string): void {
   form.innerHTML = `
     <div class="success-state">
@@ -492,16 +450,11 @@ function showSuccess(name: string): void {
   `;
 }
 
-// ─── Toast ────────────────────────────────────────────────────────────────────
 
-// ─── Init ─────────────────────────────────────────────────────────────────────
-
-// Set max date for birthDate to 16 years ago from today
 const maxBirthDate = new Date();
 maxBirthDate.setFullYear(maxBirthDate.getFullYear() - 16);
 birthDateEl.max = maxBirthDate.toISOString().split("T")[0];
 
-// Set min date (no one is older than 120 years)
 const minBirthDate = new Date();
 minBirthDate.setFullYear(minBirthDate.getFullYear() - 120);
 birthDateEl.min = minBirthDate.toISOString().split("T")[0];

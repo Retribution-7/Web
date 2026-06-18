@@ -3,8 +3,6 @@ import { initPageControls } from "../../src/scripts/init-page";
 
 initPageControls();
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
 interface GalleryItem {
   src: string;
   alt: string;
@@ -13,7 +11,6 @@ interface GalleryItem {
   duration: number;
 }
 
-// ─── Image → Sound mapping ────────────────────────────────────────────────────
 // Each item has a unique (waveType, frequency) pair — no duplicates.
 
 const ITEMS: GalleryItem[] = [
@@ -103,8 +100,6 @@ const ITEMS: GalleryItem[] = [
   },
 ];
 
-// ─── DOM refs ─────────────────────────────────────────────────────────────────
-
 const imgEl = document.getElementById("gallery-img") as HTMLImageElement;
 const indicator = document.getElementById(
   "gallery-indicator",
@@ -118,8 +113,6 @@ const volumeSlider = document.getElementById(
 ) as HTMLInputElement;
 const volumeValue = document.getElementById("volume-value") as HTMLSpanElement;
 const volumeIcon = document.getElementById("volume-icon") as HTMLSpanElement;
-
-// ─── Audio state ──────────────────────────────────────────────────────────────
 
 let audioCtx: AudioContext | null = null;
 let gainNode: GainNode | null = null;
@@ -175,8 +168,6 @@ function playItem(index: number): void {
   osc.stop(ctx.currentTime + item.duration);
 }
 
-// ─── Gallery state ────────────────────────────────────────────────────────────
-
 let currentIndex = 0;
 
 function updateCounter(): void {
@@ -213,8 +204,6 @@ function showNext(): void {
   showItem((currentIndex + 1) % ITEMS.length);
 }
 
-// ─── Volume control ───────────────────────────────────────────────────────────
-
 function updateVolumeDisplay(value: number): void {
   const pct = Math.round(value * 100);
   volumeValue.textContent = `${pct}%`;
@@ -227,13 +216,9 @@ volumeSlider.addEventListener("input", () => {
   if (gainNode) gainNode.gain.value = value;
 });
 
-// ─── Button triggers ──────────────────────────────────────────────────────────
-
 btnPrev.addEventListener("click", showPrev);
 btnRandom.addEventListener("click", showRandom);
 btnNext.addEventListener("click", showNext);
-
-// ─── Keyboard triggers ────────────────────────────────────────────────────────
 
 document.addEventListener("keydown", (e) => {
   if (e.target instanceof HTMLInputElement) return; // don't hijack slider focus
@@ -254,8 +239,6 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
-// ─── Init ─────────────────────────────────────────────────────────────────────
-
 updateCounter();
 updateVolumeDisplay(Number(volumeSlider.value));
 
@@ -265,7 +248,6 @@ const overlay = document.getElementById("video-overlay")!;
 const closeBtn = document.getElementById("video-close")!;
 const video = document.getElementById("video-player") as HTMLVideoElement;
 
-// OPEN
 function openModal() {
   modal.classList.add("is-open");
   document.body.style.overflow = "hidden";
@@ -276,7 +258,6 @@ function openModal() {
   });
 }
 
-// CLOSE
 function closeModal() {
   modal.classList.remove("is-open");
   document.body.style.overflow = "";
@@ -285,19 +266,16 @@ function closeModal() {
   video.currentTime = 0;
 }
 
-// EVENTS
 trigger.addEventListener("click", openModal);
 overlay.addEventListener("click", closeModal);
 closeBtn.addEventListener("click", closeModal);
 
-// ESC
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && modal.classList.contains("is-open")) {
     closeModal();
   }
 });
 
-// play/pause toggle
 video.addEventListener("click", () => {
   if (video.paused) {
     video.play();

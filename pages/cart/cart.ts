@@ -1,12 +1,3 @@
-/**
- * cart.ts
- * ─────────────────────────────────────────────────────────────────────────────
- * Cart page logic.
- * All data comes from JSON Server — no local arrays, no client-side business logic.
- * Total price is computed client-side (display aggregate only).
- * ─────────────────────────────────────────────────────────────────────────────
- */
-
 import "../../src/scripts/preloader";
 import { showToast } from "../../src/scripts/toast";
 import type { ICartItem } from "./types/cart-item.interface";
@@ -16,15 +7,9 @@ import { initPageControls } from "../../src/scripts/init-page";
 
 initPageControls();
 
-// ─── Auth ─────────────────────────────────────────────────────────────────────
-
 let currentUser = requireAuth();
 
-// ─── Config ───────────────────────────────────────────────────────────────────
-
 const BASE_URL = "http://localhost:3000";
-
-// ─── DOM ─────────────────────────────────────────────────────────────────────
 
 const container = document.getElementById("cart-container") as HTMLElement;
 const countLabel = document.getElementById("cart-count") as HTMLElement;
@@ -39,8 +24,6 @@ const summaryCount = document.getElementById("summary-count") as HTMLElement;
 const summarySubtotal = document.getElementById(
   "summary-subtotal",
 ) as HTMLElement;
-
-// ─── API ─────────────────────────────────────────────────────────────────────
 
 async function apiFetch<T>(url: string, options?: RequestInit): Promise<T> {
   const res = await fetch(url, options);
@@ -68,8 +51,6 @@ async function deleteCartItem(id: number): Promise<void> {
 async function clearCart(items: ICartItem[]): Promise<void> {
   await Promise.all(items.map((item) => deleteCartItem(item.id)));
 }
-
-// ─── Render helpers ───────────────────────────────────────────────────────────
 
 function renderSkeletons(count = 3): void {
   container.innerHTML = Array.from({ length: count })
@@ -176,8 +157,6 @@ function buildCartItemHtml(item: ICartItem): string {
     </div>`;
 }
 
-// ─── Summary panel ────────────────────────────────────────────────────────────
-
 function updateSummary(items: ICartItem[], loading = false): void {
   if (loading) {
     summaryCount.textContent = "—";
@@ -209,8 +188,6 @@ function updateCountBar(items: ICartItem[]): void {
   countLabel.textContent = `${count} ${noun} в корзине`;
 }
 
-// ─── Core render ─────────────────────────────────────────────────────────────
-
 async function renderCart(): Promise<void> {
   renderSkeletons();
 
@@ -236,8 +213,6 @@ async function renderCart(): Promise<void> {
     renderError();
   }
 }
-
-// ─── Item-level interaction ───────────────────────────────────────────────────
 
 function attachItemHandlers(items: ICartItem[]): void {
   // ── Decrement ──
@@ -288,7 +263,6 @@ function attachItemHandlers(items: ICartItem[]): void {
       btn.addEventListener("click", async () => {
         const cartId = Number(btn.dataset.cartId);
 
-        // Optimistic fade
         const row = container.querySelector<HTMLElement>(
           `.cart-item[data-cart-id="${cartId}"]`,
         );
@@ -313,10 +287,7 @@ function attachItemHandlers(items: ICartItem[]): void {
     });
 }
 
-// ─── Clear cart ───────────────────────────────────────────────────────────────
-
 function attachClearCartHandler(items: ICartItem[]): void {
-  // Clone to drop stale listeners
   const fresh = clearCartBtn.cloneNode(true) as HTMLButtonElement;
   clearCartBtn.replaceWith(fresh);
 
@@ -340,8 +311,6 @@ function attachClearCartHandler(items: ICartItem[]): void {
   });
 }
 
-// ─── Checkout ─────────────────────────────────────────────────────────────────
-
 checkoutBtn.addEventListener("click", async () => {
   let items: ICartItem[];
   try {
@@ -356,7 +325,6 @@ checkoutBtn.addEventListener("click", async () => {
     return;
   }
 
-  // Disable immediately to prevent duplicate submissions
   checkoutBtn.disabled = true;
   checkoutBtn.textContent = "Оформляем...";
 
@@ -386,7 +354,5 @@ checkoutBtn.addEventListener("click", async () => {
     checkoutBtn.textContent = "Оформить заказ";
   }
 });
-
-// ─── Bootstrap ────────────────────────────────────────────────────────────────
 
 renderCart();

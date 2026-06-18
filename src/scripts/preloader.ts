@@ -6,8 +6,6 @@ function hidePreloader(): void {
   preloader.addEventListener("transitionend", () => preloader.remove(), { once: true });
 }
 
-// If the page already finished loading (fast connection / cached assets)
-// hide immediately; otherwise wait for the load event.
 if (document.readyState === "complete") {
   hidePreloader();
 } else {

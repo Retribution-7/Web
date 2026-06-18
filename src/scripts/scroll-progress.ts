@@ -1,6 +1,3 @@
-/**
- * Скрипт индикатора прогресса чтения
- */
 export const initScrollProgress = (): void => {
   const progressBar = document.createElement("div");
   progressBar.id = "scroll-progress";
@@ -23,7 +20,6 @@ export const initScrollProgress = (): void => {
     const totalHeight = document.documentElement.scrollHeight;
     const viewportHeight = window.innerHeight;
 
-    // Расчет процента
     const percentage = (scroll / (totalHeight - viewportHeight)) * 100;
 
     progressBar.style.width = `${percentage}%`;
