@@ -11,11 +11,14 @@ import "../../src/scripts/preloader";
 import { showToast } from "../../src/scripts/toast";
 import type { ICartItem } from "./types/cart-item.interface";
 import { postOrder } from "../../src/api";
-import { requireAuth } from "../../src/auth";
+import { requireAuth, getUser } from "../../src/auth";
+import { initPageControls } from "../../src/scripts/init-page";
+
+initPageControls();
 
 // ─── Auth ─────────────────────────────────────────────────────────────────────
 
-const currentUser = requireAuth();
+let currentUser = requireAuth();
 
 // ─── Config ───────────────────────────────────────────────────────────────────
 
@@ -46,7 +49,8 @@ async function apiFetch<T>(url: string, options?: RequestInit): Promise<T> {
 }
 
 async function fetchCart(): Promise<ICartItem[]> {
-  return apiFetch<ICartItem[]>(`${BASE_URL}/cart?userId=${currentUser.id}`);
+  const user = getUser();
+  return apiFetch<ICartItem[]>(`${BASE_URL}/cart?userId=${user?.id}`);
 }
 
 async function patchQuantity(id: number, quantity: number): Promise<ICartItem> {
@@ -359,8 +363,9 @@ checkoutBtn.addEventListener("click", async () => {
   const totalPrice = items.reduce((sum, i) => sum + i.price * i.quantity, 0);
 
   try {
+    const user = getUser();
     await postOrder({
-      userId: currentUser.id,
+      userId: user?.id ?? 0,
       products: items.map(({ productId, title, quantity, price }) => ({
         productId,
         title,

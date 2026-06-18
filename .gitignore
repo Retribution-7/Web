@@ -22,3 +22,14 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Generated test artifacts
+output/
+.playwright-cli/
+
+# Agent session data
+.mimocode/
+
+# Methodology & personal files
+LR_web_10.pdf
+cv.md

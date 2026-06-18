@@ -18,7 +18,7 @@
       }
     </style>
   </head>
-  <body class="font-inter bg-gray-50 text-[#191919]">
+  <body class="font-inter">
     <div id="preloader" aria-hidden="true" aria-label="Loading">
       <div class="preloader__ring"></div>
     </div>
@@ -27,13 +27,18 @@
       <div class="container mx-auto flex items-center justify-between px-4">
         <div class="flex items-center gap-3">
           <span class="header-icon">🛒</span>
-          <h1 class="header-title">Корзина</h1>
+          <h1 class="header-title" data-i18n="cart-title">Корзина</h1>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="lang-toggle lang-toggle--active" data-lang="en">en</span>
+          <span class="lang-toggle" data-lang="ru">ru</span>
+          <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">☀</button>
         </div>
         <nav class="header-nav">
           <a href="../favorites/favorites.html" class="nav-link"
-            >🤍 Избранное</a
+            >🤍 <span data-i18n="catalog-favorites">Избранное</span></a
           >
-          <a href="../catalog/catalog.html" class="nav-link">← Каталог</a>
+          <a href="../catalog/catalog.html" class="nav-link"><span data-i18n="catalog-home">← Каталог</span></a>
         </nav>
       </div>
     </header>
@@ -44,8 +49,8 @@
         <!-- Left: item list -->
         <section class="cart-items-section">
           <div class="count-bar">
-            <p id="cart-count" class="count-label">Загрузка...</p>
-            <button id="btn-clear-cart" class="btn-clear" style="display: none">
+            <p id="cart-count" class="count-label" data-i18n="cart-count">Загрузка...</p>
+            <button id="btn-clear-cart" class="btn-clear" style="display: none" data-i18n="cart-clear">
               Очистить корзину
             </button>
           </div>
@@ -54,27 +59,27 @@
 
         <!-- Right: order summary -->
         <aside class="cart-summary" id="cart-summary">
-          <h2 class="summary-title">Итого</h2>
+          <h2 class="summary-title" data-i18n="cart-summary-title">Итого</h2>
 
           <div class="summary-row">
-            <span class="summary-label">Позиций</span>
+            <span class="summary-label" data-i18n="cart-summary-items">Позиций</span>
             <span id="summary-count" class="summary-value">—</span>
           </div>
           <div class="summary-row">
-            <span class="summary-label">Сумма</span>
+            <span class="summary-label" data-i18n="cart-summary-sum">Сумма</span>
             <span id="summary-subtotal" class="summary-value">—</span>
           </div>
           <div class="summary-divider"></div>
           <div class="summary-row summary-total-row">
-            <span class="summary-label">К оплате</span>
+            <span class="summary-label" data-i18n="cart-summary-to-pay">К оплате</span>
             <span id="cart-total" class="summary-total-price">$0</span>
           </div>
 
-          <button id="btn-checkout" class="btn-checkout" disabled>
+          <button id="btn-checkout" class="btn-checkout" disabled data-i18n="cart-checkout">
             Оформить заказ
           </button>
 
-          <p class="summary-hint">
+          <p class="summary-hint" data-i18n="cart-hint">
             Нажимая кнопку, вы соглашаетесь с условиями сервиса
           </p>
         </aside>

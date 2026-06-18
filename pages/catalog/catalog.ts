@@ -13,10 +13,13 @@ import {
   fetchProducts,
   removeFavorite,
 } from "../../src/api";
-import { requireAuth } from "../../src/auth";
+import { requireAuth, getUser } from "../../src/auth";
 import type { IProduct, IProductQuery } from "./types/product.interface";
+import { initPageControls } from "../../src/scripts/init-page";
 
-const currentUser = requireAuth();
+initPageControls();
+
+requireAuth();
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
@@ -127,7 +130,7 @@ function openProductModal(product: IProduct): void {
 
   productModalCartBtn.onclick = async () => {
     try {
-      await addToCart(product, currentUser.id);
+      await addToCart(product, getUser()?.id ?? 0);
       showToast("Добавлено в корзину 🛒");
       closeProductModal();
     } catch {
@@ -182,7 +185,7 @@ container.addEventListener("click", async (e) => {
     const product = currentProducts.find((p) => p.id === Number(cartBtn.dataset.id));
     if (!product) return;
     try {
-      await addToCart(product, currentUser.id);
+      await addToCart(product, getUser()?.id ?? 0);
       showToast("Добавлено в корзину 🛒");
     } catch {
       showToast("Ошибка при добавлении в корзину", "error");

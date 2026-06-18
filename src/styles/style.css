@@ -73,6 +73,1579 @@
     --breakpoint-3xl: 1440px;
 }
 
+:root {
+    --body-color: #191919;
+    --text-color: #ffffff;
+    --hover-color: #FF4D01;
+    --card-bg: #262626;
+    --border-color: #404040;
+    --input-bg: #262626;
+    --header-bg: #191919;
+    --header-text: #ffffff;
+    --footer-bg: #000000;
+    --section-alt-bg: #0f0f0f;
+    --text-secondary: #b0b0b0;
+    --text-muted: #888888;
+    --surface-alt: #1f1f1f;
+}
+
+body.dark-theme {
+    background-color: var(--body-color);
+    color: var(--text-color);
+}
+
+body.light-theme {
+    background-color: var(--body-color);
+    color: var(--text-color);
+}
+
+/* ── Lang toggle ──────────────────────────────────────────────────────── */
+
+.lang-toggle {
+    @apply font-inter text-p4 font-bold px-2.5 py-1 rounded-lg transition-all duration-200 cursor-pointer select-none;
+    color: var(--text-color);
+    opacity: 0.5;
+}
+
+.lang-toggle:hover {
+    opacity: 1;
+}
+
+.lang-toggle--active {
+    opacity: 1;
+    color: #FF4D01;
+}
+
+/* ── Theme toggle ─────────────────────────────────────────────────────── */
+
+.theme-toggle {
+    @apply flex items-center justify-center w-9 h-9 rounded-lg transition-all duration-200 cursor-pointer select-none;
+    color: var(--text-color);
+}
+
+.theme-toggle:hover {
+    color: #FF4D01;
+}
+
+/* ── User icon ────────────────────────────────────────────────────────── */
+
+.user-icon-btn {
+    @apply flex items-center justify-center w-9 h-9 rounded-full transition-all duration-200 cursor-pointer;
+    color: var(--text-color);
+}
+
+.user-icon-btn:hover {
+    color: #FF4D01;
+}
+
+.user-icon-btn svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* ── Mobile lang/theme controls ───────────────────────────────────────── */
+
+.mobile-controls {
+    @apply flex items-center gap-2 py-3 border-t border-white/10;
+}
+
+.mobile-controls .lang-toggle,
+.mobile-controls .theme-toggle {
+    color: #EAEAEB;
+}
+
+/* ── Theme-adaptive sections ──────────────────────────────────────────── */
+
+/* Body base overrides */
+body.light-theme {
+    background-color: var(--body-color);
+    color: var(--text-color);
+}
+body.dark-theme {
+    background-color: var(--body-color);
+    color: var(--text-color);
+}
+body {
+    background-color: var(--body-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ── Modal overlay (shared between all pages) ────────────────────────── */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    padding: 1rem;
+    pointer-events: none;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.modal-overlay.is-open {
+    pointer-events: auto;
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal-box {
+    width: 100%;
+    background-color: white;
+    border-radius: 1.5rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    overflow-y: auto;
+    max-height: 90vh;
+    opacity: 0;
+    transform: scale(0.95) translateY(12px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.modal-overlay.is-open .modal-box {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+}
+
+.modal__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 1.5rem 1rem 1.5rem;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.modal__title {
+    font-family: "Barlow", sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #191919;
+}
+
+.modal__close {
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    color: #9ca3af;
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.modal__close:hover {
+    background-color: #f3f4f6;
+    color: #191919;
+}
+
+/* Smooth transitions for theme switching */
+.site-header,
+.modal-box,
+.cart-item,
+.cart-summary,
+.product-card,
+.fb-card,
+.login-card,
+.reg-card,
+.admin-table-wrap,
+.feedback-filters,
+.filter-panel,
+.empty-state,
+.review-card {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* ── Shared header & nav ─────────────────────────────────────────────── */
+
+body.light-theme .site-header {
+    background-color: var(--header-bg);
+    color: var(--header-text);
+}
+
+body.light-theme .nav-link {
+    color: var(--text-secondary);
+}
+body.light-theme .nav-link:hover {
+    color: var(--header-text);
+}
+
+body.light-theme .header-title {
+    color: var(--header-text);
+}
+
+/* ── Shared modal ────────────────────────────────────────────────────── */
+
+body.light-theme .modal-box {
+    background-color: var(--card-bg);
+}
+
+body.light-theme .modal__title {
+    color: var(--text-color);
+}
+
+body.light-theme .modal__close:hover {
+    color: var(--text-color);
+}
+
+/* ── Shared empty & state ────────────────────────────────────────────── */
+
+body.light-theme .empty-state {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+body.light-theme .empty-state__title {
+    color: var(--text-muted);
+}
+
+body.light-theme .count-label {
+    color: var(--text-muted);
+}
+
+body.light-theme .btn-clear {
+    color: var(--text-muted);
+    border-color: var(--border-color);
+}
+
+body.light-theme .state-box__title {
+    color: var(--text-color);
+}
+
+body.light-theme .state-box__subtitle {
+    color: var(--text-secondary);
+}
+
+/* ── Shared form fields ──────────────────────────────────────────────── */
+
+body.light-theme .field-label {
+    color: var(--text-color);
+}
+
+body.light-theme .field-input,
+body.light-theme .field-select,
+body.light-theme .field-textarea {
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    border-color: var(--border-color);
+}
+
+body.light-theme .field-input::placeholder,
+body.light-theme .field-select::placeholder,
+body.light-theme .field-textarea::placeholder {
+    color: var(--text-muted);
+}
+
+body.light-theme .field-input.input--readonly {
+    background-color: var(--surface-alt);
+    color: var(--text-secondary);
+}
+
+body.light-theme .btn-toggle-pwd {
+    color: var(--text-muted);
+}
+body.light-theme .btn-toggle-pwd:hover {
+    color: var(--text-color);
+}
+
+body.light-theme .field-hint {
+    color: var(--text-muted);
+}
+
+/* ── Shared buttons ──────────────────────────────────────────────────── */
+
+body.light-theme .btn-secondary {
+    border-color: var(--text-color);
+    color: var(--text-color);
+}
+
+body.light-theme .btn-secondary:hover {
+    background-color: var(--surface-alt);
+}
+
+/* ── Toast ───────────────────────────────────────────────────────────── */
+
+body.light-theme .toast--success {
+    background-color: var(--text-color);
+}
+
+/* ── Mobile controls ─────────────────────────────────────────────────── */
+
+body.light-theme .mobile-controls {
+    border-color: var(--border-color);
+}
+
+body.light-theme .mobile-controls .lang-toggle,
+body.light-theme .mobile-controls .theme-toggle {
+    color: var(--text-color);
+}
+
+body.light-theme .mobile-menu__link {
+    color: var(--text-color);
+}
+
+body.light-theme .mobile-menu__btn {
+    border-color: var(--text-color);
+    color: var(--text-color);
+}
+
+body.light-theme .mobile-menu__auth {
+    border-color: var(--border-color);
+}
+
+/* ── Find Us section ──────────────────────────────────────────────────── */
+
+#find-us {
+    background-color: var(--card-bg);
+}
+
+body.dark-theme #find-us {
+    background-color: var(--section-alt-bg);
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   DARK THEME — component overrides
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* ── Shared header & nav ─────────────────────────────────────────────── */
+
+body.dark-theme .site-header {
+    background-color: var(--header-bg);
+    color: var(--header-text);
+}
+
+body.dark-theme .header-title {
+    color: var(--header-text);
+}
+
+body.dark-theme .nav-link {
+    color: #EAEAEB;
+}
+body.dark-theme .nav-link:hover {
+    color: #ffffff;
+}
+
+/* ── Shared modal ────────────────────────────────────────────────────── */
+
+body.dark-theme .modal-box {
+    background-color: var(--card-bg);
+}
+
+body.dark-theme .modal__title {
+    color: var(--text-color);
+}
+
+body.dark-theme .modal__close {
+    color: #9ca3af;
+}
+body.dark-theme .modal__close:hover {
+    color: var(--text-color);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ── Shared empty & state ────────────────────────────────────────────── */
+
+body.dark-theme .empty-state {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+body.dark-theme .empty-state__title {
+    color: var(--text-muted);
+}
+
+body.dark-theme .empty-state__subtitle {
+    color: var(--text-secondary);
+}
+
+body.dark-theme .count-label {
+    color: var(--text-muted);
+}
+
+body.dark-theme .btn-clear {
+    color: var(--text-muted);
+    border-color: var(--border-color);
+}
+
+body.dark-theme .btn-clear:hover {
+    color: #ef4444;
+    border-color: #ef4444;
+}
+
+body.dark-theme .state-box__title {
+    color: var(--text-color);
+}
+
+body.dark-theme .state-box__subtitle {
+    color: var(--text-secondary);
+}
+
+/* ── Shared form fields ──────────────────────────────────────────────── */
+
+body.dark-theme .field-label {
+    color: var(--text-color);
+}
+
+body.dark-theme .field-input,
+body.dark-theme .field-select,
+body.dark-theme .field-textarea {
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    border-color: var(--border-color);
+}
+
+body.dark-theme .field-input::placeholder,
+body.dark-theme .field-select::placeholder,
+body.dark-theme .field-textarea::placeholder {
+    color: #6b7280;
+}
+
+body.dark-theme .field-input.input--readonly {
+    background-color: #1a1a1a;
+    color: var(--text-muted);
+}
+
+body.dark-theme .btn-toggle-pwd {
+    color: var(--text-muted);
+}
+body.dark-theme .btn-toggle-pwd:hover {
+    color: var(--text-color);
+}
+
+body.dark-theme .field-hint {
+    color: var(--text-muted);
+}
+
+/* ── Shared buttons ──────────────────────────────────────────────────── */
+
+body.dark-theme .btn-secondary {
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+body.dark-theme .btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ── Toast ───────────────────────────────────────────────────────────── */
+
+body.dark-theme .toast--success {
+    background-color: var(--text-color);
+}
+
+/* ── Mobile controls ─────────────────────────────────────────────────── */
+
+body.dark-theme .mobile-controls {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-theme .mobile-controls .lang-toggle,
+body.dark-theme .mobile-controls .theme-toggle {
+    color: #EAEAEB;
+}
+
+body.dark-theme .mobile-menu__link {
+    color: #ffffff;
+}
+
+body.dark-theme .mobile-menu__btn {
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+body.dark-theme .mobile-menu__auth {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ── Service cards ───────────────────────────────────────────────────── */
+
+body.dark-theme .service-card h4 {
+    color: var(--text-color);
+}
+
+body.dark-theme .service-card p {
+    color: var(--text-secondary);
+}
+
+body.dark-theme .service-card a {
+    color: var(--text-color);
+}
+
+/* ── Blog cards ──────────────────────────────────────────────────────── */
+
+body.dark-theme .blog-card__text {
+    color: var(--text-color);
+}
+
+body.dark-theme .blog-card__date {
+    color: var(--text-secondary);
+}
+
+/* ── Nav links (animated) ────────────────────────────────────────────── */
+
+body.dark-theme .nav-link-animated {
+    color: #ffffff;
+}
+
+body.dark-theme .nav-item a {
+    color: #ffffff;
+}
+
+/* ── Outline buttons ─────────────────────────────────────────────────── */
+
+body.dark-theme .button--outline {
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+/* ── Swiper pagination ───────────────────────────────────────────────── */
+
+body.dark-theme .swiper-pagination-bullet {
+    background-color: #ffffff;
+}
+
+/* ── Parallax scene ──────────────────────────────────────────────────── */
+
+body.dark-theme .parallax-scene {
+    background-color: var(--body-color);
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   LIGHT THEME — component overrides
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* ── Service cards ───────────────────────────────────────────────────── */
+
+body.light-theme .service-card h4 {
+    color: var(--text-color);
+}
+
+body.light-theme .service-card p {
+    color: var(--text-secondary);
+}
+
+body.light-theme .service-card a {
+    color: var(--text-color);
+}
+
+/* ── Blog cards ──────────────────────────────────────────────────────── */
+
+body.light-theme .blog-card__text {
+    color: var(--text-color);
+}
+
+body.light-theme .blog-card__date {
+    color: var(--text-secondary);
+}
+
+/* ── Nav links (animated) ────────────────────────────────────────────── */
+
+body.light-theme .nav-link-animated {
+    color: var(--text-color);
+}
+
+body.light-theme .nav-link-animated:hover {
+    color: var(--hover-color);
+}
+
+body.light-theme .nav-item a {
+    color: var(--text-color);
+}
+
+body.light-theme .nav-item a:hover {
+    color: var(--hover-color);
+}
+
+/* ── Outline buttons ─────────────────────────────────────────────────── */
+
+body.light-theme .button--outline {
+    border-color: var(--text-color);
+    color: var(--text-color);
+}
+
+body.light-theme .button--outline:hover {
+    background-color: var(--surface-alt);
+}
+
+/* ── Parallax scene ──────────────────────────────────────────────────── */
+
+body.light-theme .parallax-scene {
+    background-color: var(--body-color);
+}
+
+body.light-theme .parallax-heading {
+    color: var(--text-color);
+}
+
+body.light-theme .parallax-body {
+    color: var(--text-secondary);
+}
+
+body.light-theme .parallax-stat__num {
+    color: var(--text-color);
+}
+
+body.light-theme .parallax-stat__label {
+    color: var(--text-muted);
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   PAGE-SPECIFIC — dark-theme overrides
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* ── Catalog page ────────────────────────────────────────────────────── */
+
+body.dark-theme .filter-panel {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+body.dark-theme .filter-input {
+    border-color: var(--border-color);
+    background-color: var(--input-bg);
+    color: var(--text-color);
+}
+
+body.dark-theme .filter-input::placeholder {
+    color: #6b7280;
+}
+
+body.dark-theme .methods-container {
+    border-color: var(--border-color);
+}
+
+body.dark-theme .method-btn {
+    color: var(--text-secondary);
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+body.dark-theme .method-btn:hover {
+    color: var(--hover-color);
+    border-color: var(--hover-color);
+}
+
+body.dark-theme .product-card {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+body.dark-theme .product-card__title {
+    color: var(--text-color);
+}
+
+body.dark-theme .product-card__desc {
+    color: var(--text-secondary);
+}
+
+body.dark-theme .product-card__price {
+    color: var(--text-color);
+}
+
+body.dark-theme .badge-category {
+    color: var(--text-muted);
+}
+
+body.dark-theme .skeleton-item {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+body.dark-theme .skeleton-square,
+body.dark-theme .skeleton-line,
+body.dark-theme .skeleton-lines {
+    background-color: var(--border-color);
+}
+
+body.dark-theme .product-modal__desc {
+    color: var(--text-secondary);
+}
+
+body.dark-theme .category-badge {
+    border-color: var(--border-color);
+}
+
+/* ── Cart page ───────────────────────────────────────────────────────── */
+
+body.dark-theme .cart-item {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+body.dark-theme .cart-item__title {
+    color: var(--text-color);
+}
+
+body.dark-theme .cart-item__category {
+    color: var(--text-muted);
+}
+
+body.dark-theme .cart-item__unit-price {
+    color: var(--hover-color);
+}
+
+body.dark-theme .qty-btn {
+    border-color: var(--border-color);
+    color: var(--text-secondary);
+}
+
+body.dark-theme .qty-btn:hover {
+    border-color: var(--hover-color);
+    color: var(--hover-color);
+}
+
+body.dark-theme .qty-value {
+    color: var(--text-color);
+}
+
+body.dark-theme .cart-item__row-total {
+    color: var(--text-color);
+}
+
+body.dark-theme .btn-remove-item {
+    color: var(--text-muted);
+}
+
+body.dark-theme .cart-summary {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+body.dark-theme .summary-title {
+    color: var(--text-color);
+}
+
+body.dark-theme .summary-label {
+    color: var(--text-secondary);
+}
+
+body.dark-theme .summary-value {
+    color: var(--text-color);
+}
+
+body.dark-theme .summary-divider {
+    border-color: var(--border-color);
+}
+
+body.dark-theme .summary-hint {
+    color: var(--text-muted);
+}
+
+body.dark-theme .cart-summary .skeleton-item {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+body.dark-theme .cart-summary .skeleton-square,
+body.dark-theme .cart-summary .skeleton-line {
+    background-color: var(--border-color);
+}
+
+/* ── Favorites page ──────────────────────────────────────────────────── */
+
+body.dark-theme .fav-grid .product-card {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+body.dark-theme .fav-grid .product-card__title {
+    color: var(--text-color);
+}
+
+body.dark-theme .fav-grid .product-card__desc {
+    color: var(--text-secondary);
+}
+
+body.dark-theme .fav-grid .product-card__price {
+    color: var(--text-color);
+}
+
+body.dark-theme .btn-remove-fav {
+    border-color: var(--border-color);
+    color: var(--text-secondary);
+}
+
+body.dark-theme .skeleton-card {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+body.dark-theme .skeleton-img,
+body.dark-theme .skeleton-card .skeleton-line {
+    background-color: var(--border-color);
+}
+
+/* ── Feedback page ───────────────────────────────────────────────────── */
+
+body.dark-theme .fb-card {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+body.dark-theme .reviews-title {
+    color: var(--text-color);
+}
+
+body.dark-theme .reviews-count {
+    color: var(--text-secondary);
+    background-color: var(--border-color);
+}
+
+body.dark-theme .existing-reviews-section {
+    border-color: var(--border-color);
+}
+
+body.dark-theme .review-card {
+    background-color: var(--surface-alt);
+    border-color: var(--border-color);
+}
+
+body.dark-theme .review-card:hover {
+    border-color: var(--border-color);
+}
+
+body.dark-theme .review-card__avatar {
+    background-color: var(--border-color);
+    color: var(--text-color);
+}
+
+body.dark-theme .review-card__name {
+    color: var(--text-color);
+}
+
+body.dark-theme .review-card__product {
+    color: var(--text-muted);
+}
+
+body.dark-theme .review-card__date {
+    color: var(--text-muted);
+}
+
+body.dark-theme .review-card__message {
+    color: var(--text-secondary);
+}
+
+body.dark-theme .reviews-empty {
+    color: var(--text-muted);
+}
+
+/* ── Gallery page ────────────────────────────────────────────────────── */
+
+body.dark-theme .gallery-img-wrap {
+    background-color: var(--card-bg);
+}
+
+body.dark-theme .gallery-volume__label {
+    color: var(--text-color);
+}
+
+body.dark-theme .gallery-volume__value {
+    color: var(--text-secondary);
+}
+
+body.dark-theme .gallery-hint {
+    color: var(--text-muted);
+}
+
+body.dark-theme .gallery-btn--secondary {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+}
+
+body.dark-theme .gallery-btn--secondary:hover {
+    background-color: var(--border-color);
+}
+
+/* ── Login page ──────────────────────────────────────────────────────── */
+
+body.dark-theme .login-card {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+body.dark-theme .login-card__title {
+    color: var(--text-color);
+}
+
+body.dark-theme .login-card__subtitle {
+    color: var(--text-muted);
+}
+
+body.dark-theme .login-footer {
+    color: var(--text-secondary);
+}
+
+/* ── Register page ───────────────────────────────────────────────────── */
+
+body.dark-theme .reg-card {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+body.dark-theme .reg-card__title {
+    color: var(--text-color);
+}
+
+body.dark-theme .reg-card__subtitle {
+    color: var(--text-muted);
+}
+
+body.dark-theme .reg-section__title {
+    color: var(--text-secondary);
+    border-color: var(--border-color);
+}
+
+body.dark-theme .btn-generate {
+    background-color: var(--text-color);
+    color: var(--body-color);
+}
+
+body.dark-theme .btn-generate:hover {
+    background-color: var(--text-secondary);
+}
+
+body.dark-theme .nickname-status {
+    color: var(--text-muted);
+}
+
+body.dark-theme .regen-info {
+    color: var(--text-muted);
+}
+
+body.dark-theme .agreement-label {
+    color: var(--text-secondary);
+}
+
+body.dark-theme .success-state__title {
+    color: var(--text-color);
+}
+
+body.dark-theme .success-state__subtitle {
+    color: var(--text-secondary);
+}
+
+/* ── Admin page ──────────────────────────────────────────────────────── */
+
+body.dark-theme .admin-section-title {
+    color: var(--text-color);
+}
+
+body.dark-theme .admin-table-wrap {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+body.dark-theme .admin-table thead {
+    background-color: var(--surface-alt);
+    border-color: var(--border-color);
+}
+
+body.dark-theme .admin-table th {
+    color: var(--text-muted);
+}
+
+body.dark-theme .admin-table td {
+    color: var(--text-color);
+    border-color: var(--border-color);
+}
+
+body.dark-theme .admin-table tbody tr:hover td {
+    background-color: var(--surface-alt);
+}
+
+body.dark-theme .product-thumb {
+    border-color: var(--border-color);
+}
+
+body.dark-theme .btn-edit {
+    border-color: var(--border-color);
+    color: var(--text-secondary);
+}
+
+body.dark-theme .btn-delete {
+    border-color: var(--border-color);
+    color: var(--text-secondary);
+}
+
+body.dark-theme .feedback-filters {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+body.dark-theme .feedback-filter-sep {
+    color: var(--text-muted);
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   PAGE-SPECIFIC — light-theme overrides
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* ── Catalog page ────────────────────────────────────────────────────── */
+
+body.light-theme .filter-panel {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+body.light-theme .filter-input {
+    border-color: var(--border-color);
+    background-color: var(--surface-alt);
+    color: var(--text-color);
+}
+
+body.light-theme .methods-container {
+    border-color: var(--border-color);
+}
+
+body.light-theme .method-btn {
+    color: var(--text-secondary);
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+body.light-theme .product-card {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+body.light-theme .product-card__title {
+    color: var(--text-color);
+}
+
+body.light-theme .product-card__desc {
+    color: var(--text-secondary);
+}
+
+body.light-theme .product-card__price {
+    color: var(--text-color);
+}
+
+body.light-theme .skeleton-item {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+/* ── Cart page ───────────────────────────────────────────────────────── */
+
+body.light-theme .cart-item {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+body.light-theme .cart-item__title {
+    color: var(--text-color);
+}
+
+body.light-theme .cart-summary {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+body.light-theme .summary-title {
+    color: var(--text-color);
+}
+
+body.light-theme .summary-label {
+    color: var(--text-secondary);
+}
+
+body.light-theme .summary-value {
+    color: var(--text-color);
+}
+
+body.light-theme .summary-divider {
+    border-color: var(--border-color);
+}
+
+body.light-theme .summary-hint {
+    color: var(--text-muted);
+}
+
+/* ── Favorites page ──────────────────────────────────────────────────── */
+
+body.light-theme .fav-grid .product-card {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+body.light-theme .skeleton-card {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+/* ── Feedback page ───────────────────────────────────────────────────── */
+
+body.light-theme .fb-card {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+body.light-theme .reviews-title {
+    color: var(--text-color);
+}
+
+body.light-theme .reviews-count {
+    color: var(--text-secondary);
+    background-color: var(--surface-alt);
+}
+
+body.light-theme .existing-reviews-section {
+    border-color: var(--border-color);
+}
+
+body.light-theme .review-card {
+    background-color: var(--surface-alt);
+    border-color: var(--border-color);
+}
+
+body.light-theme .review-card__avatar {
+    background-color: var(--surface-alt);
+    color: var(--text-color);
+}
+
+body.light-theme .review-card__name {
+    color: var(--text-color);
+}
+
+body.light-theme .review-card__message {
+    color: var(--text-secondary);
+}
+
+body.light-theme .reviews-empty {
+    color: var(--text-muted);
+}
+
+/* ── Gallery page ────────────────────────────────────────────────────── */
+
+body.light-theme .gallery-volume__label {
+    color: var(--text-color);
+}
+
+body.light-theme .gallery-volume__value {
+    color: var(--text-secondary);
+}
+
+body.light-theme .gallery-hint {
+    color: var(--text-muted);
+}
+
+body.light-theme .gallery-btn--secondary {
+    background-color: var(--text-color);
+    color: var(--card-bg);
+}
+
+body.light-theme .gallery-btn--secondary:hover {
+    background-color: var(--text-secondary);
+}
+
+/* ── Login page ──────────────────────────────────────────────────────── */
+
+body.light-theme .login-card {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+body.light-theme .login-card__title {
+    color: var(--text-color);
+}
+
+body.light-theme .login-card__subtitle {
+    color: var(--text-muted);
+}
+
+body.light-theme .login-footer {
+    color: var(--text-secondary);
+}
+
+/* ── Register page ───────────────────────────────────────────────────── */
+
+body.light-theme .reg-card {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+body.light-theme .reg-card__title {
+    color: var(--text-color);
+}
+
+body.light-theme .reg-card__subtitle {
+    color: var(--text-muted);
+}
+
+body.light-theme .reg-section__title {
+    color: var(--text-secondary);
+    border-color: var(--border-color);
+}
+
+body.light-theme .btn-generate {
+    background-color: var(--text-color);
+    color: var(--card-bg);
+}
+
+body.light-theme .success-state__title {
+    color: var(--text-color);
+}
+
+body.light-theme .success-state__subtitle {
+    color: var(--text-secondary);
+}
+
+/* ── Admin page ──────────────────────────────────────────────────────── */
+
+body.light-theme .admin-section-title {
+    color: var(--text-color);
+}
+
+body.light-theme .admin-table-wrap {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+body.light-theme .admin-table thead {
+    background-color: var(--surface-alt);
+    border-color: var(--border-color);
+}
+
+body.light-theme .admin-table th {
+    color: var(--text-muted);
+}
+
+body.light-theme .admin-table td {
+    color: var(--text-color);
+    border-color: var(--border-color);
+}
+
+body.light-theme .admin-table tbody tr:hover td {
+    background-color: var(--surface-alt);
+}
+
+body.light-theme .feedback-filters {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   INLINE HTML CLASS — dark-theme overrides
+   These override hardcoded Tailwind utility classes in HTML
+   ════════════════════════════════════════════════════════════════════════ */
+
+body.dark-theme [class*="text-[#191919]"] {
+    color: var(--text-color) !important;
+}
+
+body.dark-theme [class*="text-[#605E5D]"] {
+    color: var(--text-secondary) !important;
+}
+
+body.dark-theme [class*="text-[#989899]"] {
+    color: var(--text-muted) !important;
+}
+
+body.dark-theme [class*="border-[#191919]"] {
+    border-color: var(--text-color) !important;
+}
+
+body.dark-theme [class*="border-[#000]"],
+body.dark-theme [class*="border-[#000000]"] {
+    border-color: var(--text-color) !important;
+}
+
+body.dark-theme [class*="text-[#000]"],
+body.dark-theme [class*="text-[#000000]"] {
+    color: var(--text-color) !important;
+}
+
+body.dark-theme [class*="bg-white"] {
+    background-color: var(--card-bg) !important;
+}
+
+body.dark-theme [class*="border-gray-100"] {
+    border-color: var(--border-color) !important;
+}
+
+body.dark-theme [class*="border-gray-200"] {
+    border-color: var(--border-color) !important;
+}
+
+body.dark-theme [class*="bg-gray-50"] {
+    background-color: var(--body-color) !important;
+}
+
+body.dark-theme [class*="hover:bg-gray-50"] {
+    --tw-bg-opacity: 1;
+}
+
+body.dark-theme [class*="bg-gray-50/60"] {
+    background-color: var(--surface-alt) !important;
+}
+
+body.dark-theme [class*="text-gray-300"] {
+    color: var(--text-secondary) !important;
+}
+
+body.dark-theme [class*="text-gray-400"] {
+    color: var(--text-muted) !important;
+}
+
+body.dark-theme [class*="text-gray-500"] {
+    color: var(--text-muted) !important;
+}
+
+body.dark-theme [class*="text-gray-600"] {
+    color: var(--text-secondary) !important;
+}
+
+body.dark-theme [class*="text-gray-700"] {
+    color: var(--text-secondary) !important;
+}
+
+body.dark-theme [class*="bg-gray-100"] {
+    background-color: var(--border-color) !important;
+}
+
+body.dark-theme [class*="bg-gray-200"] {
+    background-color: var(--border-color) !important;
+}
+
+body.dark-theme [class*="text-red-400"] {
+    color: #f87171 !important;
+}
+
+body.dark-theme [class*="text-red-500"] {
+    color: #f87171 !important;
+}
+
+body.dark-theme [class*="hover:text-red-400"] {
+    color: #f87171 !important;
+}
+
+body.dark-theme [class*="hover:text-red-500"] {
+    color: #f87171 !important;
+}
+
+body.dark-theme [class*="hover:border-red-300"] {
+    border-color: #f87171 !important;
+}
+
+body.dark-theme [class*="hover:border-red-400"] {
+    border-color: #f87171 !important;
+}
+
+body.dark-theme [class*="hover:bg-red-50"] {
+    background-color: rgba(239, 68, 68, 0.1) !important;
+}
+
+body.dark-theme [class*="bg-red-500"] {
+    background-color: #ef4444 !important;
+}
+
+body.dark-theme [class*="hover:bg-red-600"] {
+    background-color: #dc2626 !important;
+}
+
+body.dark-theme [class*="text-green-500"] {
+    color: #22c55e !important;
+}
+
+body.dark-theme [class*="text-blue-600"] {
+    color: #2563eb !important;
+}
+
+body.dark-theme [class*="bg-blue-50"] {
+    background-color: rgba(37, 99, 235, 0.1) !important;
+}
+
+body.dark-theme [class*="bg-green-50"] {
+    background-color: rgba(34, 197, 94, 0.1) !important;
+}
+
+body.dark-theme [class*="bg-amber-50"] {
+    background-color: rgba(245, 158, 11, 0.1) !important;
+}
+
+body.dark-theme [class*="text-amber-600"] {
+    color: #d97706 !important;
+}
+
+body.dark-theme [class*="hover:border-gray-400"] {
+    border-color: var(--text-muted) !important;
+}
+
+body.dark-theme [class*="hover:bg-[#333]"] {
+    background-color: #404040 !important;
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   INLINE HTML CLASS — light-theme overrides
+   ════════════════════════════════════════════════════════════════════════ */
+
+body.light-theme [class*="bg-white"] {
+    background-color: var(--card-bg) !important;
+}
+
+body.light-theme [class*="bg-gray-50"] {
+    background-color: var(--surface-alt) !important;
+}
+
+body.light-theme [class*="border-gray-100"] {
+    border-color: var(--border-color) !important;
+}
+
+body.light-theme [class*="border-gray-200"] {
+    border-color: var(--border-color) !important;
+}
+
+body.light-theme [class*="text-gray-300"] {
+    color: var(--text-secondary) !important;
+}
+
+body.light-theme [class*="text-gray-500"] {
+    color: var(--text-muted) !important;
+}
+
+body.light-theme [class*="text-gray-700"] {
+    color: var(--text-secondary) !important;
+}
+
+body.light-theme [class*="bg-gray-100"] {
+    background-color: var(--surface-alt) !important;
+}
+
+body.light-theme [class*="bg-gray-200"] {
+    background-color: var(--border-color) !important;
+}
+
+body.light-theme [class*="bg-gray-50/60"] {
+    background-color: var(--surface-alt) !important;
+}
+
+body.light-theme [class*="text-red-400"] {
+    color: #ef4444 !important;
+}
+
+body.light-theme [class*="text-red-500"] {
+    color: #ef4444 !important;
+}
+
+body.light-theme [class*="bg-red-500"] {
+    background-color: #ef4444 !important;
+}
+
+body.light-theme [class*="bg-red-50"] {
+    background-color: rgba(239, 68, 68, 0.1) !important;
+}
+
+body.light-theme [class*="hover:bg-red-50"] {
+    background-color: rgba(239, 68, 68, 0.1) !important;
+}
+
+body.light-theme [class*="text-green-500"] {
+    color: #22c55e !important;
+}
+
+body.light-theme [class*="text-blue-600"] {
+    color: #2563eb !important;
+}
+
+body.light-theme [class*="bg-blue-50"] {
+    background-color: rgba(37, 99, 235, 0.1) !important;
+}
+
+body.light-theme [class*="bg-green-50"] {
+    background-color: rgba(34, 197, 94, 0.1) !important;
+}
+
+body.light-theme [class*="bg-amber-50"] {
+    background-color: rgba(245, 158, 11, 0.1) !important;
+}
+
+body.light-theme [class*="text-amber-600"] {
+    color: #d97706 !important;
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   SECTIONS WITH BACKGROUND IMAGES — text colors must stay constant
+   Prevents theme overrides from breaking contrast on bg images
+   ════════════════════════════════════════════════════════════════════════ */
+
+.bg-image-section {
+    color: inherit;
+}
+
+body.dark-theme .bg-image-section [class*="text-[#191919]"] {
+    color: #191919 !important;
+}
+
+body.dark-theme .bg-image-section [class*="text-[#000]"],
+body.dark-theme .bg-image-section [class*="text-[#000000]"] {
+    color: #000000 !important;
+}
+
+body.dark-theme .bg-image-section [class*="text-[#605E5D]"] {
+    color: #605E5D !important;
+}
+
+body.dark-theme .bg-image-section [class*="border-[#000]"],
+body.dark-theme .bg-image-section [class*="border-[#000000]"] {
+    border-color: #000000 !important;
+}
+
+body.dark-theme .bg-image-section [class*="text-white"] {
+    color: #ffffff !important;
+}
+
+body.dark-theme .bg-image-section [class*="text-[#FFF]"],
+body.dark-theme .bg-image-section [class*="text-[#fff]"],
+body.dark-theme .bg-image-section [class*="text-[#FFFFFF]"],
+body.dark-theme .bg-image-section [class*="text-[#ffffff]"] {
+    color: #ffffff !important;
+}
+
+body.dark-theme .bg-image-section [class*="text-[#EAEAEB]"],
+body.dark-theme .bg-image-section [class*="text-[#eaeaeb]"] {
+    color: #EAEAEB !important;
+}
+
+body.light-theme .bg-image-section [class*="text-white"] {
+    color: #ffffff !important;
+}
+
+body.light-theme .bg-image-section [class*="text-[#FFF]"],
+body.light-theme .bg-image-section [class*="text-[#fff]"],
+body.light-theme .bg-image-section [class*="text-[#FFFFFF]"],
+body.light-theme .bg-image-section [class*="text-[#ffffff]"] {
+    color: #ffffff !important;
+}
+
+body.light-theme .bg-image-section [class*="text-[#EAEAEB]"],
+body.light-theme .bg-image-section [class*="text-[#eaeaeb]"] {
+    color: #EAEAEB !important;
+}
+
+body.light-theme .bg-image-section [class*="text-[#191919]"] {
+    color: #191919 !important;
+}
+
+body.light-theme .bg-image-section [class*="text-[#000]"],
+body.light-theme .bg-image-section [class*="text-[#000000]"] {
+    color: #000000 !important;
+}
+
+body.light-theme .bg-image-section [class*="text-[#605E5D]"] {
+    color: #605E5D !important;
+}
+
+body.light-theme .bg-image-section [class*="border-[#000]"],
+body.light-theme .bg-image-section [class*="border-[#000000]"] {
+    border-color: #000000 !important;
+}
+
 @layer base {
     * {
         margin: 0;

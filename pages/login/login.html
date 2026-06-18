@@ -18,7 +18,7 @@
       }
     </style>
   </head>
-  <body class="font-inter bg-gray-50 text-[#191919]">
+  <body class="font-inter">
     <div id="preloader" aria-hidden="true" aria-label="Loading">
       <div class="preloader__ring"></div>
     </div>
@@ -28,10 +28,15 @@
       <div class="container mx-auto flex items-center justify-between px-4">
         <div class="flex items-center gap-3">
           <span class="header-icon">🔑</span>
-          <h1 class="header-title">Вход в аккаунт</h1>
+          <h1 class="header-title" data-i18n="login-title">Вход в аккаунт</h1>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="lang-toggle lang-toggle--active" data-lang="en">en</span>
+          <span class="lang-toggle" data-lang="ru">ru</span>
+          <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">☀</button>
         </div>
         <nav class="header-nav">
-          <a href="/index.html" class="nav-link">← На главную</a>
+          <a href="/index.html" class="nav-link" data-i18n="login-home">← На главную</a>
         </nav>
       </div>
     </header>
@@ -41,8 +46,8 @@
       <div class="login-card">
 
         <div class="login-card__header">
-          <h2 class="login-card__title">Войти</h2>
-          <p class="login-card__subtitle">Введите email и пароль от вашего аккаунта</p>
+          <h2 class="login-card__title" data-i18n="login-title">Войти</h2>
+          <p class="login-card__subtitle" data-i18n="login-subtitle">Введите email и пароль от вашего аккаунта</p>
         </div>
 
         <form id="login-form" novalidate class="login-form">
@@ -63,7 +68,7 @@
 
           <!-- Password -->
           <div class="field-group">
-            <label class="field-label" for="password">Пароль</label>
+            <label class="field-label" for="password" data-i18n="login-password-label">Пароль</label>
             <div class="password-row">
               <input
                 class="field-input"
@@ -88,13 +93,13 @@
           <p class="field-error hidden" id="err-credentials" role="alert"></p>
 
           <!-- Submit -->
-          <button id="btn-submit" type="submit" class="btn-submit" disabled>
+          <button id="btn-submit" type="submit" class="btn-submit" disabled data-i18n="login-submit">
             Войти
           </button>
 
           <p class="login-footer">
-            Нет аккаунта?
-            <a href="../register/register.html" class="login-link">Зарегистрироваться</a>
+            <span data-i18n="login-no-account">Нет аккаунта?</span>
+            <a href="../register/register.html" class="login-link" data-i18n="login-register">Зарегистрироваться</a>
           </p>
 
         </form>

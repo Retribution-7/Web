@@ -10,7 +10,10 @@ import "../../src/scripts/preloader";
 import { showToast } from "../../src/scripts/toast";
 import { IProduct } from "../catalog/types/product.interface";
 import type { IFavorite } from "./types/favorites.interface";
-import { requireAuth } from "../../src/auth";
+import { requireAuth, getUser } from "../../src/auth";
+import { initPageControls } from "../../src/scripts/init-page";
+
+initPageControls();
 
 requireAuth();
 

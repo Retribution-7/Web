@@ -17,17 +17,22 @@
       }
     </style>
   </head>
-  <body class="font-inter bg-gray-50 text-[#191919]">
+  <body class="font-inter">
     <div id="preloader" aria-hidden="true" aria-label="Loading">
       <div class="preloader__ring"></div>
     </div>
 
-    <header class="bg-[#191919] py-6 text-white shadow-md">
+    <header class="site-header">
       <div class="container mx-auto flex items-center justify-between px-4">
-        <h1 class="text-h4 font-barlow tracking-tight">Media Gallery</h1>
+        <div class="flex items-center gap-2">
+          <span class="lang-toggle lang-toggle--active" data-lang="en">en</span>
+          <span class="lang-toggle" data-lang="ru">ru</span>
+          <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">☀</button>
+        </div>
+        <h1 class="text-h4 font-barlow tracking-tight" data-i18n="gallery-title">Media Gallery</h1>
         <nav>
-          <a href="/" class="nav-link font-medium text-[#FF4D01]"
-            >← На главную</a
+          <a href="/" class="nav-link"
+            data-i18n="gallery-home">← На главную</a
           >
         </nav>
       </div>
@@ -58,6 +63,7 @@
           id="btn-prev"
           class="gallery-btn gallery-btn--secondary"
           type="button"
+          data-i18n="gallery-prev"
         >
           ← Prev
         </button>
@@ -65,6 +71,7 @@
           id="btn-random"
           class="gallery-btn gallery-btn--primary"
           type="button"
+          data-i18n="gallery-random"
         >
           ⚡ Random
         </button>
@@ -72,6 +79,7 @@
           id="btn-next"
           class="gallery-btn gallery-btn--secondary"
           type="button"
+          data-i18n="gallery-next"
         >
           Next →
         </button>
@@ -80,7 +88,7 @@
       <section class="gallery-volume" aria-label="Volume control">
         <label for="volume-slider" class="gallery-volume__label">
           <span class="gallery-volume__icon" id="volume-icon">🔊</span>
-          Volume
+          <span data-i18n="gallery-volume">Volume</span>
         </label>
         <input
           type="range"
@@ -95,7 +103,7 @@
         <span id="volume-value" class="gallery-volume__value">50%</span>
       </section>
 
-      <p class="gallery-hint">
+      <p class="gallery-hint" data-i18n="gallery-hint">
         Space — replay sound &nbsp;·&nbsp; ← → arrows — navigate
       </p>
       <!-- VIDEO TRIGGER -->

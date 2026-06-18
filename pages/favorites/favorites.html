@@ -18,7 +18,7 @@
       }
     </style>
   </head>
-  <body class="font-inter bg-gray-50 text-[#191919]">
+  <body class="font-inter">
     <div id="preloader" aria-hidden="true" aria-label="Loading">
       <div class="preloader__ring"></div>
     </div>
@@ -27,11 +27,16 @@
       <div class="container mx-auto flex items-center justify-between px-4">
         <div class="flex items-center gap-3">
           <span class="header-icon">🤍</span>
-          <h1 class="header-title">Избранное</h1>
+          <h1 class="header-title" data-i18n="fav-title">Избранное</h1>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="lang-toggle lang-toggle--active" data-lang="en">en</span>
+          <span class="lang-toggle" data-lang="ru">ru</span>
+          <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">☀</button>
         </div>
         <nav class="header-nav">
-          <a href="../cart/cart.html" class="nav-link">🛒 Корзина</a>
-          <a href="../catalog/catalog.html" class="nav-link">← Каталог</a>
+          <a href="../cart/cart.html" class="nav-link">🛒 <span data-i18n="cart-title">Корзина</span></a>
+          <a href="../catalog/catalog.html" class="nav-link"><span data-i18n="fav-catalog">← Каталог</span></a>
         </nav>
       </div>
     </header>
@@ -40,8 +45,8 @@
     <main class="container mx-auto px-4 py-12">
       <!-- Counter bar -->
       <div class="count-bar">
-        <p id="favorites-count" class="count-label">Загрузка...</p>
-        <button id="btn-clear-all" class="btn-clear" style="display: none">
+        <p id="favorites-count" class="count-label" data-i18n="fav-count">Загрузка...</p>
+        <button id="btn-clear-all" class="btn-clear" style="display: none" data-i18n="fav-clear">
           Очистить всё
         </button>
       </div>

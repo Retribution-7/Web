@@ -4,10 +4,13 @@ import {
   fetchOrdersByUser,
   postFeedback,
 } from "../../src/api";
-import { requireAuth } from "../../src/auth";
+import { requireAuth, getUser } from "../../src/auth";
 import "../../src/scripts/preloader";
 import { showToast } from "../../src/scripts/toast";
-import type { IFeedbackPayload } from "./types/feedback.interface";
+import type { IFeedback, IFeedbackPayload } from "./types/feedback.interface";
+import { initPageControls } from "../../src/scripts/init-page";
+
+initPageControls();
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
@@ -383,7 +386,7 @@ function bindFormListeners(products: PurchasedProduct[]): void {
       products.find((p) => p.productId === productId)?.title ?? "";
 
     const payload: IFeedbackPayload = {
-      userId: currentUser.id,
+      userId: getUser()?.id ?? 0,
       productId,
       message: messageEl.value.trim(),
       rating: Number(selectedRating()),
@@ -419,7 +422,7 @@ async function init(): Promise<void> {
 
   let orders;
   try {
-    orders = await fetchOrdersByUser(currentUser.id);
+    orders = await fetchOrdersByUser(getUser()?.id ?? 0);
   } catch {
     renderState(
       "⚠️",

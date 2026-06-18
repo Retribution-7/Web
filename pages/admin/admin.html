@@ -18,7 +18,7 @@
       }
     </style>
   </head>
-  <body class="font-inter bg-gray-50 text-[#191919]">
+  <body class="font-inter">
     <div id="preloader" aria-hidden="true" aria-label="Loading">
       <div class="preloader__ring"></div>
     </div>
@@ -28,11 +28,16 @@
       <div class="container mx-auto flex items-center justify-between px-4">
         <div class="flex items-center gap-3">
           <span class="header-icon">⚙️</span>
-          <h1 class="header-title">Панель администратора</h1>
+          <h1 class="header-title" data-i18n="admin-title">Панель администратора</h1>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="lang-toggle lang-toggle--active" data-lang="en">en</span>
+          <span class="lang-toggle" data-lang="ru">ru</span>
+          <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">☀</button>
         </div>
         <nav class="header-nav">
-          <a href="/pages/catalog/catalog.html" class="nav-link">Каталог</a>
-          <a href="/index.html" class="nav-link">← На главную</a>
+          <a href="/pages/catalog/catalog.html" class="nav-link" data-i18n="admin-catalog">Каталог</a>
+          <a href="/index.html" class="nav-link" data-i18n="admin-home">← На главную</a>
         </nav>
       </div>
     </header>
@@ -42,8 +47,8 @@
 
       <!-- Toolbar -->
       <div class="admin-toolbar">
-        <h2 class="admin-section-title">Товары</h2>
-        <button id="btn-new-product" class="btn-create">+ Новый товар</button>
+        <h2 class="admin-section-title" data-i18n="admin-products">Товары</h2>
+        <button id="btn-new-product" class="btn-create" data-i18n="admin-new-product">+ Новый товар</button>
       </div>
 
       <!-- Table -->
@@ -51,7 +56,7 @@
 
       <!-- Feedback section -->
       <div class="admin-toolbar mt-14">
-        <h2 class="admin-section-title">Отзывы</h2>
+        <h2 class="admin-section-title" data-i18n="admin-reviews">Отзывы</h2>
       </div>
 
       <div class="feedback-filters">
@@ -79,7 +84,7 @@
       <div class="modal-box max-w-lg" role="dialog" aria-modal="true" aria-labelledby="modal-title">
 
         <div class="modal__header">
-          <h2 id="modal-title" class="modal__title">Новый товар</h2>
+          <h2 id="modal-title" class="modal__title" data-i18n="admin-modal-title-new">Новый товар</h2>
           <button id="btn-modal-close" class="modal__close" aria-label="Закрыть">✕</button>
         </div>
 
@@ -191,23 +196,25 @@
     <div id="delete-modal" class="modal-overlay" aria-hidden="true">
       <div class="modal-box max-w-sm" role="dialog" aria-modal="true" aria-labelledby="delete-modal-title">
         <div class="modal__header">
-          <h2 id="delete-modal-title" class="modal__title">Удалить товар?</h2>
+          <h2 id="delete-modal-title" class="modal__title" data-i18n="admin-delete-title">Удалить товар?</h2>
           <button id="btn-delete-modal-close" class="modal__close" aria-label="Закрыть">✕</button>
         </div>
         <div class="px-6 py-6 flex flex-col gap-5">
-          <p class="font-inter text-p3 text-[#605E5D]">
+          <p class="font-inter text-p3 text-[var(--text-secondary)]">
             Это действие необратимо. Товар будет удалён навсегда.
           </p>
           <div class="flex gap-3 justify-end">
             <button
               id="btn-delete-cancel"
-              class="px-5 py-2.5 rounded-xl border-2 border-gray-200 text-[#191919] font-inter font-semibold text-p4 hover:border-gray-400 transition-colors"
+              class="px-5 py-2.5 rounded-xl border-2 border-[var(--border-color)] text-[var(--text-color)] font-inter font-semibold text-p4 hover:border-[var(--text-muted)] transition-colors"
+              data-i18n="admin-delete-cancel"
             >
               Отмена
             </button>
             <button
               id="btn-delete-confirm"
               class="px-5 py-2.5 rounded-xl bg-red-500 text-white font-inter font-semibold text-p4 hover:bg-red-600 transition-colors"
+              data-i18n="admin-delete-confirm"
             >
               Удалить
             </button>

@@ -36,61 +36,71 @@
     <div id="nav-overlay" aria-hidden="true"></div>
     <nav id="mobile-menu" aria-label="Mobile navigation" aria-hidden="true">
       <ul class="mobile-menu__list">
-        <li><a href="#" class="mobile-menu__link">About</a></li>
-        <li><a href="#" class="mobile-menu__link">Blog</a></li>
+        <li><a href="#" class="mobile-menu__link" data-i18n="nav-about">About</a></li>
+        <li><a href="#" class="mobile-menu__link" data-i18n="nav-blog">Blog</a></li>
         <li>
           <a href="/pages/catalog/catalog.html" class="mobile-menu__link"
-            >Catalog</a
+            data-i18n="nav-catalog">Catalog</a
           >
         </li>
-        <li><a href="#contact" class="mobile-menu__link">Contact</a></li>
+        <li><a href="#contact" class="mobile-menu__link" data-i18n="nav-contact">Contact</a></li>
         <li>
-          <a href="/pages/cart/cart.html" class="mobile-menu__link">Cart</a>
+          <a href="/pages/cart/cart.html" class="mobile-menu__link" data-i18n="nav-cart">Cart</a>
         </li>
         <li>
           <a href="/pages/feedback/feedback.html" class="mobile-menu__link"
-            >Feedback</a
+            data-i18n="nav-feedback">Feedback</a
           >
         </li>
         <li>
           <a href="/pages/gallery/gallery.html" class="mobile-menu__link"
-            >Gallery</a
+            data-i18n="nav-gallery">Gallery</a
           >
         </li>
       </ul>
+      <div class="mobile-controls">
+        <span class="lang-toggle lang-toggle--active" data-lang="en">en</span>
+        <span class="lang-toggle" data-lang="ru">ru</span>
+        <button class="theme-toggle" id="mob-theme-toggle" aria-label="Toggle theme">☀</button>
+      </div>
       <div class="mobile-menu__auth">
         <a
           id="mob-nav-login"
           href="/pages/login/login.html"
           class="mobile-menu__btn"
-          >Login</a
+          data-i18n="btn-login">Login</a
         >
         <a
           id="mob-nav-register"
           href="/pages/register/register.html"
           class="mobile-menu__btn"
-          >Register</a
+          data-i18n="btn-register">Register</a
         >
         <a
           id="mob-nav-admin"
           href="/pages/admin/admin.html"
           class="mobile-menu__btn hidden"
-          >Admin</a
+          data-i18n="btn-admin">Admin</a
         >
-        <button id="mob-nav-logout" class="mobile-menu__btn hidden">
+        <button id="mob-nav-logout" class="mobile-menu__btn hidden" data-i18n="btn-logout">
           Logout
         </button>
         <a href="#" class="mobile-menu__btn mobile-menu__btn--orange"
-          >Get&nbsp;a&nbsp;quote</a
+          data-i18n="btn-get-quote">Get a quote</a
         >
       </div>
     </nav>
     <div
-      class="bg-hero relative flex w-full flex-col items-center bg-center pb-10 md:pb-20 lg:pb-40"
+      class="bg-image-section bg-hero relative flex w-full flex-col items-center bg-center pb-10 md:pb-20 lg:pb-40"
     >
       <header
         class="flex w-full items-center justify-between gap-8 px-4 pt-7.5 md:py-8 md:pr-8 lg:justify-end lg:pb-0 lg:pl-0"
       >
+        <div class="flex items-center gap-2">
+          <span class="lang-toggle lang-toggle--active" data-lang="en">en</span>
+          <span class="lang-toggle" data-lang="ru">ru</span>
+          <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">☀</button>
+        </div>
         <button
           id="burger-btn"
           class="hidden items-center justify-center p-2 max-lg:flex"
@@ -106,39 +116,43 @@
         <nav class="hidden lg:block">
           <ul class="font-inter flex grow items-center gap-8">
             <li class="nav-item">
-              <a href="#" class="nav-link-animated">About</a>
+              <a href="#" class="nav-link-animated" data-i18n="nav-about">About</a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link-animated">Blog</a>
+              <a href="#" class="nav-link-animated" data-i18n="nav-blog">Blog</a>
             </li>
             <li class="nav-item">
               <a href="/pages/catalog/catalog.html" class="nav-link-animated"
-                >Catalog</a
+                data-i18n="nav-catalog">Catalog</a
               >
             </li>
             <li class="nav-item">
-              <a href="#contact" class="nav-link-animated">Contact</a>
+              <a href="#contact" class="nav-link-animated" data-i18n="nav-contact">Contact</a>
             </li>
             <li class="nav-item">
-              <a href="/pages/cart/cart.html" class="nav-link-animated">Cart</a>
+              <a href="/pages/cart/cart.html" class="nav-link-animated" data-i18n="nav-cart">Cart</a>
             </li>
             <li class="nav-item">
               <a href="/pages/feedback/feedback.html" class="nav-link-animated"
-                >Feedback</a
+                data-i18n="nav-feedback">Feedback</a
               >
             </li>
             <li class="nav-item">
               <a href="/pages/gallery/gallery.html" class="nav-link-animated"
-                >Gallery</a
+                data-i18n="nav-gallery">Gallery</a
               >
             </li>
           </ul>
         </nav>
         <div class="flex items-center gap-3">
+          <button id="nav-user-icon" class="user-icon-btn hidden" aria-label="User profile">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </button>
           <a
             id="nav-login"
             href="/pages/login/login.html"
             class="button--outline text-p5 md:text-p3 max-sm:text-p5 btn-magnetic p-2.5 no-underline max-lg:hidden max-sm:p-2.5 md:p-4.25"
+            data-i18n="btn-login"
           >
             Login
           </a>
@@ -146,6 +160,7 @@
             id="nav-register"
             href="/pages/register/register.html"
             class="button--outline text-p5 md:text-p3 max-sm:text-p5 btn-magnetic p-2.5 no-underline max-lg:hidden max-sm:p-2.5 md:p-4.25"
+            data-i18n="btn-register"
           >
             Register
           </a>
@@ -153,19 +168,22 @@
             id="nav-admin"
             href="/pages/admin/admin.html"
             class="button--outline text-p5 md:text-p3 max-sm:text-p5 btn-magnetic hidden p-2.5 no-underline max-lg:hidden max-sm:p-2.5 md:p-4.25"
+            data-i18n="btn-admin"
           >
             Admin
           </a>
           <button
             id="nav-logout"
             class="button--outline text-p5 md:text-p3 max-sm:text-p5 btn-magnetic hidden p-2.5 max-lg:hidden max-sm:p-2.5 md:p-4.25"
+            data-i18n="btn-logout"
           >
             Logout
           </button>
           <button
             class="button--orange text-p5 md:text-p3 max-sm:text-p5 btn-magnetic p-2.5 max-sm:p-2.5 md:p-4.25"
+            data-i18n="btn-get-quote"
           >
-            Get&nbsp;a&nbsp;quote
+            Get a quote
           </button>
         </div>
       </header>
@@ -175,10 +193,11 @@
         >
           <h5
             class="font-inter md:font-barlow sm:text-h2 2xl:text-h1 w-full text-center text-white"
+            data-i18n="hero-title"
           >
             We provide effective contracting services
           </h5>
-          <p class="text-p4 md:text-p2 font-inter px-2 text-center text-white">
+          <p class="text-p4 md:text-p2 font-inter px-2 text-center text-white" data-i18n="hero-desc">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit dolor sit
             varius rhoncus, nullam pulvinar ut sollicitudin dictumst porttitor
             porttitor quis quisque erat.
@@ -187,11 +206,13 @@
         <div class="flex items-center justify-center gap-4 md:gap-8">
           <button
             class="button--orange text-p4 md:text-p2 btn-magnetic p-3.75 leading-none md:p-7"
+            data-i18n="btn-get-quote"
           >
             Get a quote
           </button>
           <button
             class="button--outline text-p4 md:text-p2 btn-magnetic box-border p-3.75 leading-none md:p-6.25"
+            data-i18n="btn-our-services"
           >
             Our services
           </button>
@@ -203,6 +224,7 @@
       >
         <span
           class="font-inter text-[10px] font-bold tracking-[0.2em] text-[#EAEAEB] uppercase opacity-80 transition-opacity group-hover:opacity-100 md:text-[12px] md:tracking-[0.3em]"
+          data-i18n="hero-explore"
         >
           Explore
         </span>
@@ -235,12 +257,12 @@
         />
         <div class="flex flex-col items-start gap-7.5 px-4 py-0 lg:max-w-151">
           <span class="text-p3 md:text-p1 font-inter text-[#FF4D01]"
-            >/About Us</span
+            data-i18n="about-label">/About Us</span
           >
-          <h5 class="font-inter md:text-h2 md:font-barlow text-[#191919]">
+          <h5 class="font-inter md:text-h2 md:font-barlow text-[#191919]" data-i18n="about-title">
             A team of reliable and experienced contractors
           </h5>
-          <p class="text-p4 md:text-p2 font-inter text-[#191919]">
+          <p class="text-p4 md:text-p2 font-inter text-[#191919]" data-i18n="about-desc">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit tristique
             imperdiet nisi metus, viverra nulla aliquet dui porta porttitor
             neque lectus diam justo lobortis purus in elit, elementum dignissim
@@ -259,6 +281,7 @@
               </dd>
               <dt
                 class="text-p3 md:text-p2 font-inter text-center text-nowrap text-[#989899]"
+                data-i18n="about-projects"
               >
                 Executed Projects
               </dt>
@@ -272,6 +295,7 @@
               </dd>
               <dt
                 class="text-p3 md:text-p2 font-inter text-center text-[#989899]"
+                data-i18n="about-experience"
               >
                 Experience
               </dt>
@@ -285,6 +309,7 @@
               </dd>
               <dt
                 class="text-p3 md:text-p2 font-inter text-center text-[#989899]"
+                data-i18n="about-clients"
               >
                 Satisfied Clients
               </dt>
@@ -292,6 +317,7 @@
           </dl>
           <button
             class="text-p4 sm:text-p2 font-inter btn-magnetic flex items-center justify-center border-2 border-[#191919] bg-transparent px-5 py-5 whitespace-nowrap md:w-auto lg:px-7.5"
+            data-i18n="about-company-btn"
           >
             About our company
           </button>
@@ -306,9 +332,9 @@
       >
         <div class="flex max-w-113.75 flex-col items-start gap-4">
           <span class="text-p3 md:text-p1 font-inter text-[#FF4D01]"
-            >/Our Services</span
+            data-i18n="services-label">/Our Services</span
           >
-          <h5 class="md:text-h2 font-barlow text-[#191919]">
+          <h5 class="md:text-h2 font-barlow text-[#191919]" data-i18n="services-title">
             A comprehensive set of services
           </h5>
         </div>
@@ -331,84 +357,84 @@
         <li>
           <article class="service-card service-card-spring">
             <img src="icons/project-planning.svg" alt="" />
-            <h4>Project Planning</h4>
+            <h4 data-i18n="svc-planning-title">Project Planning</h4>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit quis eget
               morbi fermentum sagittis, et mi lacus ornare tincidunt id.
             </p>
             <div>
               <img class="h-7.5 w-7.5" src="icons/black-square.svg" alt="" />
-              <a href="#">Learn more</a>
+              <a href="#" data-i18n="svc-learn-more">Learn more</a>
             </div>
           </article>
         </li>
         <li>
           <article class="service-card service-card-spring">
             <img src="icons/project-management.svg" alt="" />
-            <h4>Project <br class="block lg:hidden" />Management</h4>
+            <h4 data-i18n="svc-management-title">Project <br class="block lg:hidden" />Management</h4>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit quis eget
               morbi fermentum sagittis, et mi lacus ornare tincidunt id.
             </p>
             <div>
               <img class="h-7.5 w-7.5" src="icons/black-square.svg" alt="" />
-              <a href="#">Learn more</a>
+              <a href="#" data-i18n="svc-learn-more">Learn more</a>
             </div>
           </article>
         </li>
         <li>
           <article class="service-card service-card-spring">
             <img src="icons/general-contracting.svg" alt="" />
-            <h4>General <br class="block lg:hidden" />Contracting</h4>
+            <h4 data-i18n="svc-contracting-title">General <br class="block lg:hidden" />Contracting</h4>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit quis eget
               morbi fermentum sagittis, et mi lacus ornare tincidunt id.
             </p>
             <div>
               <img class="h-7.5 w-7.5" src="icons/black-square.svg" alt="" />
-              <a href="#">Learn more</a>
+              <a href="#" data-i18n="svc-learn-more">Learn more</a>
             </div>
           </article>
         </li>
         <li>
           <article class="service-card service-card-spring">
             <img src="icons/interior-design.svg" alt="" />
-            <h4>Interior Design</h4>
+            <h4 data-i18n="svc-interior-title">Interior Design</h4>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit quis eget
               morbi fermentum sagittis, et mi lacus ornare tincidunt id.
             </p>
             <div>
               <img class="h-7.5 w-7.5" src="icons/black-square.svg" alt="" />
-              <a href="#">Learn more</a>
+              <a href="#" data-i18n="svc-learn-more">Learn more</a>
             </div>
           </article>
         </li>
         <li>
           <article class="service-card service-card-spring">
             <img src="icons/exterior-design.svg" alt="" />
-            <h4>Exterior Design</h4>
+            <h4 data-i18n="svc-exterior-title">Exterior Design</h4>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit quis eget
               morbi fermentum sagittis, et mi lacus ornare tincidunt id.
             </p>
             <div>
               <img class="h-7.5 w-7.5" src="icons/black-square.svg" alt="" />
-              <a href="#">Learn more</a>
+              <a href="#" data-i18n="svc-learn-more">Learn more</a>
             </div>
           </article>
         </li>
         <li>
           <article class="service-card service-card-spring">
             <img src="icons/space-planning.svg" alt="" />
-            <h4>Space Planning</h4>
+            <h4 data-i18n="svc-space-title">Space Planning</h4>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit quis eget
               morbi fermentum sagittis, et mi lacus ornare tincidunt id.
             </p>
             <div>
               <img class="h-7.5 w-7.5" src="icons/black-square.svg" alt="" />
-              <a href="#">Learn more</a>
+              <a href="#" data-i18n="svc-learn-more">Learn more</a>
             </div>
           </article>
         </li>
@@ -481,45 +507,47 @@
 
       <!-- Static content overlay -->
       <div class="parallax-content">
-        <span class="parallax-tag">/Our Promise</span>
-        <h2 class="parallax-heading">
+        <span class="parallax-tag" data-i18n="parallax-tag">/Our Promise</span>
+        <h2 class="parallax-heading" data-i18n="parallax-heading">
           Built to last,<br />designed to impress
         </h2>
-        <p class="parallax-body">
+        <p class="parallax-body" data-i18n="parallax-body">
           From the first blueprint to the final finish — we deliver excellence
           at every stage.
         </p>
         <div class="parallax-stats">
           <div class="parallax-stat">
             <dd class="parallax-stat__num"><span>+</span>350</dd>
-            <dt class="parallax-stat__label">Executed Projects</dt>
+            <dt class="parallax-stat__label" data-i18n="parallax-projects">Executed Projects</dt>
           </div>
           <div class="parallax-stat">
             <dd class="parallax-stat__num">12<span>Y</span></dd>
-            <dt class="parallax-stat__label">Experience</dt>
+            <dt class="parallax-stat__label" data-i18n="parallax-experience">Experience</dt>
           </div>
           <div class="parallax-stat">
             <dd class="parallax-stat__num">100<span>%</span></dd>
-            <dt class="parallax-stat__label">Satisfaction</dt>
+            <dt class="parallax-stat__label" data-i18n="parallax-satisfaction">Satisfaction</dt>
           </div>
         </div>
-        <button class="button--orange btn-magnetic parallax-cta">
+        <button class="button--orange btn-magnetic parallax-cta" data-i18n="btn-get-quote">
           Get a quote
         </button>
       </div>
     </section>
 
     <section
-      class="bg-cover bg-center px-4 py-5 md:bg-[url('/backgrounds/quote-bg.png')] md:px-11 md:py-17 lg:px-20 lg:py-32"
+      class="bg-image-section bg-cover bg-center px-4 py-5 md:bg-[url('/backgrounds/quote-bg.png')] md:px-11 md:py-17 lg:px-20 lg:py-32"
     >
       <div class="flex flex-col gap-4 md:gap-8 lg:max-w-151">
         <h5
           class="font-inter md:text-h3 lg:text-h2 lg:font-barlow text-[#191919]"
+          data-i18n="quote-heading"
         >
           Ready to pull the trigger?<br />Get a quote today.
         </h5>
         <p
           class="text-p4 md:text-p2 font-inter text-[#605E5D] md:max-lg:w-88.25"
+          data-i18n="quote-desc"
         >
           Lorem ipsum dolor sit amet, consectetur adipiscing elit dolor sit
           varius rhoncus, nullam pulvinar ut sollicitudin dictumst porttitor
@@ -552,12 +580,12 @@
           class="flex flex-col items-start gap-4 px-4 py-5 md:gap-6 md:px-11 md:py-17 2xl:p-0"
         >
           <span class="text-p3 md:text-p1 font-inter text-[#FF4D01]"
-            >/Why Choose Us</span
+            data-i18n="why-label">/Why Choose Us</span
           >
-          <h5 class="md:text-h2 font-inter md:font-barlow text-[#191919]">
+          <h5 class="md:text-h2 font-inter md:font-barlow text-[#191919]" data-i18n="why-title-1">
             An exceptional quality that can't be beaten
           </h5>
-          <p class="text-p4 md:text-p2 font-inter text-[#605E5D]">
+          <p class="text-p4 md:text-p2 font-inter text-[#605E5D]" data-i18n="why-desc-1">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit tristique
             rutrum leo quam consectetur urna egestas tincidunt facilisi neque
             elementum quis lorem posuere dignissim scelerisque aliquam.
@@ -578,6 +606,7 @@
                 />
               </svg>
               <span class="text-p4 md:text-p2 font-inter text-[#191919]"
+                data-i18n="why-list-1"
                 >Over 15 years of experience</span
               >
             </li>
@@ -596,6 +625,7 @@
                 />
               </svg>
               <span class="text-p4 md:text-p2 font-inter text-[#191919]"
+                data-i18n="why-list-2"
                 >200+ successfully executed projects</span
               >
             </li>
@@ -614,6 +644,7 @@
                 />
               </svg>
               <span class="text-p4 md:text-p2 font-inter text-[#191919]"
+                data-i18n="why-list-3"
                 >Exceptional work quality</span
               >
             </li>
@@ -626,10 +657,10 @@
         <div
           class="flex flex-col items-start gap-4 px-4 py-5 md:gap-6 md:px-11 md:py-17 2xl:p-0"
         >
-          <h5 class="md:text-h2 font-inter md:font-barlow text-[#191919]">
+          <h5 class="md:text-h2 font-inter md:font-barlow text-[#191919]" data-i18n="why-title-2">
             We help you build on your past and prepare for the future
           </h5>
-          <p class="text-p4 md:text-p2 font-inter text-[#605E5D]">
+          <p class="text-p4 md:text-p2 font-inter text-[#605E5D]" data-i18n="why-desc-2">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit dictum nam
             arcu ac eu orci purus amet eros, id lorem aliquet eget urna at risus
             sit purus ac magnis blandit eu egestas imperdiet libero.
@@ -646,6 +677,7 @@
               </dd>
               <dt
                 class="text-p3 md:text-p2 font-inter leading-[0,09] text-[#989899]"
+                data-i18n="why-projects"
               >
                 Successful Projects
               </dt>
@@ -657,7 +689,7 @@
                 <span class="count-me text-[#191919]">100</span
                 ><span class="text-[#FF4D01]">%</span>
               </dd>
-              <dt class="text-p3 md:text-p2 font-inter text-[#989899]">
+              <dt class="text-p3 md:text-p2 font-inter text-[#989899]" data-i18n="why-satisfaction">
                 Client Satisfaction
               </dt>
             </div>
@@ -676,9 +708,9 @@
       >
         <div class="flex flex-col items-start gap-4 md:gap-8 lg:max-w-150">
           <span class="text-p3 md:text-p1 font-inter text-[#FF4D01]"
-            >/Past Projects</span
+            data-i18n="projects-label">/Past Projects</span
           >
-          <h5 class="font-inter md:text-h2 md:font-barlow text-[#191919]">
+          <h5 class="font-inter md:text-h2 md:font-barlow text-[#191919]" data-i18n="projects-title">
             Our project results speak for themselves
           </h5>
         </div>
@@ -700,8 +732,8 @@
       <div class="swiper mySwiper w-full overflow-hidden">
         <ul class="swiper-wrapper">
           <li class="swiper-slide swiper-slide-projects">
-            <article class="bg-[url('/backgrounds/projects/project-1.png')]">
-              <h5 class="md:text-h4 font-inter text-[#FFF]">
+            <article class="bg-image-section bg-[url('/backgrounds/projects/project-1.png')]">
+              <h5 class="md:text-h4 font-inter text-[#FFF]" data-i18n="project-1-title">
                 Building construction in Los Angeles, CA
               </h5>
               <div class="project-details">
@@ -720,8 +752,8 @@
             </article>
           </li>
           <li class="swiper-slide swiper-slide-projects">
-            <article class="bg-[url('/backgrounds/projects/project-2.png')]">
-              <h5 class="md:text-h4 font-inter text-[#FFF]">
+            <article class="bg-image-section bg-[url('/backgrounds/projects/project-2.png')]">
+              <h5 class="md:text-h4 font-inter text-[#FFF]" data-i18n="project-2-title">
                 Kitchen remodeling in Hollywood Hills, CA
               </h5>
               <div class="project-details">
@@ -740,8 +772,8 @@
             </article>
           </li>
           <li class="swiper-slide swiper-slide-projects">
-            <article class="bg-[url('/backgrounds/projects/project-3.png')]">
-              <h5 class="md:text-h4 font-inter text-[#FFF]">
+            <article class="bg-image-section bg-[url('/backgrounds/projects/project-3.png')]">
+              <h5 class="md:text-h4 font-inter text-[#FFF]" data-i18n="project-3-title">
                 Office remodeling in Hollywood Hills, CA
               </h5>
               <div class="project-details">
@@ -784,9 +816,9 @@
     >
       <header class="flex flex-col items-start gap-4">
         <span class="text-p3 md:text-p1 font-inter text-[#FF4D01]"
-          >/Testimonials</span
+          data-i18n="testimonials-label">/Testimonials</span
         >
-        <h5 class="font-inter md:text-h2 md:font-barlow text-[#191919]">
+        <h5 class="font-inter md:text-h2 md:font-barlow text-[#191919]" data-i18n="testimonials-title">
           What our clients say about us and<br class="hidden lg:block" />
           our work
         </h5>
@@ -804,18 +836,20 @@
           <div
             class="flex w-[288px] flex-col items-start gap-6 md:w-85.25 lg:w-90.5 2xl:w-auto 2xl:flex-1"
           >
-            <p class="font-inter text-p1 md:text-h5">
+            <p class="font-inter text-p1 md:text-h5" data-i18n="testi-1-quote">
               "A true team of expert<br />contractors"
             </p>
-            <p class="font-inter text-p4 md:text-p2 text-[#989899]">
+            <p class="font-inter text-p4 md:text-p2 text-[#989899]" data-i18n="testi-1-desc">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Convallis
               senectus non dui vel tortor. Justo lectus integer arcu elit.
             </p>
             <div class="flex flex-col items-start lg:gap-1.5">
               <span class="font-inter text-p4 md:text-p2 text-[#191919]"
+                data-i18n="testi-1-name"
                 >John Carter</span
               >
               <span class="font-inter text-p4 text-[#989899]"
+                data-i18n="testi-1-location"
                 >Malibu Beach, CA</span
               >
             </div>
@@ -833,18 +867,20 @@
           <div
             class="flex w-[288px] flex-col items-start gap-6 md:w-85.25 lg:w-90.5 2xl:w-auto 2xl:flex-1"
           >
-            <p class="font-inter text-p1 md:text-h5">
+            <p class="font-inter text-p1 md:text-h5" data-i18n="testi-2-quote">
               "A team that never undelivers"
             </p>
-            <p class="font-inter text-p4 md:text-p2 text-[#989899]">
+            <p class="font-inter text-p4 md:text-p2 text-[#989899]" data-i18n="testi-2-desc">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Convallis
               senectus non dui vel tortor. Justo lectus integer arcu elit.
             </p>
             <div class="flex flex-col items-start lg:gap-1.5">
               <span class="font-inter text-p4 md:text-p2 text-[#191919]"
+                data-i18n="testi-2-name"
                 >Lily Woods</span
               >
               <span class="font-inter text-p4 text-[#989899]"
+                data-i18n="testi-2-location"
                 >Hollywood Hills, CA</span
               >
             </div>
@@ -859,10 +895,10 @@
         class="flex w-full flex-col px-4 max-md:gap-4 md:flex-row md:items-center md:justify-between md:px-0"
       >
         <div class="flex flex-col items-start gap-3.75">
-          <span class="text-p3 md:text-p1 font-inter text-[#FF4D01]">
+          <span class="text-p3 md:text-p1 font-inter text-[#FF4D01]" data-i18n="blog-label">
             /Blog
           </span>
-          <h5 class="font-inter md:text-h2 md:font-barlow">Articles & News</h5>
+          <h5 class="font-inter md:text-h2 md:font-barlow" data-i18n="blog-title">Articles & News</h5>
         </div>
         <!-- biome-ignore lint/a11y/useButtonType: <explanation> -->
         <button
@@ -880,7 +916,7 @@
             alt="Home interior with color palette samples"
           />
           <div class="flex flex-col items-start gap-4 max-md:px-4">
-            <p class="text-p1 md:text-h4 font-inter text-[#191919]">
+            <p class="text-p1 md:text-h4 font-inter text-[#191919]" data-i18n="blog-main-title">
               12 designers tricks for picking the perfect home color<br
                 class="md:hidden"
               />palette
@@ -899,7 +935,7 @@
               class="blog-card__image"
             />
             <div class="blog-card__content">
-              <p class="blog-card__text">
+              <p class="blog-card__text" data-i18n="blog-card-1-title">
                 Paint trends 2022 - the 17 colors you need for the ultimate
                 wonder <br class="hidden md:max-lg:block" />walls
               </p>
@@ -913,7 +949,7 @@
               class="blog-card__image"
             />
             <div class="blog-card__content">
-              <p class="blog-card__text">
+              <p class="blog-card__text" data-i18n="blog-card-2-title">
                 Clever DIY home improvements you can do during the pandemic
               </p>
               <time class="blog-card__date animate-typing">June 17, 2022</time>
@@ -926,7 +962,7 @@
               class="blog-card__image"
             />
             <div class="blog-card__content">
-              <p class="blog-card__text">
+              <p class="blog-card__text" data-i18n="blog-card-3-title">
                 15 mind blowing floor designs to make your home look great
               </p>
               <time class="blog-card__date animate-typing">June 17, 2022</time>
@@ -937,7 +973,7 @@
     </section>
 
     <!-- ── Find Us ─────────────────────────────────────────────────────────── -->
-    <section id="find-us" class="bg-white pb-[120px]">
+    <section id="find-us" class="pb-[120px]">
       <div class="mx-auto flex max-w-7xl flex-col lg:flex-row">
         <!-- Info panel -->
         <div
@@ -946,10 +982,12 @@
           <div>
             <span
               class="font-inter text-sm font-bold tracking-widest text-[#FF4D01] uppercase"
+              data-i18n="findus-label"
               >/Find Us</span
             >
             <h2
-              class="font-barlow mt-2 text-3xl font-bold text-[#191919] md:text-4xl"
+              class="font-barlow mt-2 text-3xl font-bold text-[var(--text-color)] md:text-4xl"
+              data-i18n="findus-title"
             >
               Our Locations
             </h2>
@@ -959,10 +997,10 @@
             <div class="flex items-start gap-3">
               <span class="mt-0.5 text-xl">📍</span>
               <div>
-                <p class="font-inter text-sm font-semibold text-[#191919]">
+                <p class="font-inter text-sm font-semibold text-[var(--text-color)]" data-i18n="findus-office">
                   Main Office
                 </p>
-                <p class="font-inter text-sm text-[#605E5D]">
+                <p class="font-inter text-sm text-[var(--text-secondary)]">
                   пр. Независимости, 38<br />Минск, Беларусь
                 </p>
               </div>
@@ -970,10 +1008,10 @@
             <div class="flex items-start gap-3">
               <span class="mt-0.5 text-xl">🕐</span>
               <div>
-                <p class="font-inter text-sm font-semibold text-[#191919]">
+                <p class="font-inter text-sm font-semibold text-[var(--text-color)]" data-i18n="findus-hours">
                   Working Hours
                 </p>
-                <p class="font-inter text-sm text-[#605E5D]">
+                <p class="font-inter text-sm text-[var(--text-secondary)]">
                   Mon – Fri: 8:00 – 18:00<br />Sat: 9:00 – 14:00
                 </p>
               </div>
@@ -981,7 +1019,7 @@
             <div class="flex items-start gap-3">
               <span class="mt-0.5 text-xl">📞</span>
               <div>
-                <p class="font-inter text-sm font-semibold text-[#191919]">
+                <p class="font-inter text-sm font-semibold text-[var(--text-color)]" data-i18n="findus-phone">
                   Phone
                 </p>
                 <a
@@ -998,6 +1036,7 @@
             target="_blank"
             rel="noopener"
             class="font-inter inline-flex w-fit items-center gap-2 rounded-xl bg-[#FF4D01] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#e04400]"
+            data-i18n="findus-directions"
           >
             Get Directions →
           </a>
@@ -1057,7 +1096,7 @@
         </div>
 
         <nav class="footer-nav flex w-68.5 flex-col items-start gap-10">
-          <h5 class="font-inter text-[#FFF]">Menu</h5>
+          <h5 class="font-inter text-[#FFF]" data-i18n="footer-menu">Menu</h5>
           <div class="flex items-start justify-center gap-8">
             <ul class="flex w-31.25 flex-col items-start gap-4">
               <li>
@@ -1124,7 +1163,7 @@
         </nav>
 
         <nav class="footer-nav flex w-50.25 flex-col items-start gap-10">
-          <h5 class="font-inter text-[#FFF]">Utility Pages</h5>
+          <h5 class="font-inter text-[#FFF]" data-i18n="footer-utility">Utility Pages</h5>
           <ul class="flex w-50.25 flex-col items-start gap-4">
             <li class="h-[22.5px]">
               <a
@@ -1169,7 +1208,7 @@
         </nav>
 
         <section class="flex w-72.5 flex-col items-start gap-10">
-          <h5 class="font-inter text-[#FFF]">Contact us</h5>
+          <h5 class="font-inter text-[#FFF]" data-i18n="footer-contact-us">Contact us</h5>
 
           <article
             class="contact-card-hover-glow flex h-26.75 min-w-72.5 items-center gap-4 border-2 border-[#FF4D01] px-10.5 py-7.5"
@@ -1180,7 +1219,7 @@
             >
               <img src="icons/phone.svg" alt="" />
               <div class="flex flex-col items-start gap-1.5">
-                <span class="text-p4 font-inter text-[#FFF]">Call us</span>
+                <span class="text-p4 font-inter text-[#FFF]" data-i18n="footer-call-us">Call us</span>
                 <span class="text-p4 font-inter text-[#FFF]"
                   >+375 (17) 123-45-67</span
                 >
@@ -1197,7 +1236,7 @@
             >
               <img src="icons/mail.svg" alt="" />
               <div class="flex flex-col items-start gap-1.5">
-                <span class="text-p4 font-inter text-[#FFF]">Email us</span>
+                <span class="text-p4 font-inter text-[#FFF]" data-i18n="footer-email-us">Email us</span>
                 <span class="text-p4 font-inter text-[#FFF]"
                   >info@contractor.com</span
                 >

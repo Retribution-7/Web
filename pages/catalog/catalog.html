@@ -18,26 +18,31 @@
       }
     </style>
   </head>
-  <body class="font-inter bg-gray-50 text-[#191919]">
+  <body class="font-inter">
     <div id="preloader" aria-hidden="true" aria-label="Loading">
       <div class="preloader__ring"></div>
     </div>
-    <header class="bg-[#191919] py-8 text-white shadow-md">
+    <header class="site-header py-8">
       <div class="container mx-auto flex items-center justify-between px-4">
-        <h1 class="text-h3 font-barlow tracking-tight">Наши услуги</h1>
+        <div class="flex items-center gap-2">
+          <span class="lang-toggle lang-toggle--active" data-lang="en">en</span>
+          <span class="lang-toggle" data-lang="ru">ru</span>
+          <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">☀</button>
+        </div>
+        <h1 class="text-h3 font-barlow tracking-tight" data-i18n="catalog-title">Наши услуги</h1>
         <nav class="flex items-center gap-6">
           <a
             href="../favorites/favorites.html"
-            class="nav-link-animated font-medium text-gray-300 hover:text-white"
-            >🤍 Избранное</a
+            class="nav-link"
+            data-i18n="catalog-favorites">🤍 Избранное</a
           >
           <a
             href="../cart/cart.html"
-            class="nav-link-animated font-medium text-gray-300 hover:text-white"
-            >🛒 Корзина</a
+            class="nav-link"
+            data-i18n="catalog-cart">🛒 Корзина</a
           >
-          <a href="/" class="nav-link-animated font-medium text-[#FF4D01]"
-            >← На главную</a
+          <a href="/" class="nav-link"
+            data-i18n="catalog-home">← На главную</a
           >
         </nav>
       </div>
@@ -49,8 +54,8 @@
         <div class="w-full flex-1">
           <label
             for="searchInput"
-            class="mb-2 ml-1 block text-xs font-bold text-gray-400 uppercase"
-            >Поиск</label
+            class="mb-2 ml-1 block text-xs font-bold text-[var(--text-muted)] uppercase"
+            data-i18n="catalog-search-label">Поиск</label
           >
           <input
             type="text"
@@ -62,8 +67,8 @@
         <div class="w-full md:w-64">
           <label
             for="categorySelect"
-            class="mb-2 ml-1 block text-xs font-bold text-gray-400 uppercase"
-            >Категория</label
+            class="mb-2 ml-1 block text-xs font-bold text-[var(--text-muted)] uppercase"
+            data-i18n="catalog-category-label">Категория</label
           >
           <select id="categorySelect" class="filter-input cursor-pointer">
             <option value="">Все категории</option>
@@ -72,8 +77,8 @@
         <div class="w-full md:w-64">
           <label
             for="sortSelect"
-            class="mb-2 ml-1 block text-xs font-bold text-gray-400 uppercase"
-            >Сортировка</label
+            class="mb-2 ml-1 block text-xs font-bold text-[var(--text-muted)] uppercase"
+            data-i18n="catalog-sort-label">Сортировка</label
           >
           <select id="sortSelect" class="filter-input cursor-pointer">
             <option value="default">По умолчанию</option>
@@ -86,8 +91,8 @@
         <div class="w-full md:w-32">
           <label
             for="priceMin"
-            class="mb-2 ml-1 block text-xs font-bold text-gray-400 uppercase"
-            >Цена от</label
+            class="mb-2 ml-1 block text-xs font-bold text-[var(--text-muted)] uppercase"
+            data-i18n="catalog-price-from">Цена от</label
           >
           <input
             type="number"
@@ -100,8 +105,8 @@
         <div class="w-full md:w-32">
           <label
             for="priceMax"
-            class="mb-2 ml-1 block text-xs font-bold text-gray-400 uppercase"
-            >Цена до</label
+            class="mb-2 ml-1 block text-xs font-bold text-[var(--text-muted)] uppercase"
+            data-i18n="catalog-price-to">Цена до</label
           >
           <input
             type="number"
@@ -148,7 +153,7 @@
         aria-labelledby="product-modal-title"
       >
         <div class="modal__header">
-          <h2 id="product-modal-title" class="modal__title">Детали</h2>
+          <h2 id="product-modal-title" class="modal__title" data-i18n="catalog-details">Детали</h2>
           <button
             id="btn-product-modal-close"
             class="modal__close"
@@ -167,7 +172,7 @@
               <span id="product-modal-category" class="category-badge"></span>
               <span id="product-modal-rating" class="badge-rating"></span>
             </div>
-            <p id="product-modal-desc" class="font-inter text-p3 text-[#605E5D] leading-relaxed mb-5"></p>
+            <p id="product-modal-desc" class="font-inter text-p3 text-[var(--text-secondary)] leading-relaxed mb-5"></p>
             <div id="product-modal-price" class="mb-6"></div>
             <div class="flex gap-3">
               <button
@@ -178,9 +183,10 @@
               >🛒 В корзину</button>
               <button
                 id="product-modal-fav-btn"
-                class="w-12 h-12 rounded-xl border-2 border-gray-200 flex items-center justify-center
+                class="w-12 h-12 rounded-xl border-2 border-[var(--border-color)] flex items-center justify-center
                        text-xl hover:border-[#FF4D01] transition-colors shrink-0"
                 title="В избранное"
+                data-i18n="catalog-add-fav"
               >🤍</button>
             </div>
           </div>

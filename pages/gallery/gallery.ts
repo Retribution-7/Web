@@ -1,4 +1,7 @@
 import "../../src/scripts/preloader";
+import { initPageControls } from "../../src/scripts/init-page";
+
+initPageControls();
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 

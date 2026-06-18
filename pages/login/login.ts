@@ -2,6 +2,9 @@ import "../../src/scripts/preloader";
 import { showToast } from "../../src/scripts/toast";
 import { fetchUserByEmail } from "../../src/api";
 import { getUser, setUser } from "../../src/auth";
+import { initPageControls } from "../../src/scripts/init-page";
+
+initPageControls();
 
 // ─── Redirect logged-in users away ────────────────────────────────────────────
 

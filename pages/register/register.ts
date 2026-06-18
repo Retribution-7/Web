@@ -13,6 +13,9 @@ import { getUser, setUser } from "../../src/auth";
 import "../../src/scripts/preloader";
 import { showToast } from "../../src/scripts/toast";
 import type { IUserPayload } from "./types/user.interface";
+import { initPageControls } from "../../src/scripts/init-page";
+
+initPageControls();
 
 // ─── Redirect logged-in users away ────────────────────────────────────────────
 
