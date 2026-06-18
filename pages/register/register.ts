@@ -8,10 +8,10 @@
  * ─────────────────────────────────────────────────────────────────────────────
  */
 
-import "../../src/scripts/preloader";
-import { showToast } from "../../src/scripts/toast";
 import { checkNicknameAvailable, postUser } from "../../src/api";
 import { getUser, setUser } from "../../src/auth";
+import "../../src/scripts/preloader";
+import { showToast } from "../../src/scripts/toast";
 import type { IUserPayload } from "./types/user.interface";
 
 // ─── Redirect logged-in users away ────────────────────────────────────────────
@@ -26,10 +26,26 @@ if (getUser()) {
 const MAX_REGEN = 5;
 
 const COMMON_PASSWORDS = new Set([
-  "password", "password1", "12345678", "123456789", "qwerty123",
-  "qwerty1", "admin123", "letmein1", "welcome1", "monkey123",
-  "iloveyou", "sunshine1", "princess", "superman1", "abc12345",
-  "11111111", "00000000", "passw0rd", "dragon123", "master123",
+  "password",
+  "password1",
+  "12345678",
+  "123456789",
+  "qwerty123",
+  "qwerty1",
+  "admin123",
+  "letmein1",
+  "welcome1",
+  "monkey123",
+  "iloveyou",
+  "sunshine1",
+  "princess",
+  "superman1",
+  "abc12345",
+  "11111111",
+  "00000000",
+  "passw0rd",
+  "dragon123",
+  "master123",
 ]);
 
 // Belarus mobile operators: 25 (life:), 29 (A1), 33 (МТС), 44 (МТС)
@@ -40,11 +56,39 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 // Cyrillic → Latin transliteration for nickname generation
 const TRANSLIT: Record<string, string> = {
-  а: "a", б: "b", в: "v", г: "g", д: "d", е: "e", ё: "yo",
-  ж: "zh", з: "z", и: "i", й: "j", к: "k", л: "l", м: "m",
-  н: "n", о: "o", п: "p", р: "r", с: "s", т: "t", у: "u",
-  ф: "f", х: "h", ц: "c", ч: "ch", ш: "sh", щ: "sch",
-  ъ: "", ы: "y", ь: "", э: "e", ю: "yu", я: "ya",
+  а: "a",
+  б: "b",
+  в: "v",
+  г: "g",
+  д: "d",
+  е: "e",
+  ё: "yo",
+  ж: "zh",
+  з: "z",
+  и: "i",
+  й: "j",
+  к: "k",
+  л: "l",
+  м: "m",
+  н: "n",
+  о: "o",
+  п: "p",
+  р: "r",
+  с: "s",
+  т: "t",
+  у: "u",
+  ф: "f",
+  х: "h",
+  ц: "c",
+  ч: "ch",
+  ш: "sh",
+  щ: "sch",
+  ъ: "",
+  ы: "y",
+  ь: "",
+  э: "e",
+  ю: "yu",
+  я: "ya",
 };
 
 // ─── State ────────────────────────────────────────────────────────────────────
@@ -63,28 +107,30 @@ const middleNameEl = document.getElementById("middleName") as HTMLInputElement;
 const nicknameEl = document.getElementById("nickname") as HTMLInputElement;
 const genBtn = document.getElementById("btn-gen-nickname") as HTMLButtonElement;
 const regenInfoEl = document.getElementById("regen-info") as HTMLElement;
-const nicknameStatusEl = document.getElementById("nickname-status") as HTMLElement;
+const nicknameStatusEl = document.getElementById(
+  "nickname-status",
+) as HTMLElement;
 const phoneEl = document.getElementById("phone") as HTMLInputElement;
 const emailEl = document.getElementById("email") as HTMLInputElement;
 const birthDateEl = document.getElementById("birthDate") as HTMLInputElement;
 const passwordEl = document.getElementById("password") as HTMLInputElement;
-const confirmEl = document.getElementById("confirmPassword") as HTMLInputElement;
-const togglePwdBtn = document.getElementById("btn-toggle-pwd") as HTMLButtonElement;
+const confirmEl = document.getElementById(
+  "confirmPassword",
+) as HTMLInputElement;
+const togglePwdBtn = document.getElementById(
+  "btn-toggle-pwd",
+) as HTMLButtonElement;
 const agreementEl = document.getElementById("agreement") as HTMLInputElement;
 const submitBtn = document.getElementById("btn-submit") as HTMLButtonElement;
 
 // ─── Validators ───────────────────────────────────────────────────────────────
 
 function errFirstName(v: string): string | null {
-  return v.trim().length >= 2
-    ? null
-    : "Введите имя (минимум 2 символа)";
+  return v.trim().length >= 2 ? null : "Введите имя (минимум 2 символа)";
 }
 
 function errLastName(v: string): string | null {
-  return v.trim().length >= 2
-    ? null
-    : "Введите фамилию (минимум 2 символа)";
+  return v.trim().length >= 2 ? null : "Введите фамилию (минимум 2 символа)";
 }
 
 function errNickname(): string | null {
@@ -195,7 +241,8 @@ function setNicknameStatus(
 ): void {
   nicknameStatusEl.textContent = text;
   nicknameStatusEl.className = "nickname-status";
-  if (state !== "none") nicknameStatusEl.classList.add(`nickname-status--${state}`);
+  if (state !== "none")
+    nicknameStatusEl.classList.add(`nickname-status--${state}`);
 }
 
 function updateRegenUI(): void {
@@ -318,9 +365,7 @@ nicknameEl.addEventListener("input", () => {
   });
   el.addEventListener("blur", () => {
     const err =
-      el === firstNameEl
-        ? errFirstName(el.value)
-        : errLastName(el.value);
+      el === firstNameEl ? errFirstName(el.value) : errLastName(el.value);
     setError(el.id, err);
     updateSubmit();
   });
@@ -369,7 +414,10 @@ togglePwdBtn.addEventListener("click", () => {
   const isText = passwordEl.type === "text";
   passwordEl.type = isText ? "password" : "text";
   togglePwdBtn.textContent = isText ? "👁" : "🙈";
-  togglePwdBtn.setAttribute("aria-label", isText ? "Показать пароль" : "Скрыть пароль");
+  togglePwdBtn.setAttribute(
+    "aria-label",
+    isText ? "Показать пароль" : "Скрыть пароль",
+  );
 });
 
 // Middle name: no validation, just clear on input
@@ -410,7 +458,9 @@ form.addEventListener("submit", async (e) => {
     password: passwordEl.value,
     role: "client",
     birthDate: birthDateEl.value,
-    ...(middleNameEl.value.trim() ? { middleName: middleNameEl.value.trim() } : {}),
+    ...(middleNameEl.value.trim()
+      ? { middleName: middleNameEl.value.trim() }
+      : {}),
   };
 
   try {
@@ -440,7 +490,6 @@ function showSuccess(name: string): void {
 }
 
 // ─── Toast ────────────────────────────────────────────────────────────────────
-
 
 // ─── Init ─────────────────────────────────────────────────────────────────────
 

@@ -1,7 +1,12 @@
+import {
+  fetchAllProducts,
+  fetchAllUsers,
+  fetchOrdersByUser,
+  postFeedback,
+} from "../../src/api";
+import { requireAuth } from "../../src/auth";
 import "../../src/scripts/preloader";
 import { showToast } from "../../src/scripts/toast";
-import { fetchOrdersByUser, postFeedback } from "../../src/api";
-import { requireAuth } from "../../src/auth";
 import type { IFeedbackPayload } from "./types/feedback.interface";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
@@ -19,10 +24,16 @@ const root = document.getElementById("fb-content") as HTMLElement;
 // ─── State ────────────────────────────────────────────────────────────────────
 
 let isSubmitting = false;
+let allFeedbacks: IFeedback[] = [];
 
 // ─── Render helpers ───────────────────────────────────────────────────────────
 
-function renderState(icon: string, title: string, subtitle: string, actions = ""): void {
+function renderState(
+  icon: string,
+  title: string,
+  subtitle: string,
+  actions = "",
+): void {
   root.innerHTML = `
     <div class="state-box">
       <span class="state-box__icon">${icon}</span>
@@ -93,8 +104,13 @@ function errRating(v: string): string | null {
   return v ? null : "Поставьте оценку";
 }
 
-// ─── Toast ────────────────────────────────────────────────────────────────────
+// ─── Fetch feedbacks ──────────────────────────────────────────────────────────
 
+async function fetchAllFeedbacks(): Promise<IFeedback[]> {
+  const response = await fetch("http://localhost:3000/feedback");
+  if (!response.ok) throw new Error("Failed to fetch feedbacks");
+  return response.json();
+}
 
 // ─── Form renderer ────────────────────────────────────────────────────────────
 
@@ -171,9 +187,124 @@ function renderForm(products: PurchasedProduct[]): void {
       </button>
 
     </form>
+
+    <!-- Existing reviews section -->
+    <div id="existing-reviews" class="existing-reviews-section"></div>
   `;
 
   bindFormListeners(products);
+}
+
+// ─── Render existing reviews ──────────────────────────────────────────────────
+
+interface ReviewWithDetails {
+  id: number;
+  userId: number;
+  productId: number;
+  message: string;
+  rating: number;
+  createdAt: string;
+  userName?: string;
+  productTitle?: string;
+}
+
+async function renderExistingReviews(): Promise<void> {
+  const reviewsContainer = document.getElementById("existing-reviews");
+  if (!reviewsContainer) return;
+
+  try {
+    // Fetch all data in parallel using existing API functions
+    const [feedbacks, products, users] = await Promise.all([
+      fetchAllFeedbacks(),
+      fetchAllProducts(),
+      fetchAllUsers(),
+    ]);
+
+    allFeedbacks = feedbacks;
+
+    if (!feedbacks || feedbacks.length === 0) {
+      reviewsContainer.innerHTML = `
+        <div class="reviews-empty">
+          <span class="reviews-empty__icon">💬</span>
+          <p>Пока нет отзывов. Будьте первым!</p>
+        </div>
+      `;
+      return;
+    }
+
+    // Create maps for quick access
+    const productsMap = new Map(products.map((p) => [p.id, p.title]));
+    const usersMap = new Map(
+      users.map((u) => [u.id, `${u.firstName} ${u.lastName}`]),
+    );
+
+    // Sort feedbacks by date (newest first)
+    const sortedFeedbacks = [...feedbacks].sort(
+      (a, b) =>
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+    );
+
+    const reviewsHtml = sortedFeedbacks
+      .map((feedback) => {
+        const productTitle =
+          productsMap.get(feedback.productId) || "Товар не найден";
+        const userName = usersMap.get(feedback.userId) || "Пользователь";
+        const date = new Date(feedback.createdAt).toLocaleDateString("ru-RU", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        });
+
+        // Generate star rating
+        const stars = Array.from({ length: 5 }, (_, i) =>
+          i < feedback.rating ? "★" : "☆",
+        ).join("");
+
+        return `
+        <div class="review-card">
+          <div class="review-card__header">
+            <div class="review-card__user">
+              <span class="review-card__avatar">👤</span>
+              <div>
+                <h4 class="review-card__name">${escapeHtml(userName)}</h4>
+                <p class="review-card__product">${escapeHtml(productTitle)}</p>
+              </div>
+            </div>
+            <span class="review-card__date">${date}</span>
+          </div>
+          <div class="review-card__rating">${stars}</div>
+          <p class="review-card__message">${escapeHtml(feedback.message)}</p>
+        </div>
+      `;
+      })
+      .join("");
+
+    reviewsContainer.innerHTML = `
+      <div class="reviews-header">
+        <h3 class="reviews-title">Отзывы клиентов</h3>
+        <span class="reviews-count">${feedbacks.length} отзывов</span>
+      </div>
+      <div class="reviews-list">
+        ${reviewsHtml}
+      </div>
+    `;
+  } catch (error) {
+    console.error("Failed to load reviews:", error);
+    reviewsContainer.innerHTML = `
+      <div class="reviews-empty">
+        <span class="reviews-empty__icon">⚠️</span>
+        <p>Не удалось загрузить отзывы. Пожалуйста, обновите страницу.</p>
+        <button onclick="location.reload()" class="btn-secondary mt-3">Обновить</button>
+      </div>
+    `;
+  }
+}
+
+// Helper function to escape HTML
+function escapeHtml(str: string): string {
+  const div = document.createElement("div");
+  div.textContent = str;
+  return div.innerHTML;
 }
 
 // ─── Form listeners ───────────────────────────────────────────────────────────
@@ -185,7 +316,9 @@ function bindFormListeners(products: PurchasedProduct[]): void {
   const submitBtn = document.getElementById("btn-submit") as HTMLButtonElement;
 
   function selectedRating(): string {
-    const checked = form.querySelector<HTMLInputElement>("input[name='rating']:checked");
+    const checked = form.querySelector<HTMLInputElement>(
+      "input[name='rating']:checked",
+    );
     return checked ? checked.value : "";
   }
 
@@ -212,12 +345,14 @@ function bindFormListeners(products: PurchasedProduct[]): void {
   });
 
   // Rating
-  form.querySelectorAll<HTMLInputElement>("input[name='rating']").forEach((radio) => {
-    radio.addEventListener("change", () => {
-      clearError("rating");
-      updateSubmit();
+  form
+    .querySelectorAll<HTMLInputElement>("input[name='rating']")
+    .forEach((radio) => {
+      radio.addEventListener("change", () => {
+        clearError("rating");
+        updateSubmit();
+      });
     });
-  });
 
   // Message
   messageEl.addEventListener("input", () => {
@@ -257,8 +392,14 @@ function bindFormListeners(products: PurchasedProduct[]): void {
 
     try {
       await postFeedback(payload);
-      renderSuccess(productTitle);
-    } catch {
+      // Refresh reviews after successful submission
+      await renderExistingReviews();
+      // Reset form
+      form.reset();
+      submitBtn.disabled = true;
+      showToast("Отзыв успешно отправлен!", "success");
+    } catch (error) {
+      console.error("Submit error:", error);
       showToast("Ошибка при отправке. Попробуйте снова.", "error");
       submitBtn.disabled = false;
       submitBtn.textContent = "Отправить отзыв";
@@ -280,7 +421,11 @@ async function init(): Promise<void> {
   try {
     orders = await fetchOrdersByUser(currentUser.id);
   } catch {
-    renderState("⚠️", "Ошибка загрузки", "Не удалось загрузить ваши заказы. Попробуйте позже.");
+    renderState(
+      "⚠️",
+      "Ошибка загрузки",
+      "Не удалось загрузить ваши заказы. Попробуйте позже.",
+    );
     return;
   }
 
@@ -303,6 +448,9 @@ async function init(): Promise<void> {
   }
 
   renderForm(purchased);
+
+  // Load existing reviews
+  await renderExistingReviews();
 }
 
 init();

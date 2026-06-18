@@ -1,19 +1,19 @@
+import {
+  createProduct,
+  deleteFeedback,
+  deleteProduct,
+  fetchAllProducts,
+  fetchAllUsers,
+  fetchFeedbackByProduct,
+  fetchFeedbackByUser,
+  updateProduct,
+} from "../../src/api";
+import { requireAdmin } from "../../src/auth";
 import "../../src/scripts/preloader";
 import { showToast } from "../../src/scripts/toast";
 import type { IProduct } from "../catalog/types/product.interface";
 import type { IFeedback } from "../feedback/types/feedback.interface";
 import type { IUser } from "../register/types/user.interface";
-import { requireAdmin } from "../../src/auth";
-import {
-  fetchAllProducts,
-  createProduct,
-  updateProduct,
-  deleteProduct,
-  fetchAllUsers,
-  fetchFeedbackByProduct,
-  fetchFeedbackByUser,
-  deleteFeedback,
-} from "../../src/api";
 
 // ─── Admin guard ──────────────────────────────────────────────────────────────
 
@@ -49,10 +49,18 @@ const errImage = document.getElementById("err-image") as HTMLElement;
 
 // ─── Delete modal refs ────────────────────────────────────────────────────────
 
-const deleteModalOverlay = document.getElementById("delete-modal") as HTMLElement;
-const btnDeleteModalClose = document.getElementById("btn-delete-modal-close") as HTMLButtonElement;
-const btnDeleteCancel = document.getElementById("btn-delete-cancel") as HTMLButtonElement;
-const btnDeleteConfirm = document.getElementById("btn-delete-confirm") as HTMLButtonElement;
+const deleteModalOverlay = document.getElementById(
+  "delete-modal",
+) as HTMLElement;
+const btnDeleteModalClose = document.getElementById(
+  "btn-delete-modal-close",
+) as HTMLButtonElement;
+const btnDeleteCancel = document.getElementById(
+  "btn-delete-cancel",
+) as HTMLButtonElement;
+const btnDeleteConfirm = document.getElementById(
+  "btn-delete-confirm",
+) as HTMLButtonElement;
 
 // ─── State ────────────────────────────────────────────────────────────────────
 
@@ -103,8 +111,10 @@ const validators: Array<{
   {
     validate: () => {
       const v = parseFloat(fPrice.value);
-      if (!fPrice.value.trim()) return { valid: false, message: "Обязательное поле" };
-      if (isNaN(v) || v <= 0) return { valid: false, message: "Цена должна быть больше 0" };
+      if (!fPrice.value.trim())
+        return { valid: false, message: "Обязательное поле" };
+      if (isNaN(v) || v <= 0)
+        return { valid: false, message: "Цена должна быть больше 0" };
       return { valid: true, message: "" };
     },
     errEl: errPrice,
@@ -113,8 +123,10 @@ const validators: Array<{
   {
     validate: () => {
       const v = parseFloat(fRating.value);
-      if (!fRating.value.trim()) return { valid: false, message: "Обязательное поле" };
-      if (isNaN(v) || v < 1 || v > 5) return { valid: false, message: "Рейтинг от 1 до 5" };
+      if (!fRating.value.trim())
+        return { valid: false, message: "Обязательное поле" };
+      if (isNaN(v) || v < 1 || v > 5)
+        return { valid: false, message: "Рейтинг от 1 до 5" };
       return { valid: true, message: "" };
     },
     errEl: errRating,
@@ -122,7 +134,8 @@ const validators: Array<{
   },
   {
     validate: () => {
-      if (!fImage.value.trim()) return { valid: false, message: "Обязательное поле" };
+      if (!fImage.value.trim())
+        return { valid: false, message: "Обязательное поле" };
       return { valid: true, message: "" };
     },
     errEl: errImage,
@@ -407,7 +420,10 @@ function handleDelete(id: number, btn: HTMLButtonElement): void {
   openDeleteModal(id, btn);
 }
 
-async function confirmDelete(id: number, btn: HTMLButtonElement): Promise<void> {
+async function confirmDelete(
+  id: number,
+  btn: HTMLButtonElement,
+): Promise<void> {
   btn.disabled = true;
   btn.textContent = "...";
 
@@ -426,9 +442,13 @@ async function confirmDelete(id: number, btn: HTMLButtonElement): Promise<void> 
 
 // ─── Feedback management ──────────────────────────────────────────────────────
 
-const filterProduct = document.getElementById("filter-product") as HTMLSelectElement;
+const filterProduct = document.getElementById(
+  "filter-product",
+) as HTMLSelectElement;
 const filterUser = document.getElementById("filter-user") as HTMLSelectElement;
-const feedbackContainer = document.getElementById("feedback-table-container") as HTMLElement;
+const feedbackContainer = document.getElementById(
+  "feedback-table-container",
+) as HTMLElement;
 
 let cachedProducts: IProduct[] = [];
 let cachedUsers: IUser[] = [];
@@ -447,7 +467,10 @@ async function initFeedbackSection(): Promise<void> {
     </div>`;
 
   try {
-    const [products, users] = await Promise.all([fetchAllProducts(), fetchAllUsers()]);
+    const [products, users] = await Promise.all([
+      fetchAllProducts(),
+      fetchAllUsers(),
+    ]);
     cachedProducts = products;
     cachedUsers = users;
 
@@ -534,9 +557,8 @@ function renderFeedbackTable(items: IFeedback[]): void {
       const product = cachedProducts.find((p) => p.id === fb.productId);
       const user = cachedUsers.find((u) => u.id === fb.userId);
       const rating = fb.rating ?? 0;
-      const stars = rating > 0
-        ? "★".repeat(rating) + "☆".repeat(5 - rating)
-        : "—";
+      const stars =
+        rating > 0 ? "★".repeat(rating) + "☆".repeat(5 - rating) : "—";
       const date = new Date(fb.createdAt).toLocaleDateString("ru-RU");
 
       return `
@@ -589,7 +611,10 @@ function renderFeedbackTable(items: IFeedback[]): void {
     });
 }
 
-async function handleDeleteFeedback(id: number, btn: HTMLButtonElement): Promise<void> {
+async function handleDeleteFeedback(
+  id: number,
+  btn: HTMLButtonElement,
+): Promise<void> {
   if (!confirm("Удалить этот отзыв? Это действие необратимо.")) return;
 
   btn.disabled = true;

@@ -138,6 +138,36 @@
       "category": "exterior",
       "quantity": 3,
       "id": 1
+    },
+    {
+      "userId": 4,
+      "productId": 3,
+      "title": "Отделка фасада",
+      "price": 2800,
+      "imageUrl": "/images/blog/blog-3.svg",
+      "category": "exterior",
+      "quantity": 1,
+      "id": 2
+    },
+    {
+      "userId": 5,
+      "productId": 3,
+      "title": "Отделка фасада",
+      "price": 2800,
+      "imageUrl": "/images/blog/blog-3.svg",
+      "category": "exterior",
+      "quantity": 3,
+      "id": 3
+    },
+    {
+      "userId": 5,
+      "productId": 2,
+      "title": "Укладка паркета",
+      "price": 450,
+      "imageUrl": "/images/blog/blog-2.svg",
+      "category": "interior",
+      "quantity": 1,
+      "id": 4
     }
   ],
   "users": [
@@ -186,6 +216,17 @@
       "role": "client",
       "birthDate": "2010-04-08",
       "id": 4
+    },
+    {
+      "firstName": "Name",
+      "lastName": "Surname",
+      "nickname": "namsu836k",
+      "email": "test1@example.com",
+      "phone": "+375254768342",
+      "password": "Test1234@",
+      "role": "admin",
+      "birthDate": "2007-02-27",
+      "id": 5
     }
   ],
   "orders": [
@@ -384,6 +425,21 @@
       "status": "pending",
       "createdAt": "2026-05-02T04:15:58.642Z",
       "id": 12
+    },
+    {
+      "userId": 4,
+      "products": [
+        {
+          "productId": 2,
+          "title": "Укладка паркета",
+          "quantity": 1,
+          "price": 450
+        }
+      ],
+      "totalPrice": 450,
+      "status": "pending",
+      "createdAt": "2026-05-30T08:25:46.349Z",
+      "id": 13
     }
   ],
   "feedback": [

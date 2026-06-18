@@ -10,8 +10,14 @@ import type {
   IProductQuery,
 } from "../pages/catalog/types/product.interface";
 import { IFavorite } from "../pages/favorites/types/favorites.interface";
-import type { IFeedback, IFeedbackPayload } from "../pages/feedback/types/feedback.interface";
-import type { IUser, IUserPayload } from "../pages/register/types/user.interface";
+import type {
+  IFeedback,
+  IFeedbackPayload,
+} from "../pages/feedback/types/feedback.interface";
+import type {
+  IUser,
+  IUserPayload,
+} from "../pages/register/types/user.interface";
 import type { IOrder, IOrderPayload } from "./types/order.interface";
 
 export type { IOrder, IOrderPayload };
@@ -103,7 +109,10 @@ export async function fetchCart(userId: number): Promise<ICartItem[]> {
   return apiFetch<ICartItem[]>(`${BASE_URL}/cart?userId=${userId}`);
 }
 
-export async function addToCart(product: IProduct, userId: number): Promise<ICartItem> {
+export async function addToCart(
+  product: IProduct,
+  userId: number,
+): Promise<ICartItem> {
   const existing = await apiFetch<ICartItem[]>(
     `${BASE_URL}/cart?productId=${product.id}&userId=${userId}`,
   );
@@ -165,7 +174,9 @@ export async function fetchOrdersByUser(userId: number): Promise<IOrder[]> {
 
 // ─── Feedback ─────────────────────────────────────────────────────────────────
 
-export async function postFeedback(payload: IFeedbackPayload): Promise<IFeedback> {
+export async function postFeedback(
+  payload: IFeedbackPayload,
+): Promise<IFeedback> {
   return apiFetch<IFeedback>(`${BASE_URL}/feedback`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -173,11 +184,15 @@ export async function postFeedback(payload: IFeedbackPayload): Promise<IFeedback
   });
 }
 
-export async function fetchFeedbackByProduct(productId: number): Promise<IFeedback[]> {
+export async function fetchFeedbackByProduct(
+  productId: number,
+): Promise<IFeedback[]> {
   return apiFetch<IFeedback[]>(`${BASE_URL}/feedback?productId=${productId}`);
 }
 
-export async function fetchFeedbackByUser(userId: number): Promise<IFeedback[]> {
+export async function fetchFeedbackByUser(
+  userId: number,
+): Promise<IFeedback[]> {
   return apiFetch<IFeedback[]>(`${BASE_URL}/feedback?userId=${userId}`);
 }
 
@@ -229,7 +244,9 @@ export async function fetchUserByEmail(email: string): Promise<IUser | null> {
   return matches[0] ?? null;
 }
 
-export async function checkNicknameAvailable(nickname: string): Promise<boolean> {
+export async function checkNicknameAvailable(
+  nickname: string,
+): Promise<boolean> {
   const matches = await apiFetch<IUser[]>(
     `${BASE_URL}/users?nickname=${encodeURIComponent(nickname)}`,
   );

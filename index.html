@@ -1,3 +1,5 @@
+<!-- biome-ignore-all lint/a11y/noSvgWithoutTitle: <explanation> -->
+<!-- biome-ignore-all lint/a11y/useButtonType: <explanation> -->
 <!doctype html>
 <html lang="en">
   <head>
@@ -10,6 +12,7 @@
       href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
       rel="stylesheet"
     />
+    <link rel="icon" type="image/x-icon" href="/public/icons/phone.svg" />
     <script type="module" src="src/main.ts"></script>
     <!-- Critical preloader styles — inline so the overlay is painted before
          any external CSS or font finishes loading, eliminating FOUC. -->
@@ -413,16 +416,25 @@
     </section>
 
     <!-- ── Parallax Banner ────────────────────────────────────────────────── -->
-    <section id="parallax-scene" class="parallax-scene" aria-label="Our promise">
-
+    <section
+      id="parallax-scene"
+      class="parallax-scene"
+      aria-label="Our promise"
+    >
       <!-- Layer 1: Background (slowest) — blueprint grid + soft bloom -->
-      <div class="parallax-layer parallax-layer--bg" data-parallax-strength="80">
+      <div
+        class="parallax-layer parallax-layer--bg"
+        data-parallax-strength="80"
+      >
         <div class="parallax-bg-grid"></div>
         <div class="parallax-bg-bloom"></div>
       </div>
 
       <!-- Layer 2: Middle — diagonal stripe, large frame, ruler line -->
-      <div class="parallax-layer parallax-layer--mid" data-parallax-strength="220">
+      <div
+        class="parallax-layer parallax-layer--mid"
+        data-parallax-strength="220"
+      >
         <div class="parallax-mid-stripe"></div>
         <div class="parallax-mid-frame"></div>
         <div class="parallax-mid-ring"></div>
@@ -430,7 +442,10 @@
       </div>
 
       <!-- Layer 3: Foreground (fastest) — bar, scope, squares, diamonds, dots -->
-      <div class="parallax-layer parallax-layer--fg" data-parallax-strength="380">
+      <div
+        class="parallax-layer parallax-layer--fg"
+        data-parallax-strength="380"
+      >
         <!-- Vertical accent bar -->
         <div class="parallax-fg-bar"></div>
         <!-- Crosshair scope -->
@@ -455,15 +470,25 @@
       </div>
 
       <!-- Counter element: moves in the opposite direction -->
-      <div class="parallax-layer parallax-layer--counter" data-parallax-strength="-160">
-        <span class="parallax-counter-text" aria-hidden="true">15<span class="parallax-counter-suffix">+</span></span>
+      <div
+        class="parallax-layer parallax-layer--counter"
+        data-parallax-strength="-160"
+      >
+        <span class="parallax-counter-text" aria-hidden="true"
+          >15<span class="parallax-counter-suffix">+</span></span
+        >
       </div>
 
       <!-- Static content overlay -->
       <div class="parallax-content">
         <span class="parallax-tag">/Our Promise</span>
-        <h2 class="parallax-heading">Built to last,<br />designed to impress</h2>
-        <p class="parallax-body">From the first blueprint to the final finish — we deliver excellence at every stage.</p>
+        <h2 class="parallax-heading">
+          Built to last,<br />designed to impress
+        </h2>
+        <p class="parallax-body">
+          From the first blueprint to the final finish — we deliver excellence
+          at every stage.
+        </p>
         <div class="parallax-stats">
           <div class="parallax-stat">
             <dd class="parallax-stat__num"><span>+</span>350</dd>
@@ -478,7 +503,9 @@
             <dt class="parallax-stat__label">Satisfaction</dt>
           </div>
         </div>
-        <button class="button--orange btn-magnetic parallax-cta">Get a quote</button>
+        <button class="button--orange btn-magnetic parallax-cta">
+          Get a quote
+        </button>
       </div>
     </section>
 
@@ -837,6 +864,7 @@
           </span>
           <h5 class="font-inter md:text-h2 md:font-barlow">Articles & News</h5>
         </div>
+        <!-- biome-ignore lint/a11y/useButtonType: <explanation> -->
         <button
           class="font-inter text-p4 md:text-p2 btn-magnetic w-fit border-2 border-[#000] bg-transparent p-5 text-[#000] md:px-9.5 md:py-7.5"
         >
@@ -1144,7 +1172,7 @@
           <h5 class="font-inter text-[#FFF]">Contact us</h5>
 
           <article
-            class="contact-card-hover-glow flex h-26.75 min-w-72.5 items-center gap-4 border-2 border-[#FF4D01] px-12.5 py-7.5"
+            class="contact-card-hover-glow flex h-26.75 min-w-72.5 items-center gap-4 border-2 border-[#FF4D01] px-10.5 py-7.5"
           >
             <a
               href="tel:375171234567"
@@ -1161,7 +1189,7 @@
           </article>
 
           <article
-            class="contact-card-hover-glow flex h-26.75 min-w-72.5 items-center gap-4 border-2 border-[#FF4D01] px-12.5 py-7.5"
+            class="contact-card-hover-glow flex h-26.75 min-w-72.5 items-center gap-4 border-2 border-[#FF4D01] px-10.5 py-7.5"
           >
             <a
               href="mailto:info@contractor.com"
